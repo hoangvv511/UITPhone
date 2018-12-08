@@ -6,7 +6,6 @@ using System.Data.Entity.Spatial;
 
 public partial class ChiTietPhieuKiemKho
 {
-
     [Key]
     public int SoPhieuKiemKho { get; set; }
 //

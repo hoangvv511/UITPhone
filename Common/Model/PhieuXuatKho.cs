@@ -16,10 +16,6 @@ public partial class PhieuXuatKho
 
     public int MaNhanVien { get; set; }
 
-
-
-
-
     [StringLength(200)]
     public string LyDoXuat { get; set; }
     public int TongTien { get; set; }
