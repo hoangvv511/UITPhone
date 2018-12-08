@@ -49,7 +49,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\BaoCaoTonKho.cs" />
+    <Compile Include="Model\ChiTietPhieuBanHang.cs" />
+    <Compile Include="Model\ChiTietPhieuDatHang.cs" />
+    <Compile Include="Model\ChiTietPhieuKiemKho.cs" />
+    <Compile Include="Model\ChiTietPhieuNhap.cs" />
+    <Compile Include="Model\ChiTietPhieuXuatKho.cs" />
+    <Compile Include="Model\ChucVu.cs" />
+    <Compile Include="Model\HangHoa.cs" />
+    <Compile Include="Model\LoaiHangHoa.cs" />
+    <Compile Include="Model\NhaCungCap.cs" />
     <Compile Include="Model\NhanVien.cs" />
+    <Compile Include="Model\NhanVien_Quyen.cs" />
+    <Compile Include="Model\PhanQuyen.cs" />
+    <Compile Include="Model\PhieuBanHang.cs" />
+    <Compile Include="Model\PhieuBaoHanh.cs" />
+    <Compile Include="Model\PhieuChi.cs" />
+    <Compile Include="Model\PhieuDatHang.cs" />
+    <Compile Include="Model\PhieuKiemKho.cs" />
+    <Compile Include="Model\PhieuNhap.cs" />
+    <Compile Include="Model\PhieuXuatKho.cs" />
+    <Compile Include="Model\ThamSo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

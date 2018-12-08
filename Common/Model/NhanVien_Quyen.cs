@@ -6,7 +6,7 @@ using System.Data.Entity.Spatial;
 
 public partial class NhanVien_Quyen
 {
-    
+
     [Key]
     public int MaChucVu { get; set; }
 
@@ -16,8 +16,7 @@ public partial class NhanVien_Quyen
 
 
     [StringLength(100)]
-    public string ChuThich { get; set; }
+    public string ChuThich { get; set; } 
 
-
-
+    //
 }
