@@ -9,8 +9,7 @@ public partial class ChiTietPhieuKiemKho
 
     [Key]
     public int SoPhieuKiemKho { get; set; }
-
-
+//
     public int SoLuongHienTai { get; set; }
 
     [Key]
