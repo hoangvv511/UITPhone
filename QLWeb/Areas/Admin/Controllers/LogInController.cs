@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using QLWeb.Models;
-using QLWeb.Areas.Admin;
+using QLWeb.Areas.Admin.Models;
 
-namespace QLWeb.Controllers
+namespace QLWeb.Areas.Admin.Controllers
 {
     public class LogInController : Controller
     {
-        // GET: LogIn
+        // GET: Admin/LogIn
         public ActionResult Index()
         {
             return View(1);

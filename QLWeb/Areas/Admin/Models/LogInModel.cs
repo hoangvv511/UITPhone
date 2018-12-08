@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace QLWeb.Models
+namespace QLWeb.Areas.Admin.Models
 {
     public class LogInModel
     {
