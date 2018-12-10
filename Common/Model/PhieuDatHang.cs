@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Spatial;
 
+[Table("PhieuDatHang")]
 public partial class PhieuDatHang
 {
     [Key]
