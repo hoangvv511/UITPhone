@@ -27,7 +27,8 @@
 </head>
 <!--/ END HEAD -->
 <body class="page-sound">
-    @if (Session["Account"] != null)
+
+    @if (Session["Account"] == null)
     {
     <div id="sign-wrapper">
         <!-- Brand -->
