@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Model\BaoCaoTonKho.cs" />
     <Compile Include="Model\ChiTietPhieuBanHang.cs" />
+    <Compile Include="Model\ChiTietPhieuBaoHanh.cs" />
     <Compile Include="Model\ChiTietPhieuDatHang.cs" />
     <Compile Include="Model\ChiTietPhieuKiemKho.cs" />
     <Compile Include="Model\ChiTietPhieuNhap.cs" />
