@@ -37,7 +37,7 @@ public class HangHoa
 
     public string HinhAnh { get; set; }
     public int MaLoaiHangHoa { get; set; }
-
+    //
     public bool TrangThai { get; set; }
     public string ModelName { get; set; }
  
