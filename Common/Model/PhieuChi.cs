@@ -15,7 +15,7 @@ public partial class PhieuChi
 
     public int MaNhanVien { get; set; }
     public int MaPhieuNhap { get; set; }
-    public int TongTienChi { get; set; }
+    public decimal TongTienChi { get; set; }
 
     [StringLength(200)]
     public string Ghichu { get; set; }

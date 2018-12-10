@@ -11,7 +11,7 @@ public partial class PhieuBanHang
     [Key]
     public int SoPhieuBanHang { get; set; }
 
-
+    [Column("Name", TypeName = "date")]
     public DateTime NgayBan { get; set; }
 
     public int MaNhanVien { get; set; }
@@ -24,7 +24,7 @@ public partial class PhieuBanHang
 
     
 
-    public int TongTien { get; set; }
+    public decimal TongTien { get; set; }
 
    
 

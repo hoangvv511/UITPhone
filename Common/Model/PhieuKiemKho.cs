@@ -11,6 +11,7 @@ public partial class PhieuKiemKho
     public int SoPhieuKiemKho { get; set; }
 
 
+    [Column("Name", TypeName = "date")]
     public DateTime NgayKiemKho { get; set; }
     
 

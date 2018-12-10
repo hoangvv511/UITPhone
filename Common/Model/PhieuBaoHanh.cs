@@ -11,8 +11,10 @@ public partial class PhieuBaoHanh
     [Key]
     public int SoPhieuBanHang { get; set; }
 
-
+    [Column("Name", TypeName = "date")] 
     public DateTime NgayLap { get; set; }
+
+    [Column("Name", TypeName = "date")]
     public DateTime NgayGiao { get; set; }
 
     public int MaNhanVien { get; set; }
@@ -25,12 +27,13 @@ public partial class PhieuBaoHanh
 
 
 
-    public int TongTien { get; set; }
+    public decimal TongTien { get; set; }
 
 
 
     public string Ghichu { get; set; }
     public bool DaGiao { get; set; }
+
     public DateTime NgayChinhSua { get; set; }
 
 

@@ -14,9 +14,9 @@ public class HangHoa
 
 
 
-    public int GiaBan { get; set; }
+    public decimal GiaBan { get; set; }
 
-    public int GiamGia { get; set; }
+    public decimal GiamGia { get; set; }
     
     public int SoLuongTon { get; set; }
 

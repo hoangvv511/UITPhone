@@ -11,6 +11,7 @@ public partial class PhieuDatHang
     public int SoPhieuDatHang { get; set; }
 
 
+    [Column("Name", TypeName = "date")]
     public DateTime NgayDat { get; set; }
 
     public int MaNhanVien { get; set; }
@@ -27,12 +28,15 @@ public partial class PhieuDatHang
     [StringLength(30)]
     public string Email { get; set; }
 
-    public int TongTien { get; set; }
+    public decimal TongTien { get; set; }
 
     [StringLength(200)]
     public string HinhThucThanhToan { get; set; }
 
+    [Column("Name", TypeName = "ntext")]
     public string Ghichu { get; set; }
+
+    [Column("Name", TypeName = "date")]
     public DateTime NgayGiao { get; set; }
     
     public bool DaXacNhan { get; set; }

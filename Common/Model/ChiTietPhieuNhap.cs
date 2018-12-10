@@ -16,7 +16,7 @@ public partial class ChiTietPhieuNhap
     [Key]
     public int MaHangHoa { get; set; }
     public int GiaNhap { get; set; }
-    public int ThanhTien { get; set; }
+    public decimal ThanhTien { get; set; }
 
 
 

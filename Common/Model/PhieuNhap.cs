@@ -10,12 +10,13 @@ public partial class PhieuNhap
     [Key]
     public int SoPhieuNhap { get; set; }
 
-    
+
+    [Column("Name", TypeName = "date")]
     public DateTime NgayNhap { get; set; }
 
     public int MaNhanVien { get; set; }
     public int MaNhaCungCap { get; set; }
-    public int TongTien { get; set; }
+    public decimal TongTien { get; set; }
 
     [StringLength(200)]
     public string Ghichu { get; set; }

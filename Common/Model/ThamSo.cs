@@ -15,6 +15,7 @@ public partial  class ThamSo
 
     public int GiaTri { get; set; }
 
+    [Column("Name", TypeName = "date")]
     public DateTime NgayApDung { get; set; }
 
 

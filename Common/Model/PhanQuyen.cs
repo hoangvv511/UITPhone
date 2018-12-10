@@ -9,6 +9,7 @@ public partial class PhanQuyen
 {
     [Key]
     [StringLength(50)]
+    
     public string MaQuyen { get; set; }
 
     [StringLength(100)]

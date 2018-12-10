@@ -13,6 +13,7 @@ public partial class PhieuXuatKho
     public int SoPhieuXuatKho { get; set; }
 
 
+    [Column("Name", TypeName = "date")]
     public DateTime NgayXuat { get; set; }
 
 
@@ -20,7 +21,7 @@ public partial class PhieuXuatKho
 
     [StringLength(200)]
     public string LyDoXuat { get; set; }
-    public int TongTien { get; set; }
+    public decimal TongTien { get; set; }
 
     public DateTime NgayChinhSua { get; set; }
 
