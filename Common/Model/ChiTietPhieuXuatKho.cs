@@ -13,6 +13,7 @@ namespace Common.Model
     [Table("ChiTietPhieuXuatKho")]
     public partial class ChiTietPhieuXuatKho
     {
+        
         [Key]
         public int SoPhieuXuatKho { get; set; }
 
@@ -24,4 +25,6 @@ namespace Common.Model
         public decimal Gia { get; set; }
         public decimal ThanhTien { get; set; }
     }
+
+
 }

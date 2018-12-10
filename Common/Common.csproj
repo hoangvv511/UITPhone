@@ -70,6 +70,7 @@
     <Compile Include="Model\PhieuKiemKho.cs" />
     <Compile Include="Model\PhieuNhap.cs" />
     <Compile Include="Model\PhieuXuatKho.cs" />
+    <Compile Include="Model\QLWebDBEntities.cs" />
     <Compile Include="Model\ThamSo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

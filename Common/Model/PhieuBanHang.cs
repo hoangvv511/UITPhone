@@ -12,6 +12,13 @@ namespace Common.Model
     public partial class PhieuBanHang
     {
 
+        public PhieuBanHang()
+        {
+            ChiTietPhieuBanHangs = new HashSet<ChiTietPhieuBanHang>();
+        }
+
+        public virtual ICollection<ChiTietPhieuBanHang> ChiTietPhieuBanHangs { get; set; }
+
         [Key]
         public int SoPhieuBanHang { get; set; }
 

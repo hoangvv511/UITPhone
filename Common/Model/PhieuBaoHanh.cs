@@ -12,6 +12,7 @@ namespace Common.Model
     public partial class PhieuBaoHanh
 
     {
+        
         [Key]
         public int SoPhieuBanHang { get; set; }
 
