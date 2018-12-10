@@ -21,7 +21,7 @@ namespace Common.Model
 
         [Column("Name", TypeName = "date")]
         public DateTime NgayApDung { get; set; }
-
+         //
 
     }
 }
