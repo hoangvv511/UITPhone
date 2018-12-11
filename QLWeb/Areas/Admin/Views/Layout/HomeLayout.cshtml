@@ -29,7 +29,7 @@
 
 <body class="page-session page-sound page-header-fixed page-sidebar-fixed demo-dashboard-session">
 
-    @if ((Session["Account"] != null) &&
+    @if ((Session["Account"] == null) &&
          (HttpContext.Current.Request.Url.AbsolutePath == "/" || HttpContext.Current.Request.Url.AbsolutePath.Contains("/Home")))
     {
         // Render if not login, login faile, redirect to Homepage
@@ -38,7 +38,7 @@
 
     }
 
-    else if (Session["Account"] == null)
+    else if (Session["Account"] != null)
     {
         // Render section menu and header if login successfull
         <section id="wrapper">
