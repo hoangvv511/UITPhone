@@ -10,7 +10,11 @@ using System.Threading.Tasks;
 
 namespace Data.Implements
 {
-    class PhieuKiemKhoReponsitory
+    class PhieuKiemKhoReponsitory : GenericReponsitoryFuctions<PhieuKiemKho>
     {
+        public PhieuKiemKhoReponsitory(DbContext dbContext) : base(dbContext)
+        {
+
+        }
     }
 }
