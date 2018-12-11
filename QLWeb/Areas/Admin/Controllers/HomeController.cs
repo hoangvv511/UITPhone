@@ -13,5 +13,7 @@ namespace QLWeb.Areas.Admin.Controllers
         {
             return View();
         }
+
+        //
     }
 }
