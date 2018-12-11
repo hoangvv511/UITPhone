@@ -1,5 +1,4 @@
 ﻿
-
 namespace Common.Model
 {
     using System;
@@ -12,7 +11,6 @@ namespace Common.Model
     using System.Data.Entity.Core.Objects;
     public partial class QLWebDBEntities:DbContext
     {
-
         public QLWebDBEntities():base("name=QLWebDBEntities")
         {
 

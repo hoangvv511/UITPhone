@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace Data.Implements
 {
     class ChiTietPhieuKiemKhoReponsitory : GenericReponsitoryFuctions<ChiTietPhieuKiemKho>

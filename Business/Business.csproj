@@ -11,6 +11,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,7 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,14 +50,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Implements\BaoCaoBanHangBusiness.cs" />
+    <Compile Include="Implements\BaoCaoDatHangBusiness.cs" />
+    <Compile Include="Implements\BaoCaoHangHoaBusiness.cs" />
+    <Compile Include="Implements\BaoCaoPhieuChiBusiness.cs" />
+    <Compile Include="Implements\BaoCaoTonKhoBusiness.cs" />
+    <Compile Include="Implements\ChiTietPhieuBanHangBusiness.cs" />
+    <Compile Include="Implements\ChiTietPhieuDatHangBusiness.cs" />
+    <Compile Include="Implements\ChiTietPhieuKiemKhoBusiness.cs" />
+    <Compile Include="Implements\ChiTietPhieuNhapKhoBusiness.cs" />
+    <Compile Include="Implements\ChiTietPhieuXuatKhoBusiness.cs" />
+    <Compile Include="Implements\ChucVuBusiness.cs" />
+    <Compile Include="Implements\HangHoaBusiness.cs" />
+    <Compile Include="Implements\LoaiHangHoaBusiness.cs" />
+    <Compile Include="Implements\NhaCungCapBusiness.cs" />
+    <Compile Include="Implements\NhanVienBusiness.cs" />
+    <Compile Include="Implements\PhieuBanHangBusiness.cs" />
+    <Compile Include="Implements\PhieuBaoHanhBusiness.cs" />
+    <Compile Include="Implements\PhieuChiBusiness.cs" />
+    <Compile Include="Implements\PhieuDatHangBusiness.cs" />
+    <Compile Include="Implements\PhieuKiemKhoBusiness.cs" />
+    <Compile Include="Implements\PhieuNhapKhoBusiness.cs" />
+    <Compile Include="Implements\PhieuXuatKhoBusiness.cs" />
+    <Compile Include="Interfaces\INhanVienBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Implements\" />
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{2e178024-1484-434c-8161-2155999d5f5e}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{226775be-b912-4d23-85bf-1096604d7f22}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
