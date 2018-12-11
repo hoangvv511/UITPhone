@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Model\BaoCaoTonKho.cs" />
     <Compile Include="Model\ChiTietPhieuBanHang.cs" />
+    <Compile Include="Model\ChiTietPhieuBaoHanh.cs" />
     <Compile Include="Model\ChiTietPhieuDatHang.cs" />
     <Compile Include="Model\ChiTietPhieuKiemKho.cs" />
     <Compile Include="Model\ChiTietPhieuNhap.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Model\PhieuKiemKho.cs" />
     <Compile Include="Model\PhieuNhap.cs" />
     <Compile Include="Model\PhieuXuatKho.cs" />
+    <Compile Include="Model\QLWebDBEntities.cs" />
     <Compile Include="Model\ThamSo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

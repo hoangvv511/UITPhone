@@ -42,6 +42,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Functions\GenericReponsitoryFuctions.cs" />
+    <Compile Include="Implements\BaoCaoTonKhoReponsitory.cs" />
+    <Compile Include="Implements\ChiTietPhieuBanHangReponsitory.cs" />
+    <Compile Include="Implements\ChiTietPhieuBaoHanhReponsitory.cs" />
+    <Compile Include="Implements\ChiTietPhieuDatHangReponsitory.cs" />
+    <Compile Include="Implements\ChiTietPhieuKiemKhoReponsitory.cs" />
+    <Compile Include="Implements\ChiTietPhieuNhapReponsitory.cs" />
+    <Compile Include="Implements\ChiTietPhieuXuatKhoReponsitory.cs" />
+    <Compile Include="Implements\ChucVuReponsitory.cs" />
+    <Compile Include="Implements\GenericReponsitory.cs" />
+    <Compile Include="Implements\HangHoaReponsitory.cs" />
+    <Compile Include="Implements\LoaiHangHoaReponsitory.cs" />
+    <Compile Include="Implements\NhaCungCapReponsitory.cs" />
+    <Compile Include="Implements\NhanVienReponsitory.cs" />
+    <Compile Include="Implements\NhanVien_QuyenReponsitory.cs" />
+    <Compile Include="Implements\PhanQuyenReponsitory.cs" />
+    <Compile Include="Implements\PhieuBanHangReponsitory.cs" />
+    <Compile Include="Implements\PhieuBaoHanhReponsitory.cs" />
+    <Compile Include="Implements\PhieuChiReponsitory.cs" />
+    <Compile Include="Implements\PhieuDatHangReponsitory.cs" />
+    <Compile Include="Implements\PhieuKiemKhoReponsitory.cs" />
+    <Compile Include="Implements\PhieuNhapReponsitory.cs" />
+    <Compile Include="Implements\PhieuXuatKhoReponsitory.cs" />
+    <Compile Include="Interfaces\IGenericReponsitory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

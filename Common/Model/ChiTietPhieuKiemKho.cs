@@ -1,19 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity.Spatial;
+﻿
 
-[Table("ChiTietPhieuKiemKho")]
-public partial class ChiTietPhieuKiemKho
+namespace Common.Model
 {
-    [Key]
-    public int SoPhieuKiemKho { get; set; }
-//
-    public int SoLuongHienTai { get; set; }
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
 
-    [Key]
-    public int MaHangHoa { get; set; }
-   
-    public int SoLuongKiemTra { get; set; }
+    [Table("ChiTietPhieuKiemKho")]
+    public partial class ChiTietPhieuKiemKho
+    {
+        [Key]
+        public int SoPhieuKiemKho { get; set; }
+        //
+        public int SoLuongHienTai { get; set; }
+
+        [Key]
+        public int MaHangHoa { get; set; }
+
+        public int SoLuongKiemTra { get; set; }
+    }
 }

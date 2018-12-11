@@ -1,22 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity.Spatial;
+﻿
 
-[Table("ThamSo")]
-public partial  class ThamSo
+namespace Common.Model
 {
-    [Key]
-    public int MaThamSo { get; set; }
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
 
-    [StringLength(100)]
-    public string TenThamSo { get; set; }
+    [Table("ThamSo")]
+    public partial class ThamSo
+    {
+        [Key]
+        public int MaThamSo { get; set; }
 
-    public int GiaTri { get; set; }
+        [StringLength(100)]
+        public string TenThamSo { get; set; }
 
-    [Column("Name", TypeName = "date")]
-    public DateTime NgayApDung { get; set; }
+        public int GiaTri { get; set; }
 
+        [Column("Name", TypeName = "date")]
+        public DateTime NgayApDung { get; set; }
+         //
 
+    }
 }
