@@ -7,7 +7,6 @@ using System.Data.Entity.Spatial;
 
 [Table("PhieuXuatKho")]
 public partial class PhieuXuatKho
-
 {
     [Key]
     public int SoPhieuXuatKho { get; set; }
