@@ -73,6 +73,7 @@
     <Compile Include="Implements\PhieuNhapKhoBusiness.cs" />
     <Compile Include="Implements\PhieuXuatKhoBusiness.cs" />
     <Compile Include="Interfaces\INhanVienBusiness.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
