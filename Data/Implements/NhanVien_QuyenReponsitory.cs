@@ -1,12 +1,19 @@
-﻿using System;
+﻿using Common.Model;
+using Data.Functions;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Data.Implements
 {
-    class NhanVien_QuyenReponsitory
+    class NhanVien_QuyenReponsitory : GenericReponsitoryFuctions<NhanVien_Quyen>
     {
+        public NhanVien_QuyenReponsitory(DbContext dbContext) : base(dbContext)
+        {
+
+        }
     }
 }

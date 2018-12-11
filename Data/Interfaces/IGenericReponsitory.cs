@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Data.Interfaces
 {
-    public interface IGenericReponsitory <Entities>
+    public interface IGenericReponsitory<Entities>
     {
         Task EditAscync(Entities entities);
         Task InsertAscync(Entities entities);
-        Task DeleteAscync(Entities entities);
-        
+        Task DeleteAscync(Entities entities);     
     }
 }
