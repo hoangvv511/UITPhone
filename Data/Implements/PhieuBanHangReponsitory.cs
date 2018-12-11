@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Data.Implements
 {
-    class PhieuBanHangReponsitory : GenericReponsitoryFuctions<PhieuBanHang>
+    public class PhieuBanHangReponsitory : GenericReponsitoryFuctions<PhieuBanHang>
     {
         public PhieuBanHangReponsitory(DbContext dbContext) : base(dbContext)
         {

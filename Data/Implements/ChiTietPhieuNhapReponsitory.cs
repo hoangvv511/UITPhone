@@ -7,10 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace Data.Implements
 {
-    class ChiTietPhieuNhapReponsitory : GenericReponsitoryFuctions<ChiTietPhieuNhap>
+    public class ChiTietPhieuNhapReponsitory : GenericReponsitoryFuctions<ChiTietPhieuNhap>
     {
         public ChiTietPhieuNhapReponsitory(DbContext dbContext) : base (dbContext)
         {

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Data.Implements
 {
-    class LoaiHangHoaReponsitory : GenericReponsitoryFuctions<LoaiHangHoa>
+    public class LoaiHangHoaReponsitory : GenericReponsitoryFuctions<LoaiHangHoa>
     {
         public LoaiHangHoaReponsitory(DbContext dbContext) : base(dbContext)
         {

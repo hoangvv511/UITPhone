@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Data.Implements
 {
-    class NhaCungCapReponsitory : GenericReponsitoryFuctions<NhaCungCap>
+    public class NhaCungCapReponsitory : GenericReponsitoryFuctions<NhaCungCap>
     {
         public NhaCungCapReponsitory(DbContext dbContext) : base(dbContext)
         {

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Data.Implements
 {
-    class BaoCaoTonKhoReponsitory : GenericReponsitoryFuctions<BaoCaoTonKho>
+    public class BaoCaoTonKhoReponsitory : GenericReponsitoryFuctions<BaoCaoTonKho>
     {
         public BaoCaoTonKhoReponsitory(DbContext dbContext)
             : base(dbContext)

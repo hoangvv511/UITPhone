@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Data.Implements
 {
-    class ChiTietPhieuKiemKhoReponsitory : GenericReponsitoryFuctions<ChiTietPhieuKiemKho>
+    public class ChiTietPhieuKiemKhoReponsitory : GenericReponsitoryFuctions<ChiTietPhieuKiemKho>
     {
         public ChiTietPhieuKiemKhoReponsitory(DbContext dbContext) : base(dbContext)
         {

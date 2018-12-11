@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Data.Implements
 {
-    class ChucVuReponsitory : GenericReponsitoryFuctions<ChucVu>
+    public class ChucVuReponsitory : GenericReponsitoryFuctions<ChucVu>
     {
         public ChucVuReponsitory(DbContext dbContext) : base(dbContext)
         {

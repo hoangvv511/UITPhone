@@ -8,21 +8,57 @@ using System.Collections.Generic;
 
 namespace Data.Functions
 {
-    class GenericReponsitoryFuctions<Entities> : IGenericReponsitory<Entities> where Entities : class
+    public class GenericReponsitoryFuctions<Entities> : IGenericReponsitory<Entities> where Entities : class
     {
         protected DbSet<Entities> DbSet;
 
         protected readonly DbContext _dbContext;
 
+        //Khởi tạo data context kế thừa từ Interfaces
         public GenericReponsitoryFuctions(DbContext dbContext)
         {
             _dbContext = dbContext;
             DbSet = _dbContext.Set<Entities>();
         }
 
+        //Dùng để thực hiện truy vấn trực tiếp trong sql
+        public IQueryable<Entities> GetAll()
+        {
+            return DbSet;
+        }
+
+        //Dùng để thao tác với các collection
+        public IEnumerable<Entities> GetList()
+        {
+            return DbSet;
+        }
+
+        //Định nghĩa phương thức tìm kiếm bằng id
+        public async Task<Entities> GetByIdAsync(String id)
+        {
+            return await DbSet.FindAsync(id);
+        }
+
+        public async Task<Entities> GetByIdAsync(int id)
+        {
+            return await DbSet.FindAsync(id);
+        }
+
+        public async Task<Entities> GetByIdAsync(String id, int id2)
+        {
+            return await DbSet.FindAsync(id, id2);
+        }
+
+        //Truy vấn tìm kiếm bằng linq với đối số truyền vào là một biểu thức linq
+        public IQueryable<Entities> SearchFor(Expression<Func<Entities, bool>> predicate)
+        {
+            return DbSet.Where(predicate);
+        }
+
         public async Task DeleteAscync(Entities entities)
         {
-            throw new NotImplementedException();
+            DbSet.Remove(entities);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task EditAscync(Entities entities)
@@ -33,12 +69,26 @@ namespace Data.Functions
 
         public async Task InsertAscync(Entities entities)
         {
-            throw new NotImplementedException();
+            DbSet.Add(entities);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task SaveChanges()
+        {
+            await _dbContext.SaveChangesAsync();
         }
 
         public GenericReponsitoryFuctions()
         {
 
+        }
+
+
+        public void Dispose()
+        {
+            if (_dbContext != null)
+                _dbContext.Dispose();
+            _dbContext.Dispose();
         }
 
     }

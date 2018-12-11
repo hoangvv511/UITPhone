@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Data.Implements
 {
-    class HangHoaReponsitory : GenericReponsitoryFuctions<HangHoa>
+    public class HangHoaReponsitory : GenericReponsitoryFuctions<HangHoa>
     {
         public HangHoaReponsitory(DbContext dbContext) : base (dbContext)
         {

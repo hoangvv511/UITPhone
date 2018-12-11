@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Data.Implements
 {
-    class NhanVien_QuyenReponsitory : GenericReponsitoryFuctions<NhanVien_Quyen>
+    public class NhanVien_QuyenReponsitory : GenericReponsitoryFuctions<NhanVien_Quyen>
     {
         public NhanVien_QuyenReponsitory(DbContext dbContext) : base(dbContext)
         {
