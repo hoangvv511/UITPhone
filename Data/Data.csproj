@@ -74,6 +74,7 @@
     <Compile Include="Implements\PhieuNhapReponsitory.cs" />
     <Compile Include="Implements\PhieuXuatKhoReponsitory.cs" />
     <Compile Include="Interfaces\IGenericReponsitory.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
