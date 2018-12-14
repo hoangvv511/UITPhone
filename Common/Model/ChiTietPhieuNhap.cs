@@ -13,18 +13,20 @@ using System.Data.Entity.Spatial;
     public partial class ChiTietPhieuNhap
     {
         [Key]
-        public int SoPhieuNhap { get; set; }
+        [Column(Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int SoPhieuXuatKho { get; set; }
 
+        [Key]
+        [Column(Order = 1)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int MaHangHoa { get; set; }
 
         public int SoLuong { get; set; }
 
-        [Key]
-        public int MaHangHoa { get; set; }
-        public int GiaNhap { get; set; }
+        public decimal GiaNhap { get; set; }
+
         public decimal ThanhTien { get; set; }
-
-
-
     }
 
 }

@@ -76,7 +76,11 @@
     <Compile Include="Implements\PhieuKiemKhoReponsitory.cs" />
     <Compile Include="Implements\PhieuNhapReponsitory.cs" />
     <Compile Include="Implements\PhieuXuatKhoReponsitory.cs" />
+    <Compile Include="Interfaces\IChucVuReponsitory.cs" />
     <Compile Include="Interfaces\IGenericReponsitory.cs" />
+    <Compile Include="Interfaces\INhanVienRepository.cs" />
+    <Compile Include="Interfaces\INhanVien_QuyenRepository.cs" />
+    <Compile Include="Interfaces\IPhanQuyenRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

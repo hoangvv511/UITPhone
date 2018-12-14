@@ -32,26 +32,15 @@ using System.Data.Entity.Spatial;
         [StringLength(100)]
         public string UserName { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string PassWord { get; set; }
 
-
         public bool TrangThai { get; set; }
-
 
         public int MaChucVu { get; set; }
 
         public string Avatar { get; set; }
-
-
-
-
-
-
-
-
-
-
 
     }
 

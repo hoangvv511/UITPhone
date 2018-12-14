@@ -1,13 +1,12 @@
-﻿
-
-namespace Common.Model
-{
-    using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Spatial;
 
+namespace Common.Model
+{
+  
     [Table("PhieuNhap")]
     public partial class PhieuNhap
     {
@@ -32,8 +31,6 @@ using System.Data.Entity.Spatial;
         public string Ghichu { get; set; }
         public bool TrangThai { get; set; }
         public DateTime NgayChinhSua { get; set; }
-
-
 
     }
 

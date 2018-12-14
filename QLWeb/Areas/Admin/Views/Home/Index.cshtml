@@ -1,8 +1,9 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Home";
     Layout = "~/Areas/Admin/Views/Layout/HomeLayout.cshtml";
 }
+
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
@@ -26,6 +27,7 @@
     <link href="~/Content/assets/global/plugins/bower_components/horizontal-chart/build/css/horizBarChart.css" rel="stylesheet">
 </head>
 <!--/ END HEAD -->
+
 <body class="page-sound">
     @if (Session["Account"] == null)
     {
@@ -59,6 +61,10 @@
                     </div>
                 </div><!-- /.form-group -->
             </div><!-- /.sign-body -->
+            @if (@TempData["notify"] != null)
+            {
+                <h3 class="notify" style="color:red">@Html.Raw(@TempData["notify"])</h3>
+            }
             <div class="sign-footer">
                 <div class="form-group">
                     <div class="row">

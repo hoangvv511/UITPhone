@@ -59,6 +59,12 @@
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -160,7 +166,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NhanVienController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -5192,6 +5200,7 @@
     <Content Include="Content\assets\images\bg.jpg" />
     <Content Include="Content\assets\images\login_logo.png" />
     <Content Include="Content\assets\images\logo.png" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -6608,6 +6617,12 @@
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\PartitalView\HeaderTopManagerPartial.cshtml" />
     <Content Include="Areas\Admin\Views\PartitalView\MenuManagerPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\NhanVien\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\NhanVien\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\NhanVien\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\NhanVien\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\NhanVien\DanhSachNhanVien.cshtml" />
+    <Content Include="Areas\Admin\Views\NhanVien\ThongTinNhanVien.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -6636,6 +6651,23 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\BanHang\" />
+    <Folder Include="Areas\Admin\Views\BaoCaoBanHang\" />
+    <Folder Include="Areas\Admin\Views\BaoCaoDatHang\" />
+    <Folder Include="Areas\Admin\Views\BaoCaoHangHoa\" />
+    <Folder Include="Areas\Admin\Views\BaoCaoPhieuChi\" />
+    <Folder Include="Areas\Admin\Views\BaoCaoTonKho\" />
+    <Folder Include="Areas\Admin\Views\BaoHanh\" />
+    <Folder Include="Areas\Admin\Views\Base\" />
+    <Folder Include="Areas\Admin\Views\ChiTietPhieuBanHang\" />
+    <Folder Include="Areas\Admin\Views\DatHang\" />
+    <Folder Include="Areas\Admin\Views\HangHoa\" />
+    <Folder Include="Areas\Admin\Views\KiemKho\" />
+    <Folder Include="Areas\Admin\Views\LoaiHangHoa\" />
+    <Folder Include="Areas\Admin\Views\NhaCungCap\" />
+    <Folder Include="Areas\Admin\Views\NhapKho\" />
+    <Folder Include="Areas\Admin\Views\PhieuChi\" />
+    <Folder Include="Areas\Admin\Views\XuatKho\" />
     <Folder Include="Content\assets\global\plugins\bower_components\bootstrap-sass\assets\images\" />
     <Folder Include="Content\assets\global\plugins\bower_components\bower\Packager\" />
     <Folder Include="Models\" />
