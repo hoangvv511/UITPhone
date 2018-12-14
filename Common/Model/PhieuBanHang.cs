@@ -12,17 +12,12 @@ namespace Common.Model
     public partial class PhieuBanHang
     {
 
-        public PhieuBanHang()
-        {
-            ChiTietPhieuBanHangs = new HashSet<ChiTietPhieuBanHang>();
-        }
-
         public virtual ICollection<ChiTietPhieuBanHang> ChiTietPhieuBanHangs { get; set; }
 
         [Key]
         public int SoPhieuBanHang { get; set; }
 
-        [Column("Name", TypeName = "date")]
+        [Column(TypeName = "date")]
         public DateTime NgayBan { get; set; }
 
         public int MaNhanVien { get; set; }
@@ -33,16 +28,13 @@ namespace Common.Model
         [StringLength(15)]
         public string SoDienThoai { get; set; }
 
-
-
         public decimal TongTien { get; set; }
 
-
-
+        [StringLength(200)]
         public string Ghichu { get; set; }
-        public DateTime NgayChinhSua { get; set; }
-
 
         public bool TrangThai { get; set; }
+
+        public DateTime NgayChinhSua { get; set; }
     }
 }

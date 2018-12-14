@@ -15,9 +15,9 @@ namespace Data.Interfaces
 
         IQueryable<Entities> GetAll();
 
-        Task EditAscync(Entities entities);
-        Task InsertAscync(Entities entities);
-        Task DeleteAscync(Entities entities);
+        Task EditAsync(Entities entities);
+        Task InsertAsync(Entities entities);
+        Task DeleteAsync(Entities entities);
         Task SaveChanges();
 
         void Dispose();

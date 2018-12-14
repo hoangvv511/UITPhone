@@ -15,16 +15,20 @@ namespace Common.Model
         [Key]
         public int SoPhieuChi { get; set; }
 
-
+        [Column(TypeName = "date")]
         public DateTime NgayChi { get; set; }
 
         public int MaNhanVien { get; set; }
+
         public int MaPhieuNhap { get; set; }
+
         public decimal TongTienChi { get; set; }
 
         [StringLength(200)]
-        public string Ghichu { get; set; }
-        public bool TrangThai { get; set; }
+        public string GhiChu { get; set; }
+
         public DateTime NgayChinhSua { get; set; }
+
+        public bool TrangThai { get; set; }
     }
 }

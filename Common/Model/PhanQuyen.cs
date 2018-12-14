@@ -19,6 +19,5 @@ namespace Common.Model
         [StringLength(100)]
         public string TenQuyen { get; set; }
 
-
     }
 }

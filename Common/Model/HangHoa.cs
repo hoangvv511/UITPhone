@@ -12,12 +12,11 @@ namespace Common.Model
     [Table("HangHoa")]
     public class HangHoa
     {
-
         [Key]
         public int MaHangHoa { get; set; }
+
+        [StringLength(50)]
         public string TenHangHoa { get; set; }
-
-
 
         public decimal GiaBan { get; set; }
 
@@ -28,12 +27,11 @@ namespace Common.Model
         [StringLength(50)]
         public string DonViTinh { get; set; }
 
-
+        [Column(TypeName = "ntext")]
         public string MoTa { get; set; }
 
-
+        [Column(TypeName = "ntext")]
         public string ThongSoKyThuat { get; set; }
-
 
         [StringLength(200)]
         public string XuatXu { get; set; }
@@ -41,10 +39,11 @@ namespace Common.Model
         public int ThoiGianBaoHanh { get; set; }
 
         public string HinhAnh { get; set; }
-        public int MaLoaiHangHoa { get; set; }
-        //
-        public bool TrangThai { get; set; }
-        public string ModelName { get; set; }
 
+        public int MaLoaiHangHoa { get; set; }
+
+        public bool TrangThai { get; set; }
+
+        public string ModelName { get; set; }
     }
 }

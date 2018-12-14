@@ -18,26 +18,20 @@ namespace Common.Model
         }
 
         public virtual ICollection<ChiTietPhieuKiemKho> ChiTietPhieuKiemKhos { get; set; }
+
         [Key]
         public int SoPhieuKiemKho { get; set; }
 
-
-        [Column("Name", TypeName = "date")]
+        [Column(TypeName = "date")]
         public DateTime NgayKiemKho { get; set; }
-
 
         public int MaNhanVien { get; set; }
 
-
-
-
-
         [StringLength(200)]
-        public string Ghichu { get; set; }
-
-        public DateTime NgayChinhSua { get; set; }
-
+        public string GhiChu { get; set; }
 
         public bool TrangThai { get; set; }
+
+        public DateTime NgayChinhSua { get; set; }
     }
 }

@@ -14,9 +14,13 @@
     {
 
         [Key]
+        [Column(Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int SoPhieuBaoHanh { get; set; }
 
         [Key]
+        [Column(Order = 1)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MaHangHoa { get; set; }
 
 

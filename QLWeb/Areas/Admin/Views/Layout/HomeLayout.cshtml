@@ -46,7 +46,7 @@
 
         </section>
         <section id="wrapper">
-            @Html.Partial("~/Areas/Admin/Views/PartitalView/MenuManagerPartial.cshtml")
+            @Html.Action("GetMenu", "Home", new { data = Model })
         </section>
 
         <div id="wrapper">

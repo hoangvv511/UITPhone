@@ -12,12 +12,16 @@ namespace Common.Model
     public partial class ChiTietPhieuKiemKho
     {
         [Key]
+        [Column(Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int SoPhieuKiemKho { get; set; }
-        //
-        public int SoLuongHienTai { get; set; }
 
         [Key]
+        [Column(Order = 1)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MaHangHoa { get; set; }
+
+        public int SoLuongHienTai { get; set; }
 
         public int SoLuongKiemTra { get; set; }
     }

@@ -55,19 +55,19 @@ namespace Data.Functions
             return DbSet.Where(predicate);
         }
 
-        public async Task DeleteAscync(Entities entities)
+        public async Task DeleteAsync(Entities entities)
         {
             DbSet.Remove(entities);
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task EditAscync(Entities entities)
+        public async Task EditAsync(Entities entities)
         {
             _dbContext.Entry(entities).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task InsertAscync(Entities entities)
+        public async Task InsertAsync(Entities entities)
         {
             DbSet.Add(entities);
             await _dbContext.SaveChangesAsync();

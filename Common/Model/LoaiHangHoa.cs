@@ -10,7 +10,6 @@ namespace Common.Model
 
     [Table("LoaiHangHoa")]
     public class LoaiHangHoa
-
     {
         [Key]
         public int MaLoaiHangHoa { get; set; }

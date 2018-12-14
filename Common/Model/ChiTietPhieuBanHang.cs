@@ -12,15 +12,26 @@ namespace Common.Model
     public partial class ChiTietPhieuBanHang
     {
         [Key]
-        public int SoPhieuBanHang { get; set; }
+        [Column(Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int SoPhieuBaoHanh { get; set; }
 
+        [Key]
+        [Column(Order = 1)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int MaHangHoa { get; set; }
 
         public int SoLuong { get; set; }
 
-        [Key]
-        public int MaHangHoa { get; set; }
-        public int Gia { get; set; }
+        public decimal Gia { get; set; }
+
         public decimal ThanhTien { get; set; }
+
+        [StringLength(200)]
+        public string NoiDungBaoHanh { get; set; }
+
+        [StringLength(200)]
+        public string GhiChu { get; set; }
 
     }
 }

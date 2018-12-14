@@ -12,18 +12,11 @@ namespace Common.Model
     public partial class PhieuDatHang
     {
 
-
-        public PhieuDatHang()
-        {
-            ChiTietPhieuDatHangs = new HashSet<ChiTietPhieuDatHang>();
-        }
-
         public virtual ICollection<ChiTietPhieuDatHang> ChiTietPhieuDatHangs { get; set; }
         [Key]
         public int SoPhieuDatHang { get; set; }
 
-
-        [Column("Name", TypeName = "date")]
+        [Column(TypeName = "date")]
         public DateTime NgayDat { get; set; }
 
         public int MaNhanVien { get; set; }
@@ -45,18 +38,22 @@ namespace Common.Model
         [StringLength(200)]
         public string HinhThucThanhToan { get; set; }
 
-        [Column("Name", TypeName = "ntext")]
+        [Column(TypeName = "ntext")]
         public string Ghichu { get; set; }
 
-        [Column("Name", TypeName = "date")]
+        [Column(TypeName = "date")]
         public DateTime NgayGiao { get; set; }
 
         public bool DaXacNhan { get; set; }
+
         public bool DaThanhToan { get; set; }
+
         public bool TrangThai { get; set; }
 
+        public DateTime NgayChinhSua { get; set; }
 
+        public string Value { get; set; }
 
-
+        public int Value1 { get; set; }
     }
 }
