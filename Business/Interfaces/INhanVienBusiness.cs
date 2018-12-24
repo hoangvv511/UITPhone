@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Business.Interfaces
 {
-    interface INhanVienBusiness
+    public interface INhanVienBusiness
     {
     }
 }

@@ -43,9 +43,12 @@
     </div>
 </section>
 <script src="~/Scripts/bootstrap.min.js"></script>
+
 <script>$('#submit').click(function () {
         $('#basic-validate').submit();
-    });</script>
+    });
+</script>
+
 <script>
     $("#username").on('keyup input propertychange paste change', function () {
         $.getJSON('@Url.Action("CheckUserName", "NhanVien")', { username: $(this).val() }, function (data) {

@@ -57,7 +57,6 @@ namespace QLWeb.Areas.Admin.Controllers
             return Json(jsonData, JsonRequestBehavior.AllowGet);
         }
 
-
         public ActionResult DanhSachNhanVien(string searchString, string trangthai, string chucvu, int page = 1, int pageSize = 10)
         {
             if (!string.IsNullOrEmpty(searchString) || !string.IsNullOrEmpty(chucvu))
@@ -126,19 +125,6 @@ namespace QLWeb.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Edit(int id)
-        {
-            List<SelectListItem> trangThai = new List<SelectListItem>();
-            trangThai.Add(new SelectListItem { Text = "Đang Hoạt Động", Value = "true" });
-            trangThai.Add(new SelectListItem { Text = "Ngừng Hoạt Động", Value = "false" });
-            ViewBag.data = trangThai;
-            ViewBag.chucvu = _chucVuKhoBus.LoadChucVu();
-
-            List<SelectListItem> admin = new List<SelectListItem>();
-            admin.Add(new SelectListItem { Text = "Chủ của hàng", Value = "3" });
-            ViewBag.Admin = admin;
-            return View(_nhanVienKhoBus.LoadDanhSachNhanVienTheoMa(id).ToList());
-        }
 
         [HttpPost]
         public async Task<ActionResult> Edit(int id, NhanVienViewModel nhanVien, HttpPostedFileBase avatar)
@@ -189,6 +175,20 @@ namespace QLWeb.Areas.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        public ActionResult Edit(int id)
+        {
+            List<SelectListItem> trangThai = new List<SelectListItem>();
+            trangThai.Add(new SelectListItem { Text = "Đang Hoạt Động", Value = "true" });
+            trangThai.Add(new SelectListItem { Text = "Ngừng Hoạt Động", Value = "false" });
+            ViewBag.data = trangThai;
+            ViewBag.chucvu = _chucVuKhoBus.LoadChucVu();
+            List<SelectListItem> admin = new List<SelectListItem>();
+            admin.Add(new SelectListItem { Text = "Chủ của hàng", Value = "3" });
+            ViewBag.Admin = admin;
+            return View(_nhanVienKhoBus.LoadDanhSachNhanVienTheoMa(id).ToList());
+        }
+
 
         public ActionResult Detail()
         {
