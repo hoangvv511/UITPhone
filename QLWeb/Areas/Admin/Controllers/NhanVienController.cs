@@ -86,6 +86,7 @@ namespace QLWeb.Areas.Admin.Controllers
 
             return View(ViewBag.thongTinNhanVien);
         }
+
         public ActionResult Create()
         {
             ViewBag.chucvu = _chucVuKhoBus.LoadChucVu();
