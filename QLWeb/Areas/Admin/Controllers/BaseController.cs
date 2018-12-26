@@ -8,7 +8,15 @@ namespace QLWeb.Areas.Admin.Controllers
 {
     public class BaseController : Controller
     {
-        // GET: Admin/Base
+        /// <summary>
+        /// Custom notification
+        /// </summary>
+        /// <param name="message">Message</param>
+        /// <param name="type"> Type of notification
+        ///     - success: successfull notification, green color
+        ///     - warning: warning notification, yellow color
+        ///     - error: error notification, red color
+        /// </param>
         protected void SetAlert(string message, string type)
         {
             TempData["AlertMessage"] = message;
@@ -19,5 +27,6 @@ namespace QLWeb.Areas.Admin.Controllers
             else if (type == "error")
                 TempData["AlertType"] = "alert-danger";
         }
+
     }
 }
