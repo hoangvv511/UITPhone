@@ -1,6 +1,4 @@
-﻿
-
-namespace Common.Model
+﻿namespace Common.Model
 {
     using System;
     using System.Collections.Generic;
@@ -11,7 +9,6 @@ namespace Common.Model
     [Table("PhieuKiemKho")]
     public partial class PhieuKiemKho
     {
-
         public PhieuKiemKho()
         {
             ChiTietPhieuKiemKhos = new HashSet<ChiTietPhieuKiemKho>();

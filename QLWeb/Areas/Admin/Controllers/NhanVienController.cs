@@ -21,7 +21,7 @@ namespace QLWeb.Areas.Admin.Controllers
     {
         readonly NhanVienBusiness _nhanVienKhoBus = new NhanVienBusiness();
         readonly ChucVuBusiness _chucVuKhoBus = new ChucVuBusiness();
-        //
+        
         // GET: /Admin/NhanVien/
 
         public ActionResult Index()
@@ -126,7 +126,6 @@ namespace QLWeb.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-
         [HttpPost]
         public async Task<ActionResult> Edit(int id, NhanVienViewModel nhanVien, HttpPostedFileBase avatar)
         {
@@ -190,11 +189,9 @@ namespace QLWeb.Areas.Admin.Controllers
             return View(_nhanVienKhoBus.LoadDanhSachNhanVienTheoMa(id).ToList());
         }
 
-
         public ActionResult Detail()
         {
             return View();
         }
-
     }
 }

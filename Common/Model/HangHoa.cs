@@ -1,7 +1,4 @@
-﻿
-
-
-namespace Common.Model
+﻿namespace Common.Model
 {
     using System;
     using System.Collections.Generic;

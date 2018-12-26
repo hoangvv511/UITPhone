@@ -78,6 +78,8 @@
     <Compile Include="Implements\PhieuXuatKhoReponsitory.cs" />
     <Compile Include="Interfaces\IChucVuReponsitory.cs" />
     <Compile Include="Interfaces\IGenericReponsitory.cs" />
+    <Compile Include="Interfaces\IHangHoaRepository.cs" />
+    <Compile Include="Interfaces\ILoaiHangHoaRepository.cs" />
     <Compile Include="Interfaces\INhanVienRepository.cs" />
     <Compile Include="Interfaces\INhanVien_QuyenRepository.cs" />
     <Compile Include="Interfaces\IPhanQuyenRepository.cs" />

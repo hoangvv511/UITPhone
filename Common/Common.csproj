@@ -98,6 +98,8 @@
     <Compile Include="Model\QLWebDBEntities.cs" />
     <Compile Include="Model\ThamSo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\HangHoaViewModel.cs" />
+    <Compile Include="ViewModels\LoaiHangHoaViewModel.cs" />
     <Compile Include="ViewModels\NhanVienViewModel.cs" />
     <Compile Include="ViewModels\NhanVien_QuyenViewModel.cs" />
   </ItemGroup>
