@@ -57,7 +57,7 @@ namespace QLWeb.Areas.Admin.Controllers
             return Json(jsonData, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult DanhSachNhanVien(string searchString, string trangthai, string chucvu, int page = 1, int pageSize = 10)
+        public ActionResult DanhSachNhanVien(string searchString, string trangthai, string chucvu, int page = 1, int pageSize = 1)
         {
             if (!string.IsNullOrEmpty(searchString) || !string.IsNullOrEmpty(chucvu))
             {

@@ -190,6 +190,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NhaCungCapController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhanVienController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -6649,6 +6650,11 @@
     <Content Include="Areas\Admin\Views\Home\UpdatePassword.cshtml" />
     <Content Include="Scripts\homelayout.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Areas\Admin\Views\NhaCungCap\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\NhaCungCap\DanhSachNhaCungCap.cshtml" />
+    <Content Include="Areas\Admin\Views\NhaCungCap\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\NhaCungCap\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\NhaCungCap\ThongTinNhaCungCap.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -6692,13 +6698,11 @@
     <Folder Include="Areas\Admin\Views\BaoCaoPhieuChi\" />
     <Folder Include="Areas\Admin\Views\BaoCaoTonKho\" />
     <Folder Include="Areas\Admin\Views\BaoHanh\" />
-    <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Areas\Admin\Views\ChiTietPhieuBanHang\" />
     <Folder Include="Areas\Admin\Views\DatHang\" />
     <Folder Include="Areas\Admin\Views\HangHoa\" />
     <Folder Include="Areas\Admin\Views\KiemKho\" />
     <Folder Include="Areas\Admin\Views\LoaiHangHoa\" />
-    <Folder Include="Areas\Admin\Views\NhaCungCap\" />
     <Folder Include="Areas\Admin\Views\NhapKho\" />
     <Folder Include="Areas\Admin\Views\PhieuChi\" />
     <Folder Include="Areas\Admin\Views\XuatKho\" />
