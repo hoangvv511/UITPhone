@@ -1,16 +1,16 @@
-﻿@model IEnumerable<Common.ViewModels.NhanVienViewModel>
+﻿@model IEnumerable<Common.ViewModels.HangHoaViewModel>
 @{
-    ViewBag.Title = "Danh sách nhân viên";
+    ViewBag.Title = "Danh sách hàng hóa";
     Layout = "~/Areas/Admin/Views/Layout/HomeLayout.cshtml";
 }
 
 <section id="page-content">
     <div class="header-content">
-        <h2><i class="fa fa-list-alt"></i>Nhân Viên</h2>
+        <h2><i class="fa fa-list-alt"></i>Hàng Hóa</h2>
         <div class="breadcrumb-wrapper hidden-xs">
-            <button class="btn btn-sm btn-success btn-xs btn-push" onclick="@("window.location.href='" + @Url.Action("Create", "NhanVien") + "'"); ">
+            <button class="btn btn-sm btn-success btn-xs btn-push" onclick="@("window.location.href='" + @Url.Action("Create", "HangHoa") + "'"); ">
                 <i class="glyphicon glyphicon-edit"></i>
-                Thêm nhân viên
+                Thêm hàng hóa
             </button>
         </div>
     </div>
@@ -20,13 +20,13 @@
                 <div class="panel rounded shadow">
                     <div class="panel-heading">
                         <div class="pull-left">
-                            <h3 class="panel-title">Danh sách nhân viên</h3>
+                            <h3 class="panel-title">Danh sách hàng hóa</h3>
                         </div>
                         <div class="clearfix"></div>
                     </div><!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="form-body">
-                            @using (Ajax.BeginForm("DanhSachNhanVien", "NhanVien", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "list", HttpMethod = "Get" }, new { id = "filter_div" }))
+                            @using (Ajax.BeginForm("DanhSachHangHoa", "HangHoa", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "list", HttpMethod = "Get" }, new { id = "filter_div" }))
                             {
                                 <div class="form-group">
                                     <label>Tìm Kiếm</label>
@@ -38,12 +38,12 @@
                                     </div>
                                 </div>
                             }
-                            @using (Ajax.BeginForm("DanhSachNhanVien", "NhanVien", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "list", HttpMethod = "Get" }, new { id = "filter_div" }))
+                            @using (Ajax.BeginForm("DanhSachHangHoa", "HangHoa", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "list", HttpMethod = "Get" }, new { id = "filter_div" }))
                             {
                                 <div class="form-group">
-                                    <label>Trạng thái</label>
+                                    <label>Trạng Thái</label>
                                     <div class="input-group">
-                                        @Html.DropDownList("trangthai", new SelectList(ViewBag.data, "Value", "Text"), new { @class = "form-control rounded" })
+                                        @Html.DropDownList("trangThai", new SelectList(ViewBag.data, "Value", "Text"), new { @class = "form-control rounded" })
                                         <span class="input-group-btn">
                                             <button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                                         </span>
@@ -51,7 +51,7 @@
                                 </div>
                             }
                             <div id="list">
-                                @{Html.RenderAction("DanhSachNhanVien", "NhanVien");}
+                                @{Html.RenderAction("DanhSachHangHoa", "HangHoa");}
                             </div>
                         </div><!-- /.form-body -->
                     </div><!-- /.panel-body -->

@@ -1,15 +1,15 @@
-﻿@model Common.ViewModels.NhanVienViewModel
+﻿@model Common.ViewModels.HangHoaViewModel
 @{
-    ViewBag.Title = "Thêm nhân viên";
+    ViewBag.Title = "Thêm hàng hóa";
     Layout = "~/Areas/Admin/Views/Layout/HomeLayout.cshtml";
 }
 <link href="~/Content/assets/css/generalMessageError.css" rel="stylesheet" />
 <section id="page-content">
     <div class="header-content">
-        <h2><i class="fa fa-list-alt"></i>Nhân Viên</h2>
+        <h2><i class="fa fa-list-alt"></i>Hàng Hóa</h2>
         <div class="breadcrumb-wrapper hidden-xs">
             <button class="btn btn-lg btn-success btn-xs btn-push" id="submit"><i class="glyphicon glyphicon-save"></i> Lưu</button>
-            <button class="btn btn-lg btn-success btn-xs btn-push" onclick="@("window.location.href='" + @Url.Action("Index", "NhanVien") + "'"); ">
+            <button class="btn btn-lg btn-success btn-xs btn-push" onclick="@("window.location.href='" + @Url.Action("Index", "HangHoa") + "'"); ">
                 <i class="glyphicon glyphicon-arrow-left"></i> Quay lại
             </button>
         </div>
@@ -26,71 +26,77 @@
                         <div class="clearfix"></div>
                     </div><!-- /.panel-heading -->
                     <div class="panel-body no-padding">
-                        @using (Html.BeginForm("Create", "NhanVien", FormMethod.Post, new { id = "basic-validate", enctype = "multipart/form-data" }))
+                        @using (Html.BeginForm("Create", "HangHoa", FormMethod.Post, new { id = "basic-validate", enctype = "multipart/form-data" }))
                         {
-                            <div class="form-body">
-                                <div class="form-group">
-                                    <label class="control-label">Tên Nhân Viên</label>
-                                    <input type="text" name="tennhanvien" class="form-control rounded" maxlength="50" required />
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">Tên Đăng Nhập</label>
-                                    <input type="text" id="username" name="username" class="form-control rounded" maxlength="100" required />
-                                    <h3 style="margin-top:0%" hidden class="error  notifyinputUserName messageErrorinputUserName">User name đã tồn tại!</h3>
-                                    <input type="hidden" id="checkusername" name="checkusername" class="form-control rounded" />
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">Mật Khẩu</label>
-                                    <input type="password" name="password" class="form-control rounded" maxlength="15" required />
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">Email   </label>
-                                    <input type="text" id="email" name="email" class="form-control rounded" maxlength="30" />
-                                    <h3 style="margin-top:0%" hidden class="error  notifyinputEmail messageErrorinputEmail">Email đã tồn tại!</h3>
-                                    <input type="hidden" id="checkemail" name="checkemail" class="form-control rounded" />
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">Số Điện Thoại</label>
-                                    <input type="text" id="sodienthoai" name="sodienthoai" class="form-control rounded" maxlength="15" />
-                                    <h3 style="margin-top:0%" hidden class="error  notifyinputPhone messageErrorinputPhone">Số điện thoại đã tồn tại!</h3>
-                                    <input type="hidden" id="checkphone" name="checkphone" class="form-control rounded" />
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">Địa Chỉ</label>
-                                    <input type="text" name="diachi" class="form-control rounded" maxlength="100" />
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">CMND</label>
-                                    <input type="text" id="cmnd" name="cmnd" class="form-control rounded" maxlength="10" />
-                                    <h3 style="margin-top:0%" hidden class="error  notifyinputCMND messageErrorinputCMND">CMND đã tồn tại!</h3>
-                                    <input type="hidden" id="checkcmnd" name="checkcmnd" class="form-control rounded" />
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">Chức Vụ</label>
-
-                                    @Html.DropDownList("machucvu", new SelectList(ViewBag.chucvu, "Value", "Text"), new { @class = "form-control rounded" })
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label">Hình Đại Diện</label>
-                                    <p id="error1" style="display:none; color:#FF0000;">
-                                        Định dạng ảnh không hợp lệ! Định dạng hình ảnh phải là: JPG, JPEG, PNG.
-                                    </p>
-                                    <p id="error2" style="display:none; color:#FF0000;">
-                                        Kích thước file hình phải nhỏ hơn 1MB.
-                                    </p>
-                                    <div class="fileinput fileinput-new" data-provides="fileinput">
-                                        <div class="fileinput-preview thumbnail" name="avatar" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
-                                        <div>
-                                            <span class="btn btn-info btn-file">
-                                                <span class="fileinput-new">Chọn hình ảnh</span><span class="fileinput-exists">Thay đổi</span>
-                                                <input type="file" name="avatar" id="fileUpload" accept="image/*">
-                                            </span>
-                                            <a href="#" class="btn btn-danger fileinput-exists" id="xoa" data-dismiss="fileinput">Xóa</a>
-                                        </div>
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label class="control-label">Tên Hàng Hóa</label>
+                                <input type="text" id="tenhanghoa" name="tenhanghoa" class="form-control rounded" maxlength="100" required />
+                                <h3 style="margin-top:0%" hidden class="error  notifyinputTenHangHoa messageErrorinputTenHangHoa">Tên hàng hóa đã tồn tại!</h3>
+                                <input type="hidden" id="checktenhanghoa" name="checktenhanghoa" class="form-control rounded" />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Giá Bán</label>
+                                <input type="text" name="giaban" class="form-control rounded" maxlength="10" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Giảm Giá</label>
+                                <input type="text" name="giamgia" class="form-control rounded" maxlength="10" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Số Lượng Tồn</label>
+                                <input type="text" name="soluongton" class="form-control rounded" maxlength="10" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Đơn Vị Tính</label>
+                                <input type="text" name="donvitinh" class="form-control rounded" maxlength="10" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Mô Tả</label>
+                                <input type="text" name="mota" class="form-control rounded" maxlength="50" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Thông Số Kỹ Thuật</label>
+                                <input type="text" name="thongsokythuat" class="form-control rounded" maxlength="50" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Xuất Xứ</label>
+                                <input type="text" name="xuatxu" class="form-control rounded" maxlength="50" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Thời Gian Bảo Hành</label>
+                                <input type="text" name="thoigianbaohanh" class="form-control rounded" maxlength="10" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Model Name</label>
+                                <input type="text" id="modelname" name="modelname" class="form-control rounded" maxlength="100" required />
+                                <h3 style="margin-top:0%" hidden class="error  notifyinputModelName messageErrorinputModelName">Model Name đã tồn tại!</h3>
+                                <input type="hidden" id="checkmodelname" name="checkmodelname" class="form-control rounded" />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Loại Hàng Hóa</label>
+                                @Html.DropDownList("maloaihanghoa", new SelectList(ViewBag.loaihanghoa, "Value", "Text"), new { @class = "form-control rounded" })
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Hình Hàng Hóa</label>
+                                <p id="error1" style="display:none; color:#FF0000;">
+                                    Định dạng ảnh không hợp lệ! Định dạng hình ảnh phải là: JPG, JPEG, PNG.
+                                </p>
+                                <p id="error2" style="display:none; color:#FF0000;">
+                                    Kích thước file hình phải nhỏ hơn 1MB.
+                                </p>
+                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                    <div class="fileinput-preview thumbnail" name="avatar" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+                                    <div>
+                                        <span class="btn btn-info btn-file">
+                                            <span class="fileinput-new">Chọn hình ảnh</span><span class="fileinput-exists">Thay đổi</span>
+                                            <input type="file" name="avatar" id="fileUpload" accept="image/*">
+                                        </span>
+                                        <a href="#" class="btn btn-danger fileinput-exists" id="xoa" data-dismiss="fileinput">Xóa</a>
                                     </div>
                                 </div>
-                            </div><!-- /.form-body -->
+                            </div>
+                        </div><!-- /.form-body -->
                         }
                     </div><!-- /.panel-body -->
                 </div><!-- /.panel -->
@@ -106,65 +112,33 @@
         $('#basic-validate').submit();
     });</script>
 <script>
-    $("#username").on('keyup input propertychange paste change', function () {
-        $.getJSON('@Url.Action("CheckUserName", "NhanVien")', { username: $(this).val() }, function (data) {
+    $("#tenhanghoa").on('keyup input propertychange paste change', function () {
+        $.getJSON('@Url.Action("CheckHangHoa", "HangHoa")', { tenhanghoa: $(this).val() }, function (data) {
             if (data.isDuplicate) {
-                $(".messageErrorinputUserName").text("User name đã tồn tại!");
-                $(".notifyinputUserName").slideDown(250).removeClass("hidden");
-                var str1 = document.getElementById("username").value;
-                $('#checkusername').val(str1);
+                $(".messageErrorinputTenHangHoa").text("Tên hàng hóa đã tồn tại!");
+                $(".notifyinputTenHangHoa").slideDown(250).removeClass("hidden");
+                var str1 = document.getElementById("tenhanghoa").value;
+                $('#checktenhanghoa').val(str1);
                 document.getElementById("submit").disabled = true;
             }
             else {
-                $(".notifyinputUserName").addClass("hidden");
+                $(".notifyinputTenHangHoa").addClass("hidden");
                 document.getElementById("submit").disabled = false;
             }
         });
     });
 
-    $("#email").on('keyup input propertychange paste change', function () {
-        $.getJSON('@Url.Action("CheckUserName", "NhanVien")', { email: $(this).val() }, function (data) {
+    $("#modelname").on('keyup input propertychange paste change', function () {
+        $.getJSON('@Url.Action("CheckHangHoa", "HangHoa")', { modelname: $(this).val() }, function (data) {
             if (data.isDuplicate) {
-                $(".messageErrorinputEmail").text("Email đã tồn tại!");
-                $(".notifyinputEmail").slideDown(250).removeClass("hidden");
-                var str2 = document.getElementById("email").value;
-                $('#checkemail').val(str2);
+                $(".messageErrorinputModelName").text("Model Name đã tồn tại!");
+                $(".notifyinputModelName").slideDown(250).removeClass("hidden");
+                var str2 = document.getElementById("modelname").value;
+                $('#checkmodelname').val(str2);
                 document.getElementById("submit").disabled = true;
             }
             else {
                 $(".notifyinputEmail").addClass("hidden");
-                document.getElementById("submit").disabled = false;
-            }
-        });
-    });
-
-    $("#sodienthoai").on('keyup input propertychange paste change', function () {
-        $.getJSON('@Url.Action("CheckUserName", "NhanVien")', { sodienthoai: $(this).val() }, function (data) {
-            if (data.isDuplicate) {
-                $(".messageErrorinputPhone").text("Số điện thoại đã tồn tại!");
-                $(".notifyinputPhone").slideDown(250).removeClass("hidden");
-                var str3 = document.getElementById("sodienthoai").value;
-                $('#checkphone').val(str3);
-                document.getElementById("submit").disabled = true;
-            }
-            else {
-                $(".notifyinputPhone").addClass("hidden");
-                document.getElementById("submit").disabled = false;
-            }
-        });
-    });
-
-    $("#cmnd").on('keyup input propertychange paste change', function () {
-        $.getJSON('@Url.Action("CheckUserName", "NhanVien")', { cmnd: $(this).val() }, function (data) {
-            if (data.isDuplicate) {
-                $(".messageErrorinputCMND").text("CMND đã tồn tại!");
-                $(".notifyinputCMND").slideDown(250).removeClass("hidden");
-                var str4 = document.getElementById("cmnd").value;
-                $('#checkcmnd').val(str4);
-                document.getElementById("submit").disabled = true;
-            }
-            else {
-                $(".notifyinputCMND").addClass("hidden");
                 document.getElementById("submit").disabled = false;
             }
         });

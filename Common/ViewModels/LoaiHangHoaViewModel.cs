@@ -8,5 +8,8 @@ namespace Common.ViewModels
 {
     public class LoaiHangHoaViewModel
     {
+        public int maLoaiHangHoa { get; set; }
+        public string tenLoaiHangHoa { get; set; }
+        public int phanTramLoiNhuan { get; set; }
     }
 }

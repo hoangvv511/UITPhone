@@ -29,40 +29,15 @@
                     @if (@item.trangThai == true)
                     {
                         <td>Đang hoạt động</td>
-                        <td>
-                            @*<div class="input-group-btn">
-                                <button type="button" class="btn btn-lg btn btn-danger btn-xs btn-push pull-right" tabindex="-1">Thao tác</button>
-                                <button type="button" class="btn btn-lg btn btn-danger btn-xs btn-push pull-right" data-toggle="dropdown" tabindex="-1">
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu pull-right" role="menu">
-                                    <li><a href="@Url.Action("Detail", new { id = item.maNhanVien })"><i class="fa fa-eye"></i> Xem</a></li>
-                                    <li><a href="@Url.Action("Edit", new { id = item.maNhanVien })"><i class="fa fa-edit"></i> Sửa</a></li>
-                                </ul>
-                            </div>*@
-                            <a href="@Url.Action("Detail", new { id = item.maNhanVien })" class="btn btn-sm btn-success btn-xs btn-push"><i class="fa fa-eye"></i> Xem</a>
-                            <a href="@Url.Action("Edit", new { id = item.maNhanVien })" class="btn btn-sm btn-primary btn-xs btn-push"><i class="fa fa-pencil"></i> Sửa</a>
-                        </td>
-
                     }
                     else
                     {
                         <td>Ngừng hoạt động</td>
-                        <td class="text-center">
-                            @*<div class="input-group-btn">
-                                <button type="button" class="btn btn-lg btn btn-danger btn-xs btn-push pull-right" tabindex="-1">Thao tác</button>
-                                <button type="button" class="btn btn-lg btn btn-danger btn-xs btn-push pull-right" data-toggle="dropdown" tabindex="-1">
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu pull-right" role="menu">
-                                    <li><a href="@Url.Action("Detail", new { id = item.maNhanVien })"><i class="fa fa-eye"></i> Xem</a></li>
-                                </ul>
-                            </div>*@
-                            <a href="@Url.Action("Detail", new { id = item.maNhanVien })" class="btn btn-sm btn-success btn-xs btn-push"><i class="fa fa-eye"></i> Xem</a>
-                            @*<a href="#" class="btn btn-sm btn-danger btn-xs btn-push"><i class="fa fa-trash"></i> Xóa</a>*@
-                        </td>
-
                     }
+                    <td>
+                        <a href="@Url.Action("Detail", new { id = item.maNhanVien })" class="btn btn-sm btn-success btn-xs btn-push"><i class="fa fa-eye"></i> Xem</a>
+                        <a href="@Url.Action("Edit", new { id = item.maNhanVien })" class="btn btn-sm btn-primary btn-xs btn-push"><i class="fa fa-pencil"></i> Sửa</a>
+                    </td>
                 </tr>
             }
         </tbody>
