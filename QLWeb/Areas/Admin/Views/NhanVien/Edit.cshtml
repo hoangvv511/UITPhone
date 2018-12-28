@@ -7,7 +7,7 @@
     <div class="header-content">
         <h2><i class="fa fa-list-alt"></i>Nhân Viên</h2>
         <div class="breadcrumb-wrapper hidden-xs">
-            <button class="btn btn-lg btn-success btn-xs btn-push" id="submit"><i class="glyphicon glyphicon-save"></i> Lưu</button>
+            <button class="btn btn-lg btn-success btn-xs btn-push" id="submit"><i class="glyphicon glyphicon-save"></i>Lưu</button>
             <button class="btn btn-lg btn-success btn-xs btn-push" onclick="@("window.location.href='" + @Url.Action("Create", "NhanVien") + "'"); ">
                 <i class="glyphicon glyphicon-edit"></i>
                 Tạo mới nhân viên
@@ -34,7 +34,7 @@
                             <div class="form-body">
                                 @{Html.RenderAction("ThongTinNhanVien", "NhanVien");}
                             </div>
-
+                      
                         }
                     </div>
                 </div>
@@ -43,9 +43,12 @@
     </div>
 </section>
 <script src="~/Scripts/bootstrap.min.js"></script>
-<script>$('#submit').click(function () {
+
+<script>
+    $('#submit').click(function () {
         $('#basic-validate').submit();
     });</script>
+
 <script>
     $("#username").on('keyup input propertychange paste change', function () {
         $.getJSON('@Url.Action("CheckUserName", "NhanVien")', { username: $(this).val() }, function (data) {

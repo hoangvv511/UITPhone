@@ -52,6 +52,10 @@
         <div id="wrapper">
             <div id="page-wrapper" style="background-color: rgb(242, 244, 248);">
                 <div class="graphs">
+                    @if (TempData["AlertMessage"] != null && (string)TempData["AlertMessage"] != "")
+                    {
+                        <div id="AlertBox" class="alert @TempData["AlertType"] hide">@Html.Raw(TempData["AlertMessage"]) </div>
+                    }
                     @RenderBody()
                 </div>
             </div>

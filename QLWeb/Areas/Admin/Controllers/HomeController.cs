@@ -97,6 +97,52 @@ namespace QLWeb.Areas.Admin.Controllers
                 TempData["AlertType"] = "alert-danger";
         }
 
+        [HttpGet]
+        public async Task<ActionResult> UpdatePassword()
+        {
+            if (Session["Account"] != null)
+            {
+                ViewBag.employee = await _nhanVienBus.Find(((NhanVienViewModel)(Session["Account"])).maNhanVien);
+                return View();
+            }
+            else
+                return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> UpdatePassword(String matkhaumoi, string matkhaucu)
+        {
+            NhanVien editEmployee = (NhanVien)await _nhanVienBus.Find(((NhanVienViewModel)(Session["Account"])).maNhanVien);
+            try
+            {
+                await _nhanVienBus.UpdatePassword(editEmployee, Md5Encode.EncodePassword(matkhaumoi));
+                SetAlert("Bạn đã cập nhật mật khẩu thành công!!!", "success");
+            }
+            catch
+            {
+                SetAlert("Đã xảy ra lỗi! Bạn hãy cập nhật lại", "error");
+                return RedirectToAction("UpdatePassword");
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public JsonResult CheckPassword(string matkhaucu)
+        {
+            var isDuplicate = false;
+            var mk = Md5Encode.EncodePassword(matkhaucu).ToLower();
+
+            foreach (var user in _nhanVienBus.GetAllPassword(((NhanVienViewModel)(Session["Account"])).maNhanVien))
+            {
+                if (user.PassWord.ToLower() != mk)
+                    isDuplicate = true;
+            }
+
+            var jsonData = new { isDuplicate };
+
+            return Json(jsonData, JsonRequestBehavior.AllowGet);
+        }
+
         //Lấy thanh menu của user
         public PartialViewResult GetMenu()
         {

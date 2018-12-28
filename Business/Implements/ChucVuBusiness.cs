@@ -28,7 +28,7 @@ namespace Business.Implements
             _phanQuyenRepo = new PhanQuyenReponsitory(_dbContext);
             _nhanVienRepo = new NhanVienReponsitory(_dbContext);
         }
-
+        
         /// <summary>
         /// Get menu from positionID
         /// </summary>

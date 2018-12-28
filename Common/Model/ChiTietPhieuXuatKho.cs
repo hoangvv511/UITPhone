@@ -1,7 +1,4 @@
-﻿
-
-
-namespace Common.Model
+﻿namespace Common.Model
 {
     using System;
     using System.Collections.Generic;
@@ -9,16 +6,13 @@ namespace Common.Model
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-
     [Table("ChiTietPhieuXuatKho")]
     public partial class ChiTietPhieuXuatKho
-    {
-        
+    {     
         [Key]
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int SoPhieuXuatKho { get; set; }
-
 
         public int SoLuong { get; set; }
 
@@ -26,9 +20,9 @@ namespace Common.Model
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MaHangHoa { get; set; }
+
         public decimal Gia { get; set; }
+
         public decimal ThanhTien { get; set; }
     }
-
-
 }

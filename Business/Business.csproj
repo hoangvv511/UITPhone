@@ -101,6 +101,8 @@
     <Compile Include="Implements\PhieuXuatKhoBusiness.cs" />
     <Compile Include="Interfaces\IBusiness.cs" />
     <Compile Include="Interfaces\IChucVuBusiness.cs" />
+    <Compile Include="Interfaces\IHangHoaBusiness.cs" />
+    <Compile Include="Interfaces\ILoaiHangHoaBusiness.cs" />
     <Compile Include="Interfaces\INhanVienBusiness.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

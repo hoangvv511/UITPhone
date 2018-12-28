@@ -1,6 +1,4 @@
-﻿
-
-namespace Common.Model
+﻿namespace Common.Model
 {
     using System;
     using System.Collections.Generic;
@@ -21,7 +19,5 @@ namespace Common.Model
 
         [Column("Name", TypeName = "date")]
         public DateTime NgayApDung { get; set; }
-         //
-
     }
 }

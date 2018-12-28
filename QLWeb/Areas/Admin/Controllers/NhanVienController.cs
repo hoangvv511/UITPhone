@@ -21,7 +21,7 @@ namespace QLWeb.Areas.Admin.Controllers
     {
         readonly NhanVienBusiness _nhanVienKhoBus = new NhanVienBusiness();
         readonly ChucVuBusiness _chucVuKhoBus = new ChucVuBusiness();
-        //
+        
         // GET: /Admin/NhanVien/
 
         public ActionResult Index()
@@ -57,8 +57,7 @@ namespace QLWeb.Areas.Admin.Controllers
             return Json(jsonData, JsonRequestBehavior.AllowGet);
         }
 
-
-        public ActionResult DanhSachNhanVien(string searchString, string trangthai, string chucvu, int page = 1, int pageSize = 10)
+        public ActionResult DanhSachNhanVien(string searchString, string trangthai, string chucvu, int page = 1, int pageSize = 1)
         {
             if (!string.IsNullOrEmpty(searchString) || !string.IsNullOrEmpty(chucvu))
             {
@@ -87,6 +86,7 @@ namespace QLWeb.Areas.Admin.Controllers
 
             return View(ViewBag.thongTinNhanVien);
         }
+
         public ActionResult Create()
         {
             ViewBag.chucvu = _chucVuKhoBus.LoadChucVu();
@@ -124,20 +124,6 @@ namespace QLWeb.Areas.Admin.Controllers
                 SetAlert("Đã xảy ra lỗi! Bạn hãy thêm lại", "error");
             }
             return RedirectToAction("Index");
-        }
-
-        public ActionResult Edit(int id)
-        {
-            List<SelectListItem> trangThai = new List<SelectListItem>();
-            trangThai.Add(new SelectListItem { Text = "Đang Hoạt Động", Value = "true" });
-            trangThai.Add(new SelectListItem { Text = "Ngừng Hoạt Động", Value = "false" });
-            ViewBag.data = trangThai;
-            ViewBag.chucvu = _chucVuKhoBus.LoadChucVu();
-
-            List<SelectListItem> admin = new List<SelectListItem>();
-            admin.Add(new SelectListItem { Text = "Chủ của hàng", Value = "3" });
-            ViewBag.Admin = admin;
-            return View(_nhanVienKhoBus.LoadDanhSachNhanVienTheoMa(id).ToList());
         }
 
         [HttpPost]
@@ -190,10 +176,22 @@ namespace QLWeb.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Edit(int id)
+        {
+            List<SelectListItem> trangThai = new List<SelectListItem>();
+            trangThai.Add(new SelectListItem { Text = "Đang Hoạt Động", Value = "true" });
+            trangThai.Add(new SelectListItem { Text = "Ngừng Hoạt Động", Value = "false" });
+            ViewBag.data = trangThai;
+            ViewBag.chucvu = _chucVuKhoBus.LoadChucVu();
+            List<SelectListItem> admin = new List<SelectListItem>();
+            admin.Add(new SelectListItem { Text = "Chủ của hàng", Value = "3" });
+            ViewBag.Admin = admin;
+            return View(_nhanVienKhoBus.LoadDanhSachNhanVienTheoMa(id).ToList());
+        }
+
         public ActionResult Detail()
         {
             return View();
         }
-
     }
 }
