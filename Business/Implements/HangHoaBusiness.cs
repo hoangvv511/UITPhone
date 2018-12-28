@@ -12,6 +12,7 @@ using Business.Interfaces;
 using System.Web.Mvc;
 using Common.ViewModels;
 using PagedList;
+using System.Web.WebPages.Html;
 
 namespace Business.Implements
 {
@@ -211,5 +212,38 @@ namespace Business.Implements
             await _hangHoaRepo.EditAsync(editHangHoa);
         }
 
+        public List<Object> LoadSanhSachHangHoaKho()
+        {
+            var list = (from hanghoa in _dbContext.HangHoas
+                        where (hanghoa.TrangThai == true)
+                        select new SelectListItem
+                        {
+                            Text = hanghoa.TenHangHoa,
+                            Value = hanghoa.MaHangHoa.ToString(),
+                        }).Distinct().ToList();
+
+            return new List<Object>(list);
+        }
+
+        public List<string> ListName(string keyword)
+        {
+            return _dbContext.HangHoas.Where(x => x.TenHangHoa.Contains(keyword)).Select(x => x.TenHangHoa).ToList();
+        }
+
+        public Object LayThongTinHangHoa(int maHangHoa)
+        {
+            var producInfor = from hanghoa in _dbContext.HangHoas
+                              where (hanghoa.MaHangHoa == maHangHoa && hanghoa.TrangThai == true)
+                              select new
+                              {
+                                  hanghoa.TenHangHoa,
+                                  hanghoa.DonViTinh,
+                                  hanghoa.SoLuongTon,
+                                  hanghoa.GiaBan,
+                                  hanghoa.GiamGia,
+                                  hanghoa.ModelName
+                              };
+            return producInfor;
+        }
     }
 }

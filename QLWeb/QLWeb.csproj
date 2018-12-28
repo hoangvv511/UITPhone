@@ -191,6 +191,7 @@
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\HangHoaController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\KiemKhoController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoaiHangHoaController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhanVienController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -6649,6 +6650,7 @@
     <Content Include="Areas\Admin\Views\NhanVien\DanhSachNhanVien.cshtml" />
     <Content Include="Areas\Admin\Views\NhanVien\ThongTinNhanVien.cshtml" />
     <Content Include="Areas\Admin\Views\Home\UpdatePassword.cshtml" />
+    <Content Include="Scripts\Controller\phieukiemkhoScripts.js" />
     <Content Include="Scripts\homelayout.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Areas\Admin\Views\LoaiHangHoa\Create.cshtml" />
@@ -6663,6 +6665,12 @@
     <Content Include="Areas\Admin\Views\HangHoa\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\HangHoa\Index.cshtml" />
     <Content Include="Areas\Admin\Views\HangHoa\ThongTinHangHoa.cshtml" />
+    <Content Include="Areas\Admin\Views\KiemKho\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\KiemKho\DanhSachPhieuKiemKho.cshtml" />
+    <Content Include="Areas\Admin\Views\KiemKho\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\KiemKho\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\KiemKho\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\KiemKho\ThongTinPhieuKiemKho.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -6706,10 +6714,8 @@
     <Folder Include="Areas\Admin\Views\BaoCaoPhieuChi\" />
     <Folder Include="Areas\Admin\Views\BaoCaoTonKho\" />
     <Folder Include="Areas\Admin\Views\BaoHanh\" />
-    <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Areas\Admin\Views\ChiTietPhieuBanHang\" />
     <Folder Include="Areas\Admin\Views\DatHang\" />
-    <Folder Include="Areas\Admin\Views\KiemKho\" />
     <Folder Include="Areas\Admin\Views\NhaCungCap\" />
     <Folder Include="Areas\Admin\Views\NhapKho\" />
     <Folder Include="Areas\Admin\Views\PhieuChi\" />
