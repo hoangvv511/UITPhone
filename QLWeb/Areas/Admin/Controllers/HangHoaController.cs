@@ -25,7 +25,6 @@ namespace QLWeb.Areas.Admin.Controllers
             trangThai.Add(new SelectListItem { Text = "Đang Kinh Doanh", Value = "true" });
             trangThai.Add(new SelectListItem { Text = "Ngừng Kinh Doanh", Value = "false" });
             ViewBag.data = trangThai;
-            ViewBag.loaihanghoa = _loaiHangHoaKhoBus.LoadTenLoaiHangHoa();
             return View();
         }
 

@@ -104,6 +104,7 @@
     <Compile Include="Interfaces\IHangHoaBusiness.cs" />
     <Compile Include="Interfaces\ILoaiHangHoaBusiness.cs" />
     <Compile Include="Interfaces\INhanVienBusiness.cs" />
+    <Compile Include="Interfaces\INhapKhoBusiness.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
