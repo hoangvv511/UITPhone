@@ -1,6 +1,4 @@
-﻿
-
-namespace Common.Model
+﻿namespace Common.Model
 {
     using System;
     using System.Collections.Generic;
@@ -18,6 +16,5 @@ namespace Common.Model
 
         [StringLength(100)]
         public string TenQuyen { get; set; }
-
     }
 }

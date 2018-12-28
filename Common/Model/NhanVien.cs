@@ -1,12 +1,10 @@
-﻿
-namespace Common.Model
+﻿namespace Common.Model
 {
     using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity.Spatial;
-
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
 
     [Table("NhanVien")]
     public partial class NhanVien
@@ -41,11 +39,5 @@ using System.Data.Entity.Spatial;
         public int MaChucVu { get; set; }
 
         public string Avatar { get; set; }
-
     }
-
-
-
-
-    
 }
