@@ -27,11 +27,9 @@
         </tbody>
     </table>
 </div>
-
 <div class="pull-left" style="padding-top:20px">
     <h4 class="panel-title">Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount </h4>
 </div>
-
 <div class="pull-right">
     @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
 </div>

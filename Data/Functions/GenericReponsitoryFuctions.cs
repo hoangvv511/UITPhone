@@ -87,7 +87,7 @@ namespace Data.Functions
         public void Dispose()
         {
             if (_dbContext != null)
-                _dbContext.Dispose();   
+                _dbContext.Dispose();
             _dbContext.Dispose();
         }
 

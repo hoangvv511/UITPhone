@@ -1,5 +1,4 @@
-﻿using Business.Implements;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,33 +8,23 @@ namespace QLWeb.Controllers
 {
     public class HomeController : Controller
     {
-        readonly LoaiHangHoaBusiness _loaiHangHoaBus = new LoaiHangHoaBusiness();
-        readonly HangHoaBusiness _hangHoaBus = new HangHoaBusiness();
-        // GET: Home
         public ActionResult Index()
         {
             return View();
         }
 
-        public PartialViewResult DanhSachLoaiHangHoa()
+        public ActionResult About()
         {
-            var menuLoaiHangHoa = _loaiHangHoaBus.LoadDSLoaiHangHoa();
-            return PartialView("~/Views/PartitalView/MenuManagerPartial.cshtml", menuLoaiHangHoa);
-        }
+            ViewBag.Message = "Your application description page.";
 
-        public ActionResult TimKiemSanPham(string searchString, int page = 1, int pageSize = 8)
-        {
             return View();
         }
 
-        public JsonResult ListTenHangHoa(string q)
+        public ActionResult Contact()
         {
-            var data = _hangHoaBus.ListName(q);
-            return Json(new
-            {
-                data = data,
-                status = true
-            }, JsonRequestBehavior.AllowGet);
+            ViewBag.Message = "Your contact page.";
+
+            return View();
         }
     }
 }
