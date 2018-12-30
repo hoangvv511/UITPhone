@@ -22,6 +22,7 @@ namespace Business.Implements
         private readonly HangHoaReponsitory _hangHoaRepo;
         private readonly LoaiHangHoaReponsitory _loaiHangHoaRepo;
 
+
         public HangHoaBusiness()
         {
             _dbContext = new QLWebDBEntities();
