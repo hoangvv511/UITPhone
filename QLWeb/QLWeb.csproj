@@ -52,6 +52,15 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
@@ -187,13 +196,16 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\HangHoaController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\KiemKhoController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoaiHangHoaController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NhaCungCapController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhanVienController.cs" />
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -201,6 +213,8 @@
 >>>>>>> parent of 335cf7f... update avatar user + basic client
     <Compile Include="Controllers\HomeController.cs" />
 >>>>>>> parent of 335cf7f... update avatar user + basic client
+=======
+>>>>>>> parent of 4943cee... Delete
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -5233,14 +5247,16 @@
     <Content Include="Content\assets\images\logo.png" />
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <Content Include="Content\PagedList.css" />
 >>>>>>> parent of 335cf7f... update avatar user + basic client
 =======
     <Content Include="Content\PagedList.css" />
 >>>>>>> parent of 335cf7f... update avatar user + basic client
+=======
+>>>>>>> parent of 4943cee... Delete
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\alert.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -6719,6 +6735,7 @@
     <Content Include="Views\Web.config" />
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> parent of 335cf7f... update avatar user + basic client
@@ -6732,6 +6749,8 @@
 >>>>>>> parent of 335cf7f... update avatar user + basic client
 =======
 >>>>>>> parent of 335cf7f... update avatar user + basic client
+=======
+>>>>>>> parent of 4943cee... Delete
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -6744,12 +6763,12 @@
     <Folder Include="Areas\Admin\Views\BaoHanh\" />
     <Folder Include="Areas\Admin\Views\ChiTietPhieuBanHang\" />
     <Folder Include="Areas\Admin\Views\DatHang\" />
-    <Folder Include="Areas\Admin\Views\NhaCungCap\" />
     <Folder Include="Areas\Admin\Views\NhapKho\" />
     <Folder Include="Areas\Admin\Views\PhieuChi\" />
     <Folder Include="Areas\Admin\Views\XuatKho\" />
     <Folder Include="Content\assets\global\plugins\bower_components\bootstrap-sass\assets\images\" />
     <Folder Include="Content\assets\global\plugins\bower_components\bower\Packager\" />
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     <Folder Include="Controllers\" />
@@ -6760,12 +6779,12 @@
 =======
     <Folder Include="Models\" />
 >>>>>>> parent of 335cf7f... update avatar user + basic client
+=======
+    <Folder Include="Controllers\" />
+    <Folder Include="Views\PhieuDatHang\" />
+>>>>>>> parent of 4943cee... Delete
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
