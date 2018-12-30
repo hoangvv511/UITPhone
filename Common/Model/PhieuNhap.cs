@@ -18,8 +18,7 @@ namespace Common.Model
         [Key]
         public int SoPhieuNhap { get; set; }
 
-
-        [Column("Name", TypeName = "date")]
+        [Column(TypeName = "date")]
         public DateTime NgayNhap { get; set; }
 
         public int MaNhanVien { get; set; }

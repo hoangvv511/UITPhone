@@ -245,5 +245,27 @@ namespace Business.Implements
                               };
             return producInfor;
         }
+
+        public bool CapNhatHangHoaKhiTaoPhieuNhap(int maHangHoa, int soLuongNhap)
+        {
+            var MatHangCanUpdate = _dbContext.HangHoas.FirstOrDefault(x => x.MaHangHoa == maHangHoa);
+
+            try
+            {
+                if (MatHangCanUpdate != null)
+                {
+                    MatHangCanUpdate.SoLuongTon += soLuongNhap;
+                    _dbContext.SaveChanges();
+                }
+                return true;
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+
+
+
+        }
     }
 }
