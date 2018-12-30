@@ -27,5 +27,6 @@
         public DateTime NgayChinhSua { get; set; }
 
         public bool TrangThai { get; set; }
+
     }
 }

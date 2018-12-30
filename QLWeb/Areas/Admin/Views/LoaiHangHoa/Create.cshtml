@@ -55,6 +55,7 @@
         $('#basic-validate').submit();
     });</script>
 <script>
+
     $("#tenloaihanghoa").on('keyup input propertychange paste change', function () {
         $.getJSON('@Url.Action("CheckTenLoaiHangHoa", "LoaiHangHoa")', { tenloaihanghoa: $(this).val() }, function (data) {
             if (data.isDuplicate) {

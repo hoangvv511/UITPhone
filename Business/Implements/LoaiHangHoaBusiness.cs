@@ -27,6 +27,12 @@ namespace Business.Implements
             _loaiHangHoaRepo = new LoaiHangHoaReponsitory(_dbContext);
         }
 
+        public IList<LoaiHangHoa> LoadDSLoaiHangHoa()
+        {
+            IQueryable<LoaiHangHoa> loaiHangHoa = _loaiHangHoaRepo.GetAll();
+            return loaiHangHoa.ToList();
+        }
+
         public IList<LoaiHangHoaViewModel> SearchDanhSachLoaiHangHoa(String key)
         {
             IQueryable<LoaiHangHoa> danhSachLoaiHangHoa = _loaiHangHoaRepo.GetAll();
