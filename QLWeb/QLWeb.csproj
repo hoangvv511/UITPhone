@@ -205,19 +205,9 @@
     <Compile Include="Areas\Admin\Controllers\LoaiHangHoaController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhaCungCapController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhanVienController.cs" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 335cf7f... update avatar user + basic client
+
     <Compile Include="Controllers\HomeController.cs" />
->>>>>>> parent of 335cf7f... update avatar user + basic client
-=======
->>>>>>> parent of 4943cee... Delete
-=======
->>>>>>> parent of 4943cee... Delete
+
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -5248,20 +5238,11 @@
     <Content Include="Content\assets\images\bg.jpg" />
     <Content Include="Content\assets\images\login_logo.png" />
     <Content Include="Content\assets\images\logo.png" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
     <Content Include="Content\PagedList.css" />
->>>>>>> parent of 335cf7f... update avatar user + basic client
-=======
+
     <Content Include="Content\PagedList.css" />
->>>>>>> parent of 335cf7f... update avatar user + basic client
-=======
->>>>>>> parent of 4943cee... Delete
-=======
->>>>>>> parent of 4943cee... Delete
+
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\alert.js" />
@@ -6739,27 +6720,14 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 335cf7f... update avatar user + basic client
+
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-<<<<<<< HEAD
->>>>>>> parent of 335cf7f... update avatar user + basic client
-=======
->>>>>>> parent of 335cf7f... update avatar user + basic client
-=======
->>>>>>> parent of 4943cee... Delete
-=======
->>>>>>> parent of 4943cee... Delete
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -6777,26 +6745,20 @@
     <Folder Include="Areas\Admin\Views\XuatKho\" />
     <Folder Include="Content\assets\global\plugins\bower_components\bootstrap-sass\assets\images\" />
     <Folder Include="Content\assets\global\plugins\bower_components\bower\Packager\" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     <Folder Include="Controllers\" />
     <Folder Include="Views\PhieuDatHang\" />
-=======
+
     <Folder Include="Models\" />
->>>>>>> parent of 335cf7f... update avatar user + basic client
-=======
+
     <Folder Include="Models\" />
->>>>>>> parent of 335cf7f... update avatar user + basic client
-=======
+
     <Folder Include="Controllers\" />
     <Folder Include="Views\PhieuDatHang\" />
->>>>>>> parent of 4943cee... Delete
-=======
+
     <Folder Include="Controllers\" />
     <Folder Include="Views\PhieuDatHang\" />
->>>>>>> parent of 4943cee... Delete
+
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
