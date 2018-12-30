@@ -208,11 +208,14 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> parent of 335cf7f... update avatar user + basic client
     <Compile Include="Controllers\HomeController.cs" />
 >>>>>>> parent of 335cf7f... update avatar user + basic client
+=======
+>>>>>>> parent of 4943cee... Delete
 =======
 >>>>>>> parent of 4943cee... Delete
     <Compile Include="Global.asax.cs">
@@ -5248,12 +5251,15 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <Content Include="Content\PagedList.css" />
 >>>>>>> parent of 335cf7f... update avatar user + basic client
 =======
     <Content Include="Content\PagedList.css" />
 >>>>>>> parent of 335cf7f... update avatar user + basic client
+=======
+>>>>>>> parent of 4943cee... Delete
 =======
 >>>>>>> parent of 4943cee... Delete
     <Content Include="favicon.ico" />
@@ -6736,6 +6742,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> parent of 335cf7f... update avatar user + basic client
@@ -6749,6 +6756,8 @@
 >>>>>>> parent of 335cf7f... update avatar user + basic client
 =======
 >>>>>>> parent of 335cf7f... update avatar user + basic client
+=======
+>>>>>>> parent of 4943cee... Delete
 =======
 >>>>>>> parent of 4943cee... Delete
   </ItemGroup>
@@ -6771,6 +6780,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Folder Include="Controllers\" />
     <Folder Include="Views\PhieuDatHang\" />
 =======
@@ -6779,6 +6789,10 @@
 =======
     <Folder Include="Models\" />
 >>>>>>> parent of 335cf7f... update avatar user + basic client
+=======
+    <Folder Include="Controllers\" />
+    <Folder Include="Views\PhieuDatHang\" />
+>>>>>>> parent of 4943cee... Delete
 =======
     <Folder Include="Controllers\" />
     <Folder Include="Views\PhieuDatHang\" />
