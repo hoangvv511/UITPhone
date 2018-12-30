@@ -195,7 +195,10 @@
     <Compile Include="Areas\Admin\Controllers\LoaiHangHoaController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhanVienController.cs" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 335cf7f... update avatar user + basic client
     <Compile Include="Controllers\HomeController.cs" />
 >>>>>>> parent of 335cf7f... update avatar user + basic client
     <Compile Include="Global.asax.cs">
@@ -5229,6 +5232,10 @@
     <Content Include="Content\assets\images\login_logo.png" />
     <Content Include="Content\assets\images\logo.png" />
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    <Content Include="Content\PagedList.css" />
+>>>>>>> parent of 335cf7f... update avatar user + basic client
 =======
     <Content Include="Content\PagedList.css" />
 >>>>>>> parent of 335cf7f... update avatar user + basic client
@@ -6711,13 +6718,19 @@
     </Content>
     <Content Include="Views\Web.config" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 335cf7f... update avatar user + basic client
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+<<<<<<< HEAD
+>>>>>>> parent of 335cf7f... update avatar user + basic client
+=======
 >>>>>>> parent of 335cf7f... update avatar user + basic client
   </ItemGroup>
   <ItemGroup>
@@ -6738,8 +6751,12 @@
     <Folder Include="Content\assets\global\plugins\bower_components\bootstrap-sass\assets\images\" />
     <Folder Include="Content\assets\global\plugins\bower_components\bower\Packager\" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Folder Include="Controllers\" />
     <Folder Include="Views\PhieuDatHang\" />
+=======
+    <Folder Include="Models\" />
+>>>>>>> parent of 335cf7f... update avatar user + basic client
 =======
     <Folder Include="Models\" />
 >>>>>>> parent of 335cf7f... update avatar user + basic client
