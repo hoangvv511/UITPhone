@@ -245,5 +245,22 @@ namespace Business.Implements
                               };
             return producInfor;
         }
+
+        public void UpdateSoLuongTon(PhieuNhapViewModel _phieuNhap)
+        {
+            var danhSachHangHoa = _dbContext.HangHoas;
+            //List<ChiTietPhieuNhap> phieuNhaps = _phieuNhap.chiTietPhieuNhap;
+
+            //danhSachHangHoa
+            
+            //var i = 0;
+
+            //for (i = 0; i < phieuNhaps.Count; i++)
+            //{
+                
+            //}
+
+            _dbContext.SaveChanges();
+        }
     }
 }

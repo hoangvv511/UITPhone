@@ -196,6 +196,7 @@
     <Compile Include="Areas\Admin\Controllers\NhaCungCapController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhanVienController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhapKhoController.cs" />
+    <Compile Include="Areas\Admin\Controllers\XuatKhoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -6653,6 +6654,7 @@
     <Content Include="Areas\Admin\Views\NhanVien\ThongTinNhanVien.cshtml" />
     <Content Include="Areas\Admin\Views\Home\UpdatePassword.cshtml" />
     <Content Include="Scripts\Controller\phieukiemkhoScripts.js" />
+    <Content Include="Scripts\Controller\phieunhapScripts.js" />
     <Content Include="Scripts\homelayout.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Areas\Admin\Views\LoaiHangHoa\Create.cshtml" />
@@ -6680,10 +6682,10 @@
     <Content Include="Areas\Admin\Views\KiemKho\ThongTinPhieuKiemKho.cshtml" />
     <Content Include="Areas\Admin\Views\NhapKho\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\NhapKho\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\NhapKho\DanhSachPhieuNhapKho.cshtml" />
+    <Content Include="Areas\Admin\Views\NhapKho\DanhSachPhieuNhap.cshtml" />
     <Content Include="Areas\Admin\Views\NhapKho\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\NhapKho\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\NhapKho\ThongTinPhieuNhapKho.cshtml" />
+    <Content Include="Areas\Admin\Views\NhapKho\ThongTinPhieuNhap.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

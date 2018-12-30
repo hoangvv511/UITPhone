@@ -12,7 +12,7 @@
         [Key]
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int SoPhieuXuatKho { get; set; }
+        public int SoPhieuNhap { get; set; }
 
         [Key]
         [Column(Order = 1)]

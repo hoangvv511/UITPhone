@@ -38,6 +38,30 @@ namespace Business.Implements
             //Nếu là thủ kho
             if (_nhanVienBus.layMaChucVu(userName) == 5)
             {
+                if ((!(tungay == default(DateTime))) && (!(denngay == default(DateTime))))
+                {
+                    allForManager = (from phieukiemkho in danhSachPhieuKiemKho
+                                     join nhanvien in _nhanVienRepo.GetAll()
+                                     on phieukiemkho.MaNhanVien equals nhanvien.MaNhanVien
+                                     where (nhanvien.UserName.Equals(userName) && phieukiemkho.NgayKiemKho >= tungay.Date && phieukiemkho.NgayKiemKho <= denngay.Date)
+                                     select new
+                                     {
+                                         SoPhieuKiemKho = phieukiemkho.SoPhieuKiemKho,
+                                         NgayKiemKho = phieukiemkho.NgayKiemKho,
+                                         TenNhanVien = nhanvien.TenNhanvien,
+                                         TrangThai = phieukiemkho.TrangThai,
+                                         ChuThich = phieukiemkho.GhiChu,
+
+                                     }).AsEnumerable().Select(x => new KiemKhoViewModel()
+                                     {
+                                         soPhieuKiemKho = x.SoPhieuKiemKho,
+                                         ngayKiemKho = x.NgayKiemKho,
+                                         tenNhanVien = x.TenNhanVien,
+                                         trangThai = x.TrangThai,
+                                         ghiChu = x.ChuThich,
+                                     }).OrderByDescending(x => x.soPhieuKiemKho).ToList();
+                    return allForManager;
+                }
                 if (!string.IsNullOrEmpty(key))
                 {
                     all = (from phieukiemkho in danhSachPhieuKiemKho
