@@ -25,6 +25,8 @@ namespace Business.Implements
         private readonly HangHoaReponsitory _hangHoaRepo;
         private readonly NhaCungCapReponsitory _nhaCungCapRepo;
         private NhanVienBusiness _nhanVienBus;
+        private HangHoaBusiness _hangHoaBus;
+
 
         public PhieuNhapKhoBusiness()
         {
@@ -35,6 +37,7 @@ namespace Business.Implements
             _nhaCungCapRepo = new NhaCungCapReponsitory(dbContext);
             _chiTietPhieuNhapRepo = new ChiTietPhieuNhapReponsitory(dbContext);
             _nhanVienBus = new NhanVienBusiness();
+            _hangHoaBus = new HangHoaBusiness();
         }
 
         public IList<PhieuNhapViewModel> SearchDanhSachPhieuNhapKho(string key, string trangThai, DateTime tungay, DateTime denngay, string userName)
@@ -335,6 +338,8 @@ namespace Business.Implements
             foreach (var i in O.chiTietPhieuNhap)
             {
                 order.ChiTietPhieuNhaps.Add(i);
+ 
+                _hangHoaBus.CapNhatHangHoaKhiTaoPhieuNhap(i.MaHangHoa, i.SoLuong);
             }
             await _phieuNhapRepo.InsertAsync(order);
         }

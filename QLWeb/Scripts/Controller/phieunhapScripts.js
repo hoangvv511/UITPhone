@@ -46,7 +46,7 @@
                         MaHangHoa: $('#maHangHoa').val().trim(),
                         TenHangHoa: $("#tenHangHoa").val().trim(),
                         DonViTinh: $('#donViTinh').val().trim(),
-                        SoLuongNhap: parseInt($('#soLuongNhap').val().trim()),
+                        SoLuong: parseInt($('#soLuongNhap').val().trim()),
                         GiaNhap: parseInt($('#giaNhap').val().trim()),
                         ThanhTien: parseInt($('#thanhTien').val().trim()),
                     });           
@@ -76,7 +76,7 @@
                     MaHangHoa: $('#maHangHoa').val().trim(),
                     TenHangHoa: $("#tenHangHoa").val().trim(),
                     DonViTinh: $('#donViTinh').val().trim(),
-                    SoLuongNhap: parseInt($('#soLuongNhap').val().trim()),
+                    SoLuong: parseInt($('#soLuongNhap').val().trim()),
                     GiaNhap: parseInt($('#giaNhap').val().trim()),
                     ThanhTien: parseInt($('#thanhTien').val().trim()),
                 });
@@ -248,7 +248,7 @@
                 $row.append($('<td/>').html(val.MaHangHoa));
                 $row.append($('<td/>').html(val.TenHangHoa));
                 $row.append($('<td/>').html(val.DonViTinh));
-                $row.append($('<td/>').html(val.SoLuongNhap));
+                $row.append($('<td/>').html(val.SoLuong));
                 $row.append($('<td/>').html(val.GiaNhap));
                 $row.append($('<td/>').html(val.ThanhTien));
                 var $remove = $('<input type="button" value="Xóa" style="padding:1px 20px" class="btn-danger"/>');

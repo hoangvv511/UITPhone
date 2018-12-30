@@ -246,21 +246,26 @@ namespace Business.Implements
             return producInfor;
         }
 
-        public void UpdateSoLuongTon(PhieuNhapViewModel _phieuNhap)
+        public bool CapNhatHangHoaKhiTaoPhieuNhap(int maHangHoa, int soLuongNhap)
         {
-            var danhSachHangHoa = _dbContext.HangHoas;
-            //List<ChiTietPhieuNhap> phieuNhaps = _phieuNhap.chiTietPhieuNhap;
+            var MatHangCanUpdate = _dbContext.HangHoas.FirstOrDefault(x => x.MaHangHoa == maHangHoa);
 
-            //danhSachHangHoa
-            
-            //var i = 0;
+            try
+            {
+                if (MatHangCanUpdate != null)
+                {
+                    MatHangCanUpdate.SoLuongTon += soLuongNhap;
+                    _dbContext.SaveChanges();
+                }
+                return true;
+            }
+            catch(Exception)
+            {
+                return false;
+            }
 
-            //for (i = 0; i < phieuNhaps.Count; i++)
-            //{
-                
-            //}
 
-            _dbContext.SaveChanges();
+
         }
     }
 }

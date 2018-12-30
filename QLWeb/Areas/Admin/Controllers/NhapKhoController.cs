@@ -84,7 +84,6 @@ namespace QLWeb.Areas.Admin.Controllers
                 await _phieuNhapKhoBus.Create(phieuNhap);
                 status = true;
                 SetAlert("Đã Lưu Phiếu Nhập Kho Thành Công!!!", "success");
-                _hangHoaBus.UpdateSoLuongTon(phieuNhap);
             }
             else
             {
