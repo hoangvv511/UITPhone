@@ -58,24 +58,6 @@ namespace QLWeb.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> Create(PhieuNhapViewModel phieuNhap)
-        {
-            bool status = false;
-            if (ModelState.IsValid)
-            {
-                await _phieuNhapKhoBus.Create(phieuNhap);
-                status = true;
-                SetAlert("Đã Lưu Phiếu Nhập Kho Thành Công!!!", "success");
-            }
-            else
-            {
-                status = false;
-                SetAlert("Đã Xảy Ra Lỗi! Bạn Hãy Tạo Lại Phiếu Nhập Kho", "error");
-            }
-            return new JsonResult { Data = new { status = status } };
-        }
-
-        [HttpPost]
         public async Task<JsonResult> LuuPhieuNhap(PhieuNhapViewModel phieuNhap)
         {
             bool status = false;

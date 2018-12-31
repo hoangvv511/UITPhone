@@ -247,8 +247,6 @@ namespace Business.Implements
             return producInfor;
         }
 
-        
-
         public bool CapNhatHangHoaKhiTaoPhieuNhap(int maHangHoa, int soLuongNhap, decimal giaNhap)
         {
             try

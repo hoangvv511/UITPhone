@@ -22,7 +22,8 @@ namespace Common.ViewModels
         public string tenHangHoa { get; set; }
         public string donViTinh { get; set; }
         public int soLuong { get; set; }
-        public decimal giaNhap { get; set; }
+        public int soLuongHienTai { get; set; }
+        public decimal gia { get; set; }
         public decimal thanhTien { get; set; }
 
         public List<ChiTietPhieuXuatKho> chiTietPhieuXuatKho { get; set; }

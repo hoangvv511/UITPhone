@@ -361,7 +361,7 @@ $(document).ready(function () {
     });
 });
 
-// Kiểm tra số lượng
+// Kiểm tra số lượng nhập
 function CheckSoLuongNhap(error) {
     if (!($('#soLuongNhap').val().trim() != '' && !isNaN($('#soLuongNhap').val().trim()))) {
     //if ($("#soLuongNhap").val() == '') {
@@ -405,7 +405,7 @@ function TinhThanhTien() {
     }
 }
 
-// Kiểm tra số lượng
+// Kiểm tra giá nhập
 function CheckGiaNhap(error) {
     if (!($('#giaNhap').val().trim() != '' && !isNaN($('#giaNhap').val().trim()))) {
         //if ($("#soLuongNhap").val() == '') {
