@@ -113,10 +113,6 @@
                             min: 0
                         },
 
-                        donvitinh: {
-                            required: true,
-                        },
-
                         bv_username: {
                             required: true,
                             minlength: 2,
@@ -183,10 +179,6 @@
                             remote: jQuery.validator.format("{0} is already in use")
                         },
 
-                        donvitinh: {
-                            required: "Chưa nhập đơn vị tính !",
-                            remote: jQuery.validator.format("{0} is already in use")
-                        },
 
                         tennhanvien: {
                             required: "Chưa nhập tên nhân viên !",
