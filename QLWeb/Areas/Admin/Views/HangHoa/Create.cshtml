@@ -86,24 +86,30 @@
                                     <label class="control-label">Loại Hàng Hóa</label>
                                     @Html.DropDownList("maloaihanghoa", new SelectList(ViewBag.loaihanghoa, "Value", "Text"), new { @class = "form-control rounded" })
                                 </div>
+
                                 <div class="form-group">
-                                    <label class="control-label">Hình Hàng Hóa</label>
+                                    <label>Hình ảnh</label>
                                     <p id="error1" style="display:none; color:#FF0000;">
                                         Định dạng ảnh không hợp lệ! Định dạng hình ảnh phải là: JPG, JPEG, PNG.
                                     </p>
                                     <p id="error2" style="display:none; color:#FF0000;">
                                         Kích thước file hình phải nhỏ hơn 1MB.
                                     </p>
+
                                     <div class="fileinput fileinput-new" data-provides="fileinput">
-                                        <div class="fileinput-preview thumbnail" name="avatar" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+                                        <div class="fileinput-preview thumbnail" name="hinhanh" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
                                         <div>
                                             <span class="btn btn-info btn-file">
-                                                <span class="fileinput-new">Chọn hình ảnh</span><span class="fileinput-exists">Thay đổi</span>
-                                                <input type="file" name="avatar" id="fileUpload" accept="image/*">
+                                                <span class="fileinput-new">Chọn hình ảnh</span><span class="fileinput-exists" id="change">Thay đổi</span>
+                                                <input type="file" name="hinhanh" id="fileUpload" accept="image/*">
+                                                <input type="hidden" id="file" name="hinhanh" class="form-control" style="margin-left:5px">
                                             </span>
                                             <a href="#" class="btn btn-danger fileinput-exists" id="xoa" data-dismiss="fileinput">Xóa</a>
+
                                         </div>
                                     </div>
+                                    <span id="lblError" style="color: red;"></span>
+
                                 </div>
                             </div><!-- /.form-body -->
                         }

@@ -338,7 +338,7 @@ namespace Business.Implements
             {
                 order.ChiTietPhieuNhaps.Add(i);
  
-                _hangHoaBus.CapNhatHangHoaKhiTaoPhieuNhap(i.MaHangHoa, i.SoLuong);
+                _hangHoaBus.CapNhatHangHoaKhiTaoPhieuNhap(i.MaHangHoa, i.SoLuong, i.GiaNhap);
             }
             await _phieuNhapRepo.InsertAsync(order);
         }
@@ -419,10 +419,23 @@ namespace Business.Implements
 
         public async Task HuyPhieuNhap(object editModel)
         {
-            PhieuNhap editPhieuNhap = (PhieuNhap)editModel;
-            editPhieuNhap.TrangThai = false;
+            try
+            {
+                PhieuNhap editPhieuNhap = (PhieuNhap)editModel;
+                editPhieuNhap.TrangThai = false;
+                await _phieuNhapRepo.EditAsync(editPhieuNhap);
 
-            await _phieuNhapRepo.EditAsync(editPhieuNhap);
+                var phieuNhapKho = dbContext.ChiTietPhieuNhapes.Where(x => x.SoPhieuNhap == editPhieuNhap.SoPhieuNhap);
+
+                foreach (var i in phieuNhapKho)
+                {
+                    _hangHoaBus.CapNhatHangHoaKhiXoaPhieuNhap(i.SoPhieuNhap, i.MaHangHoa, i.SoLuong, i.GiaNhap);
+                }
+            }
+            catch (Exception)
+            {
+
+            }           
         }
     }
 }

@@ -247,16 +247,36 @@ namespace Business.Implements
             return producInfor;
         }
 
-        public bool CapNhatHangHoaKhiTaoPhieuNhap(int maHangHoa, int soLuongNhap)
-        {
-            var MatHangCanUpdate = _dbContext.HangHoas.FirstOrDefault(x => x.MaHangHoa == maHangHoa);
+        
 
+        public bool CapNhatHangHoaKhiTaoPhieuNhap(int maHangHoa, int soLuongNhap, decimal giaNhap)
+        {
             try
             {
-                if (MatHangCanUpdate != null)
+                var loinhuan = from loaihanghoa in _dbContext.LoaiHangHoas
+                               join hanghoa in _hangHoaRepo.GetAll()
+                               on loaihanghoa.MaLoaiHangHoa equals hanghoa.MaLoaiHangHoa
+                               where hanghoa.MaHangHoa.Equals(maHangHoa)
+                               select new
+                               {
+                                   loaihanghoa.PhanTramLoiNhuan
+                               };
+
+                decimal phantramloinhuan = loinhuan.FirstOrDefault().PhanTramLoiNhuan;
+
+                decimal phantram = 1 + phantramloinhuan / 100;
+
+                var result = _dbContext.HangHoas.FirstOrDefault(x => x.MaHangHoa == maHangHoa);
+
+                if (result != null)
                 {
-                    MatHangCanUpdate.SoLuongTon += soLuongNhap;
+                    decimal giaChuaTinhLoiNhuan = Math.Round(result.GiaBan / phantram);
+
+                    decimal giaBinhQuan = Math.Round((result.SoLuongTon * giaChuaTinhLoiNhuan + soLuongNhap * giaNhap) / (result.SoLuongTon + soLuongNhap));
+                    result.GiaBan = Math.Round(giaBinhQuan + giaBinhQuan * phantramloinhuan / 100);
+                    result.SoLuongTon += soLuongNhap;
                     _dbContext.SaveChanges();
+
                 }
                 return true;
             }
@@ -264,9 +284,54 @@ namespace Business.Implements
             {
                 return false;
             }
+        }
 
+        public bool CapNhatHangHoaKhiXoaPhieuNhap(int soPhieuNhap, int maHangHoa, int soLuongNhap, decimal giaNhap)
+        {
+            try
+            {
+                var loinhuan = from loaihanghoa in _dbContext.LoaiHangHoas
+                               join hanghoa in _hangHoaRepo.GetAll()
+                               on loaihanghoa.MaLoaiHangHoa equals hanghoa.MaLoaiHangHoa
+                               where hanghoa.MaHangHoa.Equals(maHangHoa)
+                               select new
+                               {
+                                   loaihanghoa.PhanTramLoiNhuan
+                               };
+                decimal phantramloinhuan = loinhuan.FirstOrDefault().PhanTramLoiNhuan;
 
+                decimal phantram = 1 + phantramloinhuan / 100;
 
+                var result = _dbContext.ChiTietPhieuNhapes.FirstOrDefault(x => x.SoPhieuNhap == soPhieuNhap && x.MaHangHoa == maHangHoa);
+
+                var MatHangCanUpdate = _dbContext.HangHoas.FirstOrDefault(x => x.MaHangHoa == maHangHoa);
+
+                if (result != null)
+                {
+                    int sl = MatHangCanUpdate.SoLuongTon - soLuongNhap;
+                    if (sl != 0)
+                    {
+                        decimal giaChuaTinhLoiNhuan = Math.Round(MatHangCanUpdate.GiaBan / phantram);
+
+                        MatHangCanUpdate.GiaBan = phantram * Math.Round((giaChuaTinhLoiNhuan * (MatHangCanUpdate.SoLuongTon) - giaNhap * soLuongNhap) / (MatHangCanUpdate.SoLuongTon - soLuongNhap));
+
+                        MatHangCanUpdate.SoLuongTon = MatHangCanUpdate.SoLuongTon - soLuongNhap;
+
+                        _dbContext.SaveChanges();
+                    }
+                    else
+                    {
+                        MatHangCanUpdate.GiaBan = 0;
+                        MatHangCanUpdate.SoLuongTon = 0;
+                        _dbContext.SaveChanges();
+                    }
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

@@ -6,17 +6,16 @@
         <thead>
             <tr>
                 <th class="text-center" style="width: 5%;">Mã hàng hóa</th>
-                <th class="text-center" style="width: 10%;">Tên hàng hóa</th>
-                <th class="text-center" style="width: 10%;">Giá bán</th>
-                <th class="text-center" style="width: 10%;">Giảm giá</th>
+                <th class="text-center" style="width: 20%;">Tên hàng hóa</th>
+                <th class="text-center" style="width: 8%;">Giá bán</th>
+                <th class="text-center" style="width: 7%;">Giảm giá</th>
                 <th class="text-center" style="width: 5%;">Số lượng tồn</th>
                 <th class="text-center" style="width: 10%;">Xuất xứ</th>
                 <th class="text-center" style="width: 10%;">Thời gian bảo hành</th>
-                <th class="text-center" style="width: 5%;">Mã loại hàng hóa</th>
-                <th class="text-center" style="width: 10%;">Tên loại hàng hóa</th>
+                <th class="text-center" style="width: 10%;">Loại hàng hóa</th>
                 <th class="text-center" style="width: 5%;">Model name</th>
-                <th class="text-center" style="width: 5%;">Trạng thái</th>
-                <th class="text-center" style="width: 15%;">Hành động</th>
+                <th class="text-center" style="width: 10%;">Trạng thái</th>
+                <th class="text-center" style="width: 10%;">Hành động</th>
             </tr>
         </thead>
         <tbody>
@@ -25,7 +24,7 @@
                 <tr class="border-warning">
                     <td>@item.maHangHoa</td>
                     <td>
-                        <img src="~/Content/image/user/@item.hinhAnh" width="50" height="50" class="img-circle img-bordered-theme">
+                        <img src="~/Content/client/product/@item.hinhAnh" width="50" height="50" class="img-circle img-bordered-theme">
                         <span>@item.tenHangHoa</span>
                     </td>
                     <td>@item.giaBan</td>
@@ -33,7 +32,6 @@
                     <td>@item.soLuongTon</td>
                     <td>@item.xuatXu</td>
                     <td>@item.thoiGianBaoHanh</td>
-                    <td>@item.maLoaiHangHoa</td>
                     <td>@item.tenLoaiHangHoa</td>
                     <td>@item.modelName</td>
                     @if (@item.trangThai == true)
