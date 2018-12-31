@@ -48,14 +48,14 @@
                         DonViTinh: $('#donViTinh').val().trim(),
                         SoLuong: parseInt($('#soLuongNhap').val().trim()),
                         GiaNhap: parseInt($('#giaNhap').val().trim()),
-                        ThanhTien: parseInt($('#thanhTien').val().trim()),
+                        ThanhTien: parseInt($('#soLuongNhap').val().trim()) * parseInt($('#giaNhap').val().trim().replace(/,/gi, "")),
                     });           
 
-                    var amount = parseInt($('#thanhTien').val());
-                    var tongtien = parseInt($('#tongTien').val());
-                    tongtien += amount;
+                    //var amount = parseInt($('#thanhTien').val());
+                    //var tongtien = parseInt($('#tongTien').val());
+                    //tongtien += amount;
 
-                    $('#tongTien').val(tongtien.toString());
+                    //$('#tongTien').val(tongtien.toString());
 
                     //Xóa trắng 
                     $('#maHangHoa').focus().val('');
@@ -67,6 +67,7 @@
 
                     //Điền lại vào phiếu
                     GeneratedItemsTable();
+                    TinhTongTien();
                 }
             }
 
@@ -78,14 +79,14 @@
                     DonViTinh: $('#donViTinh').val().trim(),
                     SoLuong: parseInt($('#soLuongNhap').val().trim()),
                     GiaNhap: parseInt($('#giaNhap').val().trim()),
-                    ThanhTien: parseInt($('#thanhTien').val().trim()),
+                    ThanhTien: parseInt($('#soLuongNhap').val().trim()) * parseInt($('#giaNhap').val().trim().replace(/,/gi, "")),
                 });
 
-                var amount = parseInt($('#thanhTien').val());
-                var tongtien = parseInt($('#tongTien').val());
-                tongtien += amount;
+                //var amount = parseInt($('#thanhTien').val());
+                //var tongtien = parseInt($('#tongTien').val());
+                //tongtien += amount;
 
-                $('#tongTien').val(tongtien.toString());
+                //$('#tongTien').val(tongtien.toString());
 
                 //Xóa trắng 
                 $('#maHangHoa').focus().val('');
@@ -97,6 +98,7 @@
 
                 //Điền lại vào phiếu
                 GeneratedItemsTable();
+                TinhTongTien();
             }
         }
     });
@@ -196,7 +198,7 @@
                 NgayNhap: $('#ngayNhap').val().trim(),
                 MaNhanVien: $('#maNhanVien').val().trim(),
                 MaNhaCungCap: $('#maNhaCungCap').val().trim(),
-                TongTien: $('#tongTien').val().trim(),
+                TongTien: parseFloat($('#tongTien').val().trim().replace(/,/gi, "")),
                 GhiChu: $('#ghiChu').val().trim(),
                 chiTietPhieuNhap: orderItems
             }
@@ -218,8 +220,8 @@
                         $('#soPhieuNhap').val('');
                         $('#ngayNhap').val('');
                         $('#tenNhanVien').val('');
-                        $('#maNhaCungCap').val('');
-                        $('#thanhTien').val('');
+                        //$('#maNhaCungCap').val('');
+                        //$('#thanhTien').val('');
                         $('#ghiChu').val('');
                         $('#orderItems').empty();
                         window.location.href = '/Admin/NhapKho/';
@@ -249,18 +251,28 @@
                 $row.append($('<td/>').html(val.TenHangHoa));
                 $row.append($('<td/>').html(val.DonViTinh));
                 $row.append($('<td/>').html(val.SoLuong));
-                $row.append($('<td/>').html(val.GiaNhap));
-                $row.append($('<td/>').html(val.ThanhTien));
+                $row.append($('<td/>').html(formatNumber(val.GiaNhap)));
+                $row.append($('<td/>').html(formatNumber(val.ThanhTien)));
                 var $remove = $('<input type="button" value="Xóa" style="padding:1px 20px" class="btn-danger"/>');
                 $remove.click(function (e) {
-                    var amount = parseInt(val.ThanhTien);
-                    var tongtien = parseInt($('#tongTien').val());
-                    tongtien -= amount;
-
-                    $('#tongTien').val(tongtien.toString());
                     e.preventDefault();
                     orderItems.splice(i, 1);
                     GeneratedItemsTable();
+
+                    if (orderItems.length == 0) {
+                        $('#tongTien').val(0);
+                    } else {
+                        TinhTongTien();
+                    }
+                    //var amount = parseInt(val.ThanhTien);
+                    //var tongtien = parseInt($('#tongTien').val());
+                    //tongtien -= amount;
+
+                    //$('#tongTien').val(tongtien.toString());
+
+                    ClearValue();
+                    $('#maHangHoa').focus().val('');
+
                 });
                 $row.append($('<td/>').html($remove));
                 $tbody.append($row);
@@ -272,6 +284,19 @@
         else {
             $('#orderItems').html('');
         }
+    }
+
+    function TinhTongTien() {
+        var amount;
+
+        var total = 0.0;
+        var row = document.getElementById('productTable').rows.length;
+        for (var i = 1; i < row; i++) {
+            amount = document.getElementById("productTable").rows[i].cells[5].innerHTML.replace(/,/gi, "");
+
+            total += parseFloat(amount);
+        }
+        $('#tongTien').val(formatNumber(parseFloat(total)));
     }
 });
 
@@ -321,10 +346,18 @@ $(document).ready(function () {
     });
 });
 
+function formatNumber(num) {
+    //Cach 3 so 0 la 1 dau phay
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+}
+
+
 $(document).ready(function () {
     $("#soLuongNhap").on('keydown input propertychange paste change', function () {
         CheckSoLuongNhap();
-        TinhThanhTien();
+    });
+    $("#giaNhap").on('keydown input propertychange paste change', function () {
+        CheckGiaNhap();
     });
 });
 
@@ -348,11 +381,29 @@ function CheckSoLuongNhap(error) {
 }
 
 $(document).ready(function () {
-    $("#giaNhap").on('keydown input propertychange paste change', function () {
-        CheckGiaNhap();
+    TinhThanhTien();
+    $("#soLuongNhap").on("keydown keyup", function () {
+        TinhThanhTien();
+    });
+
+    $("#giaNhap").on("keydown keyup", function () {
         TinhThanhTien();
     });
 });
+
+function TinhThanhTien() {
+    if (document.getElementById('soLuongNhap').value == '' || document.getElementById('giaNhap').value == 0) {
+        document.getElementById('thanhTien').value = 0;
+    }
+    else {
+        var unitPrice = document.getElementById('giaNhap').value.replace(/,/gi, "");
+        var quantity = document.getElementById('soLuongNhap').value;
+        var result = parseInt(unitPrice) * parseInt(quantity);
+        if (!isNaN(result)) {
+            document.getElementById('thanhTien').value = formatNumber(result);
+        }
+    }
+}
 
 // Kiểm tra số lượng
 function CheckGiaNhap(error) {
@@ -371,11 +422,4 @@ function CheckGiaNhap(error) {
         $("#giaNhap").val($("#giaNhap").val().trim());
     });
     return error;
-}
-
-function TinhThanhTien() {
-    var soLuongNhap = $('#soLuongNhap').val();
-    var giaNhap = $('#giaNhap').val();
-
-    $('#thanhTien').val(soLuongNhap * giaNhap);
 }
