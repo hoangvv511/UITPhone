@@ -1,16 +1,16 @@
-﻿@model IEnumerable<Common.ViewModels.PhieuNhapViewModel>
+﻿@model IEnumerable<Common.ViewModels.PhieuXuatKhoViewModel>
 @using Common.ViewModels
 @{
-    ViewBag.Title = "Danh sách phiếu nhập kho";
+    ViewBag.Title = "Danh sách phiếu xuất kho";
     Layout = "~/Areas/Admin/Views/Layout/HomeLayout.cshtml";
 }
 <section id="page-content">
     <div class="header-content">
-        <h2><i class="fa fa-list-alt"></i>Phiếu Nhập Kho</h2>
+        <h2><i class="fa fa-list-alt"></i>Phiếu Xuất Kho</h2>
         <div class="breadcrumb-wrapper hidden-xs">
-            <button class="btn btn-sm btn-success btn-xs btn-push" onclick="@("window.location.href='" + @Url.Action("Create", "NhapKho") + "'"); ">
+            <button class="btn btn-sm btn-success btn-xs btn-push" onclick="@("window.location.href='" + @Url.Action("Create", "XuatKho") + "'"); ">
                 <i class="glyphicon glyphicon-edit"></i>
-                Tạo mới phiếu nhập kho
+                Tạo mới phiếu xuất kho
             </button>
         </div>
     </div>
@@ -26,7 +26,7 @@
                     </div><!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="form-body">
-                            @using (Ajax.BeginForm("DanhSachPhieuNhap", "NhapKho", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "list", HttpMethod = "Get" }))
+                            @using (Ajax.BeginForm("DanhSachPhieuXuatKho", "XuatKho", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "list", HttpMethod = "Get" }))
                             {
                                 <div class="form-group">
                                     <div class="col-md-6">
@@ -44,7 +44,7 @@
                                     </div>
                                 </div>
                             }
-                            @using (Ajax.BeginForm("DanhSachPhieuNhap", "NhapKho", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "list", HttpMethod = "Get" }, new { id = "filter_div" }))
+                            @using (Ajax.BeginForm("DanhSachPhieuXuatKho", "XuatKho", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "list", HttpMethod = "Get" }, new { id = "filter_div" }))
                             {
                                 <div class="form-group">
                                     <div class="col-md-12">
@@ -58,7 +58,7 @@
                                     </div>
                                 </div>
                             }
-                            @using (Ajax.BeginForm("DanhSachPhieuNhap", "NhapKho", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "list", HttpMethod = "Get" }, new { id = "filter_div" }))
+                            @using (Ajax.BeginForm("DanhSachPhieuXuatKho", "XuatKho", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "list", HttpMethod = "Get" }, new { id = "filter_div" }))
                             {
                                 <div class="form-group">
                                     <div class="col-md-12">
@@ -75,7 +75,7 @@
                             }
 
                             <div id="list">
-                                @{Html.RenderAction("DanhSachPhieuNhap", "NhapKho");}
+                                @{Html.RenderAction("DanhSachPhieuXuatKho", "XuatKho");}
                             </div>
                         </div>
                     </div>

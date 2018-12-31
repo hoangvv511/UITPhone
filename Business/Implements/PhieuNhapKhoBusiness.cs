@@ -27,7 +27,6 @@ namespace Business.Implements
         private NhanVienBusiness _nhanVienBus;
         private HangHoaBusiness _hangHoaBus;
 
-
         public PhieuNhapKhoBusiness()
         {
             dbContext = new QLWebDBEntities();
