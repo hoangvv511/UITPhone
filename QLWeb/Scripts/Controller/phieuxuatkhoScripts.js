@@ -18,7 +18,7 @@
         var error = errorQuantity;
 
         //Thêm sản phẩm
-        if (isValidItem == true) {
+        if (isValidItem == true && error == 0) {
 
             var i, j;
             var string_value_product = $('#maHangHoa').val().trim();
@@ -96,7 +96,7 @@
         Print();
     });
 
-    //Phương thức in phiếu nhập kho
+    //Phương thức in phiếu xuất kho
     function Print() {
         var toPrint = document.getElementById('Items');
         var $table = $('<table id="productTables" style="border: solid; width:100%; text-align:center"/>');
@@ -291,7 +291,7 @@ function HideErrorProductName() {
 
 $(document).ready(function () {
     $('#maHangHoa').ready(function () {
-        $.getJSON('/NhapKho/LoadThongTinHangHoa',
+        $.getJSON('/XuatKho/LoadThongTinHangHoa',
             { id: $('#maHangHoa').val() },
             function (data) {
                 if (data != null) {
@@ -308,7 +308,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('#maHangHoa').on("change", function () {
-        $.getJSON('/NhapKho/LoadThongTinHangHoa',
+        $.getJSON('/XuatKho/LoadThongTinHangHoa',
             { id: $('#maHangHoa').val() },
             function (data) {
                 if (data != null) {
@@ -330,7 +330,7 @@ function formatNumber(num) {
 
 
 $(document).ready(function () {
-    $("#soLuongNhap").on('keydown input propertychange paste change', function () {
+    $("#checksodienthoai").on('keydown input propertychange paste change', function () {
         CheckSoLuongNhap();
     });
 });

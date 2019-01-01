@@ -283,6 +283,7 @@
     <Compile Include="Areas\Admin\Controllers\NhaCungCapController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhanVienController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhapKhoController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaoHanhController.cs" />
     <Compile Include="Areas\Admin\Controllers\XuatKhoController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HangHoaController.cs" />
@@ -7007,6 +7008,7 @@
     <Content Include="Areas\Admin\Views\NhanVien\DanhSachNhanVien.cshtml" />
     <Content Include="Areas\Admin\Views\NhanVien\ThongTinNhanVien.cshtml" />
     <Content Include="Areas\Admin\Views\Home\UpdatePassword.cshtml" />
+    <Content Include="Scripts\Controller\phieubaohanhScripts.js" />
     <Content Include="Scripts\Controller\phieukiemkhoScripts.js" />
     <Content Include="Scripts\Controller\phieunhapScripts.js" />
     <Content Include="Scripts\Controller\phieuxuatkhoScripts.js" />
@@ -7072,6 +7074,13 @@
     <Content Include="Areas\Admin\Views\XuatKho\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\XuatKho\Index.cshtml" />
     <Content Include="Areas\Admin\Views\XuatKho\ThongTinPhieuXuatKho.cshtml" />
+    <Content Include="Areas\Admin\Views\BaoHanh\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\BaoHanh\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BaoHanh\DanhSachPhieuBaoHanh.cshtml" />
+    <Content Include="Areas\Admin\Views\BaoHanh\Confirm.cshtml" />
+    <Content Include="Areas\Admin\Views\BaoHanh\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BaoHanh\ThongTinPhieuBaoHanh.cshtml" />
+    <Content Include="Areas\Admin\Views\BaoHanh\Delete.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -7123,9 +7132,9 @@
     <Folder Include="Areas\Admin\Views\BaoCaoHangHoa\" />
     <Folder Include="Areas\Admin\Views\BaoCaoPhieuChi\" />
     <Folder Include="Areas\Admin\Views\BaoCaoTonKho\" />
-    <Folder Include="Areas\Admin\Views\BaoHanh\" />
     <Folder Include="Areas\Admin\Views\ChiTietPhieuBanHang\" />
     <Folder Include="Areas\Admin\Views\DatHang\" />
+    <Folder Include="Areas\Admin\Views\PhieuBaoHanh\" />
     <Folder Include="Areas\Admin\Views\PhieuChi\" />
     <Folder Include="Content\assets\global\plugins\bower_components\bootstrap-sass\assets\images\" />
     <Folder Include="Content\assets\global\plugins\bower_components\bower\Packager\" />
