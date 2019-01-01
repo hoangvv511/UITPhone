@@ -7033,7 +7033,6 @@
     <Folder Include="Areas\Admin\Views\BaoCaoPhieuChi\" />
     <Folder Include="Areas\Admin\Views\BaoCaoTonKho\" />
     <Folder Include="Areas\Admin\Views\BaoHanh\" />
-    <Folder Include="Areas\Admin\Views\ChiTietPhieuBanHang\" />
     <Folder Include="Areas\Admin\Views\DatHang\" />
     <Folder Include="Areas\Admin\Views\PhieuChi\" />
     <Folder Include="Areas\Admin\Views\XuatKho\" />
