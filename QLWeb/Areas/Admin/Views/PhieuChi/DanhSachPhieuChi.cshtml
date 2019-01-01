@@ -30,30 +30,31 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr style="text-align:center" class="border-warning">
-                <td>@item.soPhieuChi</td>
-                <td>@item.ngayChi.ToString("dd/MM/yyyy")</td>
-                <td>@item.tenNhanVien</td>
-                <td>@item.ghiChu</td>
-                @if (@item.trangThai == true)
-                {
-                    <td>Hoàn thành</td>
-                    <td>
-                        <a href="@Url.Action("Detail", new { id = item.soPhieuChi })" class="btn btn-sm btn-success btn-xs btn-push"><i class="fa fa-eye"></i> Xem</a>
-                        @if (@item.ngayChi.ToString("dd/MM/yyyy") == @DateTime.Now.ToString("dd/MM/yyyy"))
-                        {
-                            <a href="@Url.Action("Delete", new { id = item.soPhieuChi })" class="btn btn-sm btn-danger btn-xs btn-push"><i class="fa fa-trash"></i> Hủy</a>
-                        }
-                    </td>
-                }
-                else
-                {
-                    <td>Đã hủy</td>
-                    <td>
-                        <a href="@Url.Action("Detail", new { id = item.soPhieuChi })" class="btn btn-sm btn-success btn-xs btn-push"><i class="fa fa-eye"></i> Xem</a>
-                    </td>
-                }
-            </tr>
+        <tr style="text-align:center" class="border-warning">
+            <td>@item.soPhieuChi</td>
+            <td>@item.ngayChi.ToString("dd/MM/yyyy")</td>
+            <td>@item.tenNhanVien</td>
+            <td>@item.tongTienChi</td>
+            <td>@item.ghiChu</td>
+            @if (@item.trangThai == true)
+            {
+                <td>Hoàn thành</td>
+                <td>
+                    <a href="@Url.Action("Detail", new { id = item.soPhieuChi })" class="btn btn-sm btn-success btn-xs btn-push"><i class="fa fa-eye"></i> Xem</a>
+                    @if (@item.ngayChi.ToString("dd/MM/yyyy") == @DateTime.Now.ToString("dd/MM/yyyy"))
+                    {
+                        <a href="@Url.Action("Delete", new { id = item.soPhieuChi })" class="btn btn-sm btn-danger btn-xs btn-push"><i class="fa fa-trash"></i> Hủy</a>
+                    }
+                </td>
+            }
+            else
+            {
+                <td>Đã hủy</td>
+                <td>
+                    <a href="@Url.Action("Detail", new { id = item.soPhieuChi })" class="btn btn-sm btn-success btn-xs btn-push"><i class="fa fa-eye"></i> Xem</a>
+                </td>
+            }
+        </tr>
         }
     </tbody>
 </table>

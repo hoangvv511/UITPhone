@@ -294,6 +294,10 @@ namespace Business.Implements
                        }).ToList();
             return all;
         }
-
-}
+        public int GetUserIdByUserName(string userName)
+        {
+            var NhanVien = _nhanVienRepo.Fetch(t=>t.TenNhanvien == userName).FirstOrDefault();
+            return NhanVien.MaNhanVien;
+        }
+    }
 }

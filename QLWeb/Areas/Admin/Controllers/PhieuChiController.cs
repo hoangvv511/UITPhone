@@ -15,6 +15,7 @@ namespace QLWeb.Areas.Admin.Controllers
     {
         readonly PhieuChiBusiness _phieuChiBus = new PhieuChiBusiness();
         readonly NhanVienBusiness _nhanVienBus = new NhanVienBusiness();
+        readonly PhieuNhapKhoBusiness _phieuNhapBus = new PhieuNhapKhoBusiness();
         // GET: Admin/PhieuChi
         public ActionResult Index()
         {
@@ -29,6 +30,8 @@ namespace QLWeb.Areas.Admin.Controllers
             ViewBag.tenNhanVien = _nhanVienBus.LoadTenNhanVien(HomeController.userName);
             ViewBag.soPhieuChiTuTang = _phieuChiBus.LoadSoPhieuChi();
             
+            ViewBag.danhSachPhieuNhap = new SelectList(_phieuChiBus.LoadDanhSachPhieuNhap(), "Value", "Text");
+
             return View();
         }
         [HttpPost]
@@ -95,6 +98,7 @@ namespace QLWeb.Areas.Admin.Controllers
             ViewBag.phieuChi = _phieuChiBus.thongTinPhieuChiTheoMa(id).ToList();
             return View();
         }
+      
 
     }
 }

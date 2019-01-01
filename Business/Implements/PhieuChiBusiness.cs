@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.WebPages.Html;
 
 namespace Business.Implements
 {
@@ -248,8 +249,10 @@ namespace Business.Implements
             PhieuChi order = new PhieuChi
             {
                 SoPhieuChi = O.soPhieuChi,
-                NgayChi = DateTime.Now,
-                MaNhanVien = O.maNhanVien,
+                NgayChi = O.ngayChi,
+                MaNhanVien = _nhanVienBus.GetUserIdByUserName(O.tenNhanVien),
+                MaPhieuNhap = O.maPhieuNhap,
+                TongTienChi = O.tongTienChi,
                 TrangThai = true,
                 GhiChu = O.ghiChu,
                 NgayChinhSua = DateTime.Now,
@@ -296,6 +299,18 @@ namespace Business.Implements
                        ghiChu = x.ChuThich,
                    }).ToList();
             return all;
+        }
+        public List<Object> LoadDanhSachPhieuNhap()
+        {
+            var list = (from phieunhap in dbContext.PhieuNhaps
+                        where (phieunhap.TrangThai == true)
+                        select new SelectListItem
+                        {
+                            Text = phieunhap.SoPhieuNhap.ToString(),
+                            Value = phieunhap.SoPhieuNhap.ToString(),
+                        }).Distinct().ToList();
+
+            return new List<Object>(list);
         }
 
     }

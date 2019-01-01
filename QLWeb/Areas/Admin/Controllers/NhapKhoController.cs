@@ -139,5 +139,11 @@ namespace QLWeb.Areas.Admin.Controllers
             ViewBag.phieuNhap = _phieuNhapKhoBus.thongTinPhieuNhapTheoMa(id).ToList();
             return View();
         }
+        public ActionResult LoadThongTinPhieuNhap(int id)
+        {
+            var result = _phieuNhapKhoBus.LayThongTinPhieuNhap(id);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

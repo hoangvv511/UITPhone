@@ -16,7 +16,9 @@ namespace Common.ViewModels
         public string tenNhanVien { get; set; }
         public string ghiChu { get; set; }
         public bool trangThai { get; set; }
+        [Required]
         public string tenKhachHang { get; set; }
+        [Required]
         public string soDienThoai { get; set; }
         public decimal tongTien { get; set; }
         public List<ChiTietPhieuBanHang> chiTietPhieuBanHang { get; set; }

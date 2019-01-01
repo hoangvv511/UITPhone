@@ -110,5 +110,9 @@ namespace Data.Functions
 
                 return result;
         }
+        public Entities GetById(object id)
+        {
+                return _dbContext.Set<Entities>().Find(id);
+        }
     }
 }

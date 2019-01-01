@@ -47,13 +47,21 @@
 
                             </div>
                             <div class="form-group">
-                                <label>Phiếu nhập</label>
-                                <input value="" id="tenNhanVien" type="text" class="form-control rounded" disabled="disabled" />
+                                <label>Số phiếu nhập</label>
+                                <div class="col-sm-12" style="padding:0px;">
+                                    <select id="soPhieuNhap" class="chosen-select">
+                                        <option value=""></option>
+                                        @foreach (var item in ViewBag.danhSachPhieuNhap)
+                                        {
+                                            <option value="@item.Value">@item.Text</option>
 
+                                        }
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>Tổng tiền</label>
-                                <input value="" id="tenNhanVien" type="text" class="form-control rounded" disabled="disabled" />
+                                <input value="" id="tongTien" type="text" class="form-control rounded" disabled="disabled" />
 
                             </div>
                             <div class="form-group">
@@ -96,14 +104,19 @@
         popupWin.document.write($('#ngayChi').val().trim());
         popupWin.document.write('</td></tr>')
 
-        popupWin.document.write('<td>')
-        popupWin.document.write('Tổng tiền: ');
-        //popupWin.document.write($('').val().trim());
-        popupWin.document.write('</td></tr>')
-
         popupWin.document.write('<tr><td>')
         popupWin.document.write('Nhân viên: ');
         popupWin.document.write($('#tenNhanVien').val().trim());
+        popupWin.document.write('</td>')
+
+        popupWin.document.write('<tr><td>')
+        popupWin.document.write('Số phiếu nhập: ');
+        popupWin.document.write($('#soPhieuNhap').val().trim());
+        popupWin.document.write('</td>')
+
+        popupWin.document.write('<tr><td>')
+        popupWin.document.write('Tổng tiền: ');
+        popupWin.document.write($('#tongTien').val().trim());
         popupWin.document.write('</td>')
 
         popupWin.document.write('<td>')
@@ -122,5 +135,63 @@
         popupWin.document.write('</html>');
         popupWin.document.close();
     }
+    $(document).ready(function () {
+        $('#soPhieuNhap').on("change", function () {
+            $.getJSON('/NhapKho/LoadThongTinPhieuNhap',
+                { id: $('#soPhieuNhap').val() },
+                function (data) {
+                    if (data != null) {
+                        $.each(data, function (index, row) {
+                            $("#tongTien").val(row.TongTien);
+                           
+                        });
+                    }
+                });
+        });
 
+
+        //Lưu phiếu chi
+        $('#submit').click(function () {
+            
+                var data = {
+                    SoPhieuChi: $('#soPhieuChi').val().trim(),
+                    NgayChi: $('#ngayChi').val().trim(),
+                    TenNhanVien: $('#tenNhanVien').val().trim(),
+                    MaPhieuNhap: $('#soPhieuNhap').val().trim(),
+                    TongTienChi: $('#tongTien').val().trim(),
+                    GhiChu: $('#ghiChu').val().trim(),
+                }
+
+                $(this).val('Please wait...');
+
+                $.ajax({
+                    url: "/PhieuChi/LuuPhieuChi",
+                    type: "POST",
+                    data: JSON.stringify(data),
+                    dataType: "JSON",
+                    contentType: "application/json",
+                    success: function (d) {
+                        //Kiểm tra nếu thành công thì lưu vô database
+                        if (d.status == true) {
+                            
+                            $('#soPhieuChi').val().trim(),
+                                $('#ngayChi').val().trim(),
+                                $('#tenNhanVien').val().trim(),
+                                $('#soPhieuNhap').val().trim(),
+                                $('#tongTien').val().trim(),
+                                $('#ghiChu').val().trim(),
+                            window.location.href = '/Admin/PhieuChi/';
+                        }
+                        else {
+                            SetAlert("Something wrong! Please try again", "error");
+                        }
+                        $('#submit').val('Lưu Phiếu Chi');
+                    },
+                    error: function () {
+                        alert('Error. Please try again.');
+                        $('#submit').val('Lưu Phiếu Chi');
+                    }
+                });
+        });
+    })
 </script>
