@@ -8,5 +8,6 @@ namespace Business.Interfaces
 {
     public interface INhanVienBusiness
     {
+
     }
 }

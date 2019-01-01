@@ -4,11 +4,12 @@
     Layout = "~/Areas/Admin/Views/Layout/HomeLayout.cshtml";
 }
 <link href="~/Content/assets/css/generalMessageError.css" rel="stylesheet" />
+
 <section id="page-content">
     <div class="header-content">
-        <h2><i class="fa fa-list-alt"></i>Hàng Hóa</h2>
+        <h2><i class="fa fa-list-alt"></i>Sản phẩm</h2>
         <div class="breadcrumb-wrapper hidden-xs">
-            <button class="btn btn-lg btn-success btn-xs btn-push" id="submit"><i class="glyphicon glyphicon-save"></i> Lưu</button>
+            <button class="btn btn-lg btn-success btn-xs btn-push" id="submit" onclick="return ValidateExtension()"><i class="glyphicon glyphicon-save"></i> Lưu</button>
             <button class="btn btn-lg btn-success btn-xs btn-push" onclick="@("window.location.href='" + @Url.Action("Index", "HangHoa") + "'"); ">
                 <i class="glyphicon glyphicon-arrow-left"></i> Quay lại
             </button>
@@ -28,75 +29,89 @@
                     <div class="panel-body no-padding">
                         @using (Html.BeginForm("Create", "HangHoa", FormMethod.Post, new { id = "basic-validate", enctype = "multipart/form-data" }))
                         {
-                        <div class="form-body">
-                            <div class="form-group">
-                                <label class="control-label">Tên Hàng Hóa</label>
-                                <input type="text" id="tenhanghoa" name="tenhanghoa" class="form-control rounded" maxlength="100" required />
-                                <h3 style="margin-top:0%" hidden class="error  notifyinputTenHangHoa messageErrorinputTenHangHoa">Tên hàng hóa đã tồn tại!</h3>
-                                <input type="hidden" id="checktenhanghoa" name="checktenhanghoa" class="form-control rounded" />
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Giá Bán</label>
-                                <input type="text" name="giaban" class="form-control rounded" maxlength="10" required />
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Giảm Giá</label>
-                                <input type="text" name="giamgia" class="form-control rounded" maxlength="10" required />
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Số Lượng Tồn</label>
-                                <input type="text" name="soluongton" class="form-control rounded" maxlength="10" required />
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Đơn Vị Tính</label>
-                                <input type="text" name="donvitinh" class="form-control rounded" maxlength="10" required />
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Mô Tả</label>
-                                <input type="text" name="mota" class="form-control rounded" maxlength="50" required />
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Thông Số Kỹ Thuật</label>
-                                <input type="text" name="thongsokythuat" class="form-control rounded" maxlength="50" required />
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Xuất Xứ</label>
-                                <input type="text" name="xuatxu" class="form-control rounded" maxlength="50" required />
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Thời Gian Bảo Hành</label>
-                                <input type="text" name="thoigianbaohanh" class="form-control rounded" maxlength="10" required />
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Model Name</label>
-                                <input type="text" id="modelname" name="modelname" class="form-control rounded" maxlength="100" required />
-                                <h3 style="margin-top:0%" hidden class="error  notifyinputModelName messageErrorinputModelName">Model Name đã tồn tại!</h3>
-                                <input type="hidden" id="checkmodelname" name="checkmodelname" class="form-control rounded" />
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Loại Hàng Hóa</label>
-                                @Html.DropDownList("maloaihanghoa", new SelectList(ViewBag.loaihanghoa, "Value", "Text"), new { @class = "form-control rounded" })
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Hình Hàng Hóa</label>
-                                <p id="error1" style="display:none; color:#FF0000;">
-                                    Định dạng ảnh không hợp lệ! Định dạng hình ảnh phải là: JPG, JPEG, PNG.
-                                </p>
-                                <p id="error2" style="display:none; color:#FF0000;">
-                                    Kích thước file hình phải nhỏ hơn 1MB.
-                                </p>
-                                <div class="fileinput fileinput-new" data-provides="fileinput">
-                                    <div class="fileinput-preview thumbnail" name="avatar" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
-                                    <div>
-                                        <span class="btn btn-info btn-file">
-                                            <span class="fileinput-new">Chọn hình ảnh</span><span class="fileinput-exists">Thay đổi</span>
-                                            <input type="file" name="avatar" id="fileUpload" accept="image/*">
-                                        </span>
-                                        <a href="#" class="btn btn-danger fileinput-exists" id="xoa" data-dismiss="fileinput">Xóa</a>
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="control-label">Tên Hàng Hóa</label>
+                                    <input type="text" id="tenhanghoa" name="tenhanghoa" class="form-control rounded" maxlength="100" required />
+                                    <h3 style="margin-top:0%" hidden class="error  notifyinputTenHangHoa messageErrorinputTenHangHoa">Tên hàng hóa đã tồn tại!</h3>
+                                    <input type="hidden" id="checktenhanghoa" name="checktenhanghoa" class="form-control rounded" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Giá Bán</label>
+                                    <input type="text" name="giaban" class="form-control rounded" maxlength="10" required />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Giảm Giá</label>
+                                    <input type="text" name="giamgia" class="form-control rounded" maxlength="10" required />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Số Lượng Tồn</label>
+                                    <input type="text" name="soluongton" class="form-control rounded" maxlength="10" required />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Đơn Vị Tính</label>
+                                    <input type="text" name="donvitinh" class="form-control rounded" maxlength="10" required />
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        Thông số kỹ thuật
+                                    </label>
+                                    <div class="form-group">
+                                        <textarea id="thongsokythuat" name="thongsokythuat" class="form-control rounded" rows="10" placeholder="Enter text ..."></textarea>
                                     </div>
                                 </div>
-                            </div>
-                        </div><!-- /.form-body -->
+                                <div class="form-group">
+                                    <label>
+                                        Mô tả
+                                    </label>
+                                    <div class="form-group">
+                                        <textarea id="mota" name="mota" class="form-control rounded" rows="10" placeholder="Enter text ..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Xuất Xứ</label>
+                                    <input type="text" name="xuatxu" class="form-control rounded" maxlength="50" required />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Thời Gian Bảo Hành</label>
+                                    <input type="text" name="thoigianbaohanh" class="form-control rounded" maxlength="10" required />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Model Name</label>
+                                    <input type="text" id="modelname" name="modelname" class="form-control rounded" maxlength="100" required />
+                                    <h3 style="margin-top:0%" hidden class="error  notifyinputModelName messageErrorinputModelName">Model Name đã tồn tại!</h3>
+                                    <input type="hidden" id="checkmodelname" name="checkmodelname" class="form-control rounded" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Loại Hàng Hóa</label>
+                                    @Html.DropDownList("maloaihanghoa", new SelectList(ViewBag.loaihanghoa, "Value", "Text"), new { @class = "form-control rounded" })
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Hình ảnh</label>
+                                    <p id="error1" style="display:none; color:#FF0000;">
+                                        Định dạng ảnh không hợp lệ! Định dạng hình ảnh phải là: JPG, JPEG, PNG.
+                                    </p>
+                                    <p id="error2" style="display:none; color:#FF0000;">
+                                        Kích thước file hình phải nhỏ hơn 1MB.
+                                    </p>
+
+                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                        <div class="fileinput-preview thumbnail" name="hinhanh" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+                                        <div>
+                                            <span class="btn btn-info btn-file">
+                                                <span class="fileinput-new">Chọn hình ảnh</span><span class="fileinput-exists" id="change">Thay đổi</span>
+                                                <input type="file" name="hinhanh" id="fileUpload" accept="image/*">
+                                                <input type="hidden" id="file" name="hinhanh" class="form-control" style="margin-left:5px">
+                                            </span>
+                                            <a href="#" class="btn btn-danger fileinput-exists" id="xoa" data-dismiss="fileinput">Xóa</a>
+
+                                        </div>
+                                    </div>
+                                    <span id="lblError" style="color: red;"></span>
+
+                                </div>
+                            </div><!-- /.form-body -->
                         }
                     </div><!-- /.panel-body -->
                 </div><!-- /.panel -->
@@ -108,9 +123,20 @@
 
 <script src="~/Scripts/bootstrap.min.js"></script>
 
-<script>$('#submit').click(function () {
+<script>
+    $('#submit').click(function () {
         $('#basic-validate').submit();
     });</script>
+
+<script src="~/Content/assets/ckeditor/ckeditor.js"></script>
+<script>
+    $(document).ready(function () {
+        CKEDITOR.replace('mota', { filebrowserBrowseUrl: '#' });
+        CKEDITOR.replace('thongsokythuat', { filebrowserBrowseUrl: '#' });
+    });
+</script>
+
+
 <script>
     $("#tenhanghoa").on('keyup input propertychange paste change', function () {
         $.getJSON('@Url.Action("CheckHangHoa", "HangHoa")', { tenhanghoa: $(this).val() }, function (data) {
@@ -144,7 +170,8 @@
         });
     });
 </script>
-<script>var a = 0;
+<script>
+    var a = 0;
     //binds to onchange event of your input field
     $('#fileUpload').bind('change', function () {
         if ($('input:submit').attr('disabled', false)) {
