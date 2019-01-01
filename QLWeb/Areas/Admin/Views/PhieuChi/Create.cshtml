@@ -1,0 +1,126 @@
+﻿@model Common.ViewModels.PhieuChiViewModel
+@{
+    ViewBag.Title = "Lập phiếu chi";
+    Layout = "~/Areas/Admin/Views/Layout/HomeLayout.cshtml";
+}
+
+
+<link href="~/Content/assets/css/generalMessageError.css" rel="stylesheet" />
+
+<section id="page-content">
+    <div class="header-content">
+        <h2><i class="fa fa-list-alt"></i>Phiếu Chi</h2>
+        <div class="breadcrumb-wrapper hidden-xs">
+            <button class="btn btn-lg btn-success btn-xs btn-push" id="submit"><i class="glyphicon glyphicon-save"></i> Lưu</button>
+            <button class="btn btn-lg btn-success btn-xs btn-push" id="print"><i class="glyphicon glyphicon-print"></i> In</button>
+            <button class="btn btn-lg btn-success btn-xs btn-push" onclick="@("window.location.href='" + @Url.Action("Index", "PhieuChi") + "'"); ">
+                <i class="glyphicon glyphicon-arrow-left"></i> Quay lại
+            </button>
+        </div>
+    </div>
+    <div class="body-content animated fadeIn">
+        <div class="row">
+           
+            <div class="col-md-12">
+                <div class="panel rounded shadow">
+                    <div class="panel-heading">
+                        <div class="pull-left">
+                            <h3 class="panel-title">@ViewBag.title</h3>
+                        </div>
+                        <div class="clearfix"></div
+                    </div><!-- /.panel-heading -->
+                    <div class="panel-body no-padding">
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label>Số phiếu</label>
+                                <input value="@ViewBag.soPhieuChiTuTang" type="text" id="soPhieuChi" class="form-control rounded" disabled="disabled" />
+                            </div><!-- /.form-group -->
+
+                            <div class="form-group">
+                                <label>Ngày lập</label>
+                                <input id="ngayChi" value="@DateTime.Now.ToString("dd/MM/yyyy")" disabled="disabled" type="text" class="form-control rounded" />
+                            </div><!-- /.form-group -->
+
+                            <div class="form-group">
+                                <label>Nhân viên</label>
+                                <input value="@ViewBag.tenNhanVien" id="tenNhanVien" type="text" class="form-control rounded" disabled="disabled" />
+
+                            </div>
+                            <div class="form-group">
+                                <label>Phiếu nhập</label>
+                                <input value="" id="tenNhanVien" type="text" class="form-control rounded" disabled="disabled" />
+
+                            </div>
+                            <div class="form-group">
+                                <label>Tổng tiền</label>
+                                <input value="" id="tenNhanVien" type="text" class="form-control rounded" disabled="disabled" />
+
+                            </div>
+                            <div class="form-group">
+                                <label>Ghi chú</label>
+                                <textarea id="ghiChu" placeholder="Ghi chú viết tại đây" class="form-control rounded"></textarea>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<script>
+
+    $('#print').click(function () {
+        Print();
+    });
+
+    //Phương thức in phiếu kiểm kho
+    function Print() {
+        var popupWin = window.open('', '_blank', 'width=800,height=500'); //create new page     
+        popupWin.document.open(); //open new page
+        popupWin.document.write('<html><body onload="window.print()">')
+
+        popupWin.document.write('<p style="text-align:center; font-weight: bold; font-size: 30px">Phiếu chi</p>')
+
+        popupWin.document.write('<table style="border:solid; width:100%"; text-align:center">')
+        popupWin.document.write('Thông tin phiếu chi');
+        popupWin.document.write('<tr><td>')
+        popupWin.document.write('Số phiếu chi: ');
+        popupWin.document.write($('#soPhieuChi').val().trim());
+        popupWin.document.write('</td>')
+
+        popupWin.document.write('<td>')
+        popupWin.document.write('Ngày chi: ');
+        popupWin.document.write($('#ngayChi').val().trim());
+        popupWin.document.write('</td></tr>')
+
+        popupWin.document.write('<td>')
+        popupWin.document.write('Tổng tiền: ');
+        //popupWin.document.write($('').val().trim());
+        popupWin.document.write('</td></tr>')
+
+        popupWin.document.write('<tr><td>')
+        popupWin.document.write('Nhân viên: ');
+        popupWin.document.write($('#tenNhanVien').val().trim());
+        popupWin.document.write('</td>')
+
+        popupWin.document.write('<td>')
+        popupWin.document.write('Ghi chú: ');
+        popupWin.document.write($('#ghiChu').val().trim());
+        popupWin.document.write('</td></tr>')
+
+        popupWin.document.write('</table>')
+
+
+        popupWin.document.write('<p style="text-align:center">')
+        popupWin.document.write('Nhân viên kế toán')
+        popupWin.document.write('<br>')
+        popupWin.document.write('(Ký tên)')
+        popupWin.document.write('</p>')
+        popupWin.document.write('</html>');
+        popupWin.document.close();
+    }
+
+</script>

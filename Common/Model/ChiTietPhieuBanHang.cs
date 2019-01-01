@@ -12,7 +12,7 @@
         [Key]
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int SoPhieuBaoHanh { get; set; }
+        public int SoPhieuBanHang { get; set; }
 
         [Key]
         [Column(Order = 1)]
@@ -25,10 +25,10 @@
 
         public decimal ThanhTien { get; set; }
 
-        [StringLength(200)]
-        public string NoiDungBaoHanh { get; set; }
+        //[StringLength(200)]
+        //public string NoiDungBaoHanh { get; set; }
 
-        [StringLength(200)]
-        public string GhiChu { get; set; }
+        //[StringLength(200)]
+        //public string GhiChu { get; set; }
     }
 }

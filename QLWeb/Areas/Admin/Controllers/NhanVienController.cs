@@ -26,11 +26,17 @@ namespace QLWeb.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
+            
             List<SelectListItem> trangThai = new List<SelectListItem>();
             trangThai.Add(new SelectListItem { Text = "Đang Hoạt Động", Value = "true" });
             trangThai.Add(new SelectListItem { Text = "Ngừng Hoạt Động", Value = "false" });
+
+           
             ViewBag.data = trangThai;
+
+           
             ViewBag.chucvu = _chucVuKhoBus.LoadChucVu();
+          
             return View();
         }
 
@@ -57,7 +63,7 @@ namespace QLWeb.Areas.Admin.Controllers
             return Json(jsonData, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult DanhSachNhanVien(string searchString, string trangthai, string chucvu, int page = 1, int pageSize = 1)
+        public ActionResult DanhSachNhanVien(string searchString, string trangthai, string chucvu, int page = 1, int pageSize = 10)
         {
             if (!string.IsNullOrEmpty(searchString) || !string.IsNullOrEmpty(chucvu))
             {
@@ -82,17 +88,19 @@ namespace QLWeb.Areas.Admin.Controllers
             List<SelectListItem> admin = new List<SelectListItem>();
             admin.Add(new SelectListItem { Text = "Chủ của hàng", Value = "3" });
             ViewBag.Admin = admin;
+            
             ViewBag.thongTinNhanVien = _nhanVienKhoBus.LoadDanhSachNhanVienTheoMa(id).ToList();
 
             return View(ViewBag.thongTinNhanVien);
         }
 
+       
         public ActionResult Create()
         {
             ViewBag.chucvu = _chucVuKhoBus.LoadChucVu();
             return View();
         }
-
+        
         [HttpPost]
         public async Task<ActionResult> Create(NhanVienViewModel nhanVien, HttpPostedFileBase avatar)
         {

@@ -188,12 +188,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaoCaoController.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\HangHoaController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\KiemKhoController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoaiHangHoaController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhanVienController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BanHangController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PhieuChiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -6650,6 +6653,7 @@
     <Content Include="Areas\Admin\Views\NhanVien\DanhSachNhanVien.cshtml" />
     <Content Include="Areas\Admin\Views\NhanVien\ThongTinNhanVien.cshtml" />
     <Content Include="Areas\Admin\Views\Home\UpdatePassword.cshtml" />
+    <Content Include="Scripts\Controller\phieubanhang.js" />
     <Content Include="Scripts\Controller\phieukiemkhoScripts.js" />
     <Content Include="Scripts\homelayout.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -6671,6 +6675,18 @@
     <Content Include="Areas\Admin\Views\KiemKho\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\KiemKho\Index.cshtml" />
     <Content Include="Areas\Admin\Views\KiemKho\ThongTinPhieuKiemKho.cshtml" />
+    <Content Include="Areas\Admin\Views\PhieuChi\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PhieuChi\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\PhieuChi\DanhSachPhieuChi.cshtml" />
+    <Content Include="Areas\Admin\Views\PhieuChi\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\PhieuChi\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\PhieuChi\ThôngTinPhieuChi.cshtml" />
+    <Content Include="Areas\Admin\Views\BanHang\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BanHang\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BanHang\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\BanHang\DanhSachPhieuBanHang.cshtml" />
+    <Content Include="Areas\Admin\Views\BanHang\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\BanHang\ThongTinPhieuBanHang.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -6707,18 +6723,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\BanHang\" />
     <Folder Include="Areas\Admin\Views\BaoCaoBanHang\" />
     <Folder Include="Areas\Admin\Views\BaoCaoDatHang\" />
     <Folder Include="Areas\Admin\Views\BaoCaoHangHoa\" />
     <Folder Include="Areas\Admin\Views\BaoCaoPhieuChi\" />
     <Folder Include="Areas\Admin\Views\BaoCaoTonKho\" />
+    <Folder Include="Areas\Admin\Views\BaoCao\" />
     <Folder Include="Areas\Admin\Views\BaoHanh\" />
     <Folder Include="Areas\Admin\Views\ChiTietPhieuBanHang\" />
     <Folder Include="Areas\Admin\Views\DatHang\" />
     <Folder Include="Areas\Admin\Views\NhaCungCap\" />
     <Folder Include="Areas\Admin\Views\NhapKho\" />
-    <Folder Include="Areas\Admin\Views\PhieuChi\" />
     <Folder Include="Areas\Admin\Views\XuatKho\" />
     <Folder Include="Content\assets\global\plugins\bower_components\bootstrap-sass\assets\images\" />
     <Folder Include="Content\assets\global\plugins\bower_components\bower\Packager\" />

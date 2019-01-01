@@ -83,8 +83,6 @@
     <Compile Include="Interfaces\INhanVienRepository.cs" />
     <Compile Include="Interfaces\INhanVien_QuyenRepository.cs" />
     <Compile Include="Interfaces\IPhanQuyenRepository.cs" />
-    <Compile Include="Interfaces\IPhieuNhapRepository.cs" />
-    <Compile Include="Interfaces\IPhieuXuatKhoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
