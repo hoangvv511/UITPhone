@@ -27,6 +27,12 @@ namespace Business.Implements
             _loaiHangHoaRepo = new LoaiHangHoaReponsitory(_dbContext);
         }
 
+        public IList<LoaiHangHoa> LoadDSLoaiHangHoa()
+        {
+            IQueryable<LoaiHangHoa> loaiHangHoa = _loaiHangHoaRepo.GetAll();
+            return loaiHangHoa.ToList();
+        }
+
         public IList<LoaiHangHoaViewModel> SearchDanhSachLoaiHangHoa(String key)
         {
             IQueryable<LoaiHangHoa> danhSachLoaiHangHoa = _loaiHangHoaRepo.GetAll();
@@ -48,6 +54,18 @@ namespace Business.Implements
 
             return all;
 
+        }
+
+        public List<Object> LoadLoaiHangHoa()
+        {
+            IQueryable<LoaiHangHoa> dsLoaiHangHoa = _loaiHangHoaRepo.GetAll();
+            var list = (from loaihanghoa in dsLoaiHangHoa
+                        select new SelectListItem
+                        {
+                            Text = loaihanghoa.TenLoaiHangHoa,
+                            Value = loaihanghoa.MaLoaiHangHoa.ToString(),
+                        });
+            return new List<Object>(list);
         }
 
         public IEnumerable<LoaiHangHoaViewModel> LoadDanhSachLoaiHangHoa()

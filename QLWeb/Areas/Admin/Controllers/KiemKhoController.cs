@@ -87,8 +87,10 @@ namespace QLWeb.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Deletes(int id)
+        public async Task<ActionResult> Deletes(int id, string quaylai)
         {
+            if(quaylai == null)
+                return RedirectToAction("Index");
             PhieuKiemKho huyPhieuKiemKho = (PhieuKiemKho)await _phieuKiemKhoBus.Find(id);
 
             if (huyPhieuKiemKho == null)

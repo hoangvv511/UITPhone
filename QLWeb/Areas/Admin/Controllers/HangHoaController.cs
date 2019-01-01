@@ -25,7 +25,7 @@ namespace QLWeb.Areas.Admin.Controllers
             trangThai.Add(new SelectListItem { Text = "Đang Kinh Doanh", Value = "true" });
             trangThai.Add(new SelectListItem { Text = "Ngừng Kinh Doanh", Value = "false" });
             ViewBag.data = trangThai;
-            ViewBag.loaihanghoa = _loaiHangHoaKhoBus.LoadTenLoaiHangHoa();
+
             return View();
         }
 
@@ -74,7 +74,7 @@ namespace QLWeb.Areas.Admin.Controllers
             if (hinhAnh != null && hinhAnh.ContentLength > 0)
                 try
                 {
-                    string path = Path.Combine(Server.MapPath("~/Content/image/user"),
+                    string path = Path.Combine(Server.MapPath("~/Content/client/product"),
                                                Path.GetFileName(hinhAnh.FileName));
                     hinhAnh.SaveAs(path);
                     hangHoa.hinhAnh = hinhAnh.FileName;
@@ -102,13 +102,22 @@ namespace QLWeb.Areas.Admin.Controllers
         }
 
         // GET: Admin/Detail
-        public ActionResult Detail()
+        public ActionResult Detail(int id)
         {
-            return View();
+            List<SelectListItem> trangThai = new List<SelectListItem>();
+            trangThai.Add(new SelectListItem { Text = "Đang kinh doanh", Value = "true" });
+            trangThai.Add(new SelectListItem { Text = "Ngừng kinh doanh", Value = "false" });
+            ViewBag.data = trangThai;
+            ViewBag.loaihanghoa = _loaiHangHoaKhoBus.LoadLoaiHangHoa();
+            return View(_hangHoaKhoBus.LoadDanhSachHangHoaTheoMa(id).ToList());
         }
 
         public ActionResult ThongTinHangHoa(int id)
         {
+            List<SelectListItem> trangThai = new List<SelectListItem>();
+            trangThai.Add(new SelectListItem { Text = "Đang kinh doanh", Value = "true" });
+            trangThai.Add(new SelectListItem { Text = "Ngừng kinh doanh", Value = "false" });
+            ViewBag.data = trangThai;
             ViewBag.loaihanghoa = _loaiHangHoaKhoBus.LoadTenLoaiHangHoa();
 
             ViewBag.thongTinHangHoa = _hangHoaKhoBus.LoadDanhSachHangHoaTheoMa(id).ToList();
@@ -117,9 +126,14 @@ namespace QLWeb.Areas.Admin.Controllers
         }
 
         // GET: Admin/Edit
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
-            return View();
+            List<SelectListItem> trangThai = new List<SelectListItem>();
+            trangThai.Add(new SelectListItem { Text = "Đang kinh doanh", Value = "true" });
+            trangThai.Add(new SelectListItem { Text = "Ngừng kinh doanh", Value = "false" });
+            ViewBag.data = trangThai;
+            ViewBag.loaihanghoa = _loaiHangHoaKhoBus.LoadLoaiHangHoa();
+            return View(_hangHoaKhoBus.LoadDanhSachHangHoaTheoMa(id).ToList());
         }
 
         [HttpPost]
@@ -128,7 +142,7 @@ namespace QLWeb.Areas.Admin.Controllers
             if (hinhAnh != null && hinhAnh.ContentLength > 0)
                 try
                 {
-                    string path = Path.Combine(Server.MapPath("~/Content/image/user"),
+                    string path = Path.Combine(Server.MapPath("~/Content/client/product"),
                                                Path.GetFileName(hinhAnh.FileName));
                     hinhAnh.SaveAs(path);
                     hangHoa.hinhAnh = hinhAnh.FileName;
@@ -165,7 +179,6 @@ namespace QLWeb.Areas.Admin.Controllers
                 }
             }
             return RedirectToAction("Index");
-        }
-
+        }   
     }
 }
