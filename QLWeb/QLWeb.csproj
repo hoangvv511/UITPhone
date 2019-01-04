@@ -6965,7 +6965,7 @@
     <Content Include="Areas\Admin\Views\PhieuChi\DanhSachPhieuChi.cshtml" />
     <Content Include="Areas\Admin\Views\PhieuChi\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\PhieuChi\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\PhieuChi\ThôngTinPhieuChi.cshtml" />
+    <Content Include="Areas\Admin\Views\PhieuChi\ThongTinPhieuChi.cshtml" />
     <Content Include="Areas\Admin\Views\BanHang\Index.cshtml" />
     <Content Include="Areas\Admin\Views\BanHang\Create.cshtml" />
     <Content Include="Areas\Admin\Views\BanHang\Delete.cshtml" />
