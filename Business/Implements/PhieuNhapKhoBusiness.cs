@@ -438,5 +438,15 @@ namespace Business.Implements
 
             }           
         }
+        public Object LayThongTinPhieuNhap(int id)
+        {
+            var producInfor = from phieunhap in dbContext.PhieuNhaps
+                              where (phieunhap.SoPhieuNhap == id && phieunhap.TrangThai == true)
+                              select new
+                              {
+                                  phieunhap.TongTien                             
+                              };
+            return producInfor;
+        }
     }
 }

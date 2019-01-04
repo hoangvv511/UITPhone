@@ -81,6 +81,7 @@ namespace Business.Implements
         {
             IQueryable<ChucVu> dsChucVu = _chucVuRepo.GetAll();
             int[] IDs = {3, 4, 5, 6, 7 };
+            
             var list = (from chucvu in dsChucVu
                         where IDs.Contains(chucvu.MaChucVu)
                         select new SelectListItem
@@ -88,6 +89,7 @@ namespace Business.Implements
                             Text = chucvu.TenChucVu,
                             Value = chucvu.MaChucVu.ToString(),
                         });
+           
             return new List<Object>(list);
         }
 

@@ -72,7 +72,6 @@ namespace Data.Functions
             DbSet.Add(entities);
             await _dbContext.SaveChangesAsync();
         }
-
         public async Task SaveChanges()
         {
             await _dbContext.SaveChangesAsync();
@@ -90,6 +89,30 @@ namespace Data.Functions
                 _dbContext.Dispose();
             _dbContext.Dispose();
         }
+        public List<Entities> Fetch()
+        {
+                List<Entities> result = _dbContext.Set<Entities>().ToList();
 
+                return result;
+        }
+        public List<Entities> Fetch(Expression<Func<Entities, bool>> query)
+        {
+                List<Entities> result = new List<Entities>();
+
+                if (query != null)
+                {
+                    result = _dbContext.Set<Entities>().Where(query).ToList();
+                }
+                else
+                {
+                    result = _dbContext.Set<Entities>().ToList();
+                }
+
+                return result;
+        }
+        public Entities GetById(object id)
+        {
+                return _dbContext.Set<Entities>().Find(id);
+        }
     }
 }

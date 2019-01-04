@@ -47,10 +47,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
@@ -198,6 +198,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaoCaoController.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\HangHoaController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
@@ -205,6 +206,8 @@
     <Compile Include="Areas\Admin\Controllers\LoaiHangHoaController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhaCungCapController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhanVienController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BanHangController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PhieuChiController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhapKhoController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HangHoaController.cs" />
@@ -6929,6 +6932,7 @@
     <Content Include="Areas\Admin\Views\NhanVien\DanhSachNhanVien.cshtml" />
     <Content Include="Areas\Admin\Views\NhanVien\ThongTinNhanVien.cshtml" />
     <Content Include="Areas\Admin\Views\Home\UpdatePassword.cshtml" />
+    <Content Include="Scripts\Controller\phieubanhang.js" />
     <Content Include="Scripts\Controller\phieukiemkhoScripts.js" />
     <Content Include="Scripts\Controller\phieunhapScripts.js" />
     <Content Include="Scripts\homelayout.js" />
@@ -6956,6 +6960,18 @@
     <Content Include="Areas\Admin\Views\KiemKho\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\KiemKho\Index.cshtml" />
     <Content Include="Areas\Admin\Views\KiemKho\ThongTinPhieuKiemKho.cshtml" />
+    <Content Include="Areas\Admin\Views\PhieuChi\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PhieuChi\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\PhieuChi\DanhSachPhieuChi.cshtml" />
+    <Content Include="Areas\Admin\Views\PhieuChi\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\PhieuChi\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\PhieuChi\ThongTinPhieuChi.cshtml" />
+    <Content Include="Areas\Admin\Views\BanHang\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BanHang\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BanHang\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\BanHang\DanhSachPhieuBanHang.cshtml" />
+    <Content Include="Areas\Admin\Views\BanHang\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\BanHang\ThongTinPhieuBanHang.cshtml" />
     <Content Include="Content\client\js\bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\client\js\bootstrap\fonts\glyphicons-halflings-regular.svg#glyphicons_halflingsregular" />
     <Content Include="Content\client\js\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
@@ -7026,15 +7042,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\BanHang\" />
     <Folder Include="Areas\Admin\Views\BaoCaoBanHang\" />
     <Folder Include="Areas\Admin\Views\BaoCaoDatHang\" />
     <Folder Include="Areas\Admin\Views\BaoCaoHangHoa\" />
     <Folder Include="Areas\Admin\Views\BaoCaoPhieuChi\" />
     <Folder Include="Areas\Admin\Views\BaoCaoTonKho\" />
+    <Folder Include="Areas\Admin\Views\BaoCao\" />
     <Folder Include="Areas\Admin\Views\BaoHanh\" />
     <Folder Include="Areas\Admin\Views\DatHang\" />
-    <Folder Include="Areas\Admin\Views\PhieuChi\" />
     <Folder Include="Areas\Admin\Views\XuatKho\" />
     <Folder Include="Content\assets\global\plugins\bower_components\bootstrap-sass\assets\images\" />
     <Folder Include="Content\assets\global\plugins\bower_components\bower\Packager\" />
