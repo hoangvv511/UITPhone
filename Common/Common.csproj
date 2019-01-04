@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="Functions\FindController.cs" />
     <Compile Include="Functions\FormatNumber.cs" />
+    <Compile Include="Functions\Helper.cs" />
     <Compile Include="Functions\Md5Encode.cs" />
     <Compile Include="Model\BaoCaoTonKho.cs" />
     <Compile Include="Model\ChiTietPhieuBanHang.cs" />
@@ -104,9 +105,14 @@
     <Compile Include="ViewModels\LoaiHangHoaViewModel.cs" />
     <Compile Include="ViewModels\NhanVienViewModel.cs" />
     <Compile Include="ViewModels\NhanVien_QuyenViewModel.cs" />
+
     <Compile Include="ViewModels\PhieuBaoHanhViewModel.cs" />
     <Compile Include="ViewModels\PhieuNhapViewModel.cs" />
     <Compile Include="ViewModels\PhieuXuatKhoViewModel.cs" />
+
+    <Compile Include="ViewModels\PhieuBanHangViewModel.cs" />
+    <Compile Include="ViewModels\PhieuChiViewModel.cs" />
+
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

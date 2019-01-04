@@ -1,4 +1,5 @@
 ﻿using Business.Implements;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,17 +20,23 @@ namespace QLWeb.Controllers
 
         public ActionResult ChiTietSanPham(int id)
         {
-            return View();
+            var sanpham = _hangHoaBus.LoadHangHoaTheoMa(id);
+            return View(sanpham);
         }
 
         public ActionResult DanhSachSanPham(int id, int page = 1, int pageSize = 8)
         {
-            return View();
+            ViewBag.tenLoaiHangHoa = _hangHoaBus.TenLoaiHangHoaTheoMaLoaiHangHoa(id);
+            ViewBag.tongSanPham = _hangHoaBus.TongSanPhamTheoLoaiHang(id);
+            var danhsachsanpham = _hangHoaBus.DanhSachHangHoaTheoMaLoaiHangHoa(id).ToPagedList(page, pageSize);
+            return View(danhsachsanpham);
         }
 
         public ActionResult SanPhamKhuyenMai(int page = 1, int pageSize = 8)
         {
-            return View();
+            ViewBag.tongSanPham = _hangHoaBus.TongSanPhamKhuyenMai();
+            var sanpham = _hangHoaBus.SanPhamKhuyenMai().ToPagedList(page, pageSize);
+            return View(sanpham);
         }
     }
 }

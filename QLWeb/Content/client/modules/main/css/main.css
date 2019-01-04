@@ -282,16 +282,15 @@
 }
 
 .product-grid h3{
-  font-size: 15px;
+  font-size: 20px;
   margin: 10px 0;
   color: #000;
   padding: 0;
   padding-left: 10px;
-  font-weight: bold;
+  font-weight: 600;
   line-height: 20px;
-  font-family: robotoroboto;
   height: 40px;
-  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .grid-bound-may-tinh-bang .product-grid h3{
@@ -307,7 +306,6 @@
   font-weight: bold;
   font-size: 15px !important;
   font-weight: normal;
-  font-family: robotoroboto;
   margin-bottom: 10px !important;
 }
 
