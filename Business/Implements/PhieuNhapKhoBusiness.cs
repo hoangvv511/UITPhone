@@ -26,6 +26,7 @@ namespace Business.Implements
         private readonly NhaCungCapReponsitory _nhaCungCapRepo;
         private NhanVienBusiness _nhanVienBus;
         private HangHoaBusiness _hangHoaBus;
+        private BaoCaoTonKhoBusiness _baoCaoTonKhoBus;
 
         public PhieuNhapKhoBusiness()
         {
@@ -37,6 +38,7 @@ namespace Business.Implements
             _chiTietPhieuNhapRepo = new ChiTietPhieuNhapReponsitory(dbContext);
             _nhanVienBus = new NhanVienBusiness();
             _hangHoaBus = new HangHoaBusiness();
+            _baoCaoTonKhoBus = new BaoCaoTonKhoBusiness();
         }
 
         public IList<PhieuNhapViewModel> SearchDanhSachPhieuNhapKho(string key, string trangThai, DateTime tungay, DateTime denngay, string userName)
@@ -323,22 +325,29 @@ namespace Business.Implements
 
         public async Task Create(PhieuNhapViewModel O)
         {
+            DateTime today = DateTime.Now;
             PhieuNhap order = new PhieuNhap
             {
                 SoPhieuNhap = O.soPhieuNhap,
-                NgayNhap = DateTime.Now,
+                NgayNhap = today,
                 MaNhanVien = O.maNhanVien,
                 MaNhaCungCap = O.maNhaCungCap,
                 TongTien = O.tongTien,
                 Ghichu = O.ghiChu,
                 TrangThai = true,
-                NgayChinhSua = DateTime.Now,
+                NgayChinhSua = today,
             };
+
+            int thang = today.Month;
+            int nam = today.Year;
+
             foreach (var i in O.chiTietPhieuNhap)
             {
                 order.ChiTietPhieuNhaps.Add(i);
- 
+
+                _hangHoaBus.CapNhapHangHoaVaoBaoCaoTonKhiTaoPhieuNhap(i.MaHangHoa, i.SoLuong, thang, nam);
                 _hangHoaBus.CapNhatHangHoaKhiTaoPhieuNhap(i.MaHangHoa, i.SoLuong, i.GiaNhap);
+
             }
             await _phieuNhapRepo.InsertAsync(order);
         }
@@ -429,6 +438,7 @@ namespace Business.Implements
 
                 foreach (var i in phieuNhapKho)
                 {
+                    _hangHoaBus.CapNhapHangHoaVaoBaoCaoTonKhiHuyPhieuNhap(i.MaHangHoa, i.SoLuong, editPhieuNhap.NgayNhap.Month, editPhieuNhap.NgayNhap.Year);
                     _hangHoaBus.CapNhatHangHoaKhiXoaPhieuNhap(i.SoPhieuNhap, i.MaHangHoa, i.SoLuong, i.GiaNhap);
                 }
             }

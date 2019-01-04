@@ -17,6 +17,7 @@ namespace Business.Implements
         private readonly NhanVienReponsitory _nhanVienRepo;
         private readonly HangHoaReponsitory _hangHoaRepo;
         private NhanVienBusiness _nhanVienBus;
+        private HangHoaBusiness _hangHoaBus;
 
         public PhieuBanHangBusiness()
         {
@@ -26,6 +27,7 @@ namespace Business.Implements
             _hangHoaRepo = new HangHoaReponsitory(dbContext);
             _chiTietPhieuBanHangRepo = new ChiTietPhieuBanHangReponsitory(dbContext);
             _nhanVienBus = new NhanVienBusiness();
+            _hangHoaBus = new HangHoaBusiness();
         }
 
 
@@ -444,6 +446,7 @@ namespace Business.Implements
             // Lấy các mã hàng hóa để giảm số lượng => Lấy trong chi tiết phiếu bán hàng
             foreach(var item in order.ChiTietPhieuBanHangs)
             {
+                _hangHoaBus.CapNhapHangHoaVaoBaoCaoTonKhiTaoPhieuBanHang(item.MaHangHoa, item.SoLuong, DateTime.Now.Month, DateTime.Now.Year);
                 //Tìm trong csdl các hàng hóa có mã hàng hóa ở trên
                 var hanghoa = _hangHoaRepo.Fetch(t => t.MaHangHoa == item.MaHangHoa).FirstOrDefault();
                 //Trừ số lượng người nhập
@@ -524,10 +527,24 @@ namespace Business.Implements
 
         public async Task HuyPhieuBanHang(object editModel)
         {
-            PhieuBanHang editPhieuBanHang = (PhieuBanHang)editModel;
-            editPhieuBanHang.TrangThai = false;
+            try
+            {
+                PhieuBanHang editPhieuBanHang = (PhieuBanHang)editModel;
+                var phieuBanHang = dbContext.ChiTietPhieuBanHanges.Where(x => x.SoPhieuBanHang == editPhieuBanHang.SoPhieuBanHang);
 
-            await _phieuBanHangRepo.EditAsync(editPhieuBanHang);
+                foreach (var i in phieuBanHang)
+                {
+                    _hangHoaBus.CapNhapHangHoaVaoBaoCaoTonKhiHuyPhieuBanHang(i.MaHangHoa, i.SoLuong, editPhieuBanHang.NgayBan.Month, editPhieuBanHang.NgayBan.Year);
+                    _hangHoaBus.CapNhatHangHoaKhiXoaPhieuBanHang(i.MaHangHoa, i.SoLuong);
+                }
+                editPhieuBanHang.TrangThai = false;
+                await _phieuBanHangRepo.EditAsync(editPhieuBanHang);
+            }
+            catch (Exception)
+            {
+
+            }
+
         }
         
     }

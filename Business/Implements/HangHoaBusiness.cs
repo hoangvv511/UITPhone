@@ -333,6 +333,172 @@ namespace Business.Implements
             }
         }
 
+        public bool CapNhatHangHoaKhiTaoPhieuBanHang(int maHangHoa, int soLuongBan)
+        {
+            try
+            {
+                var MatHangCanUpdate = _dbContext.HangHoas.FirstOrDefault(x => x.MaHangHoa == maHangHoa);
+                MatHangCanUpdate.SoLuongTon -= soLuongBan;
+
+                _dbContext.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool CapNhatHangHoaKhiXoaPhieuBanHang(int maHangHoa, int soLuongBan)
+        {
+            try
+            {
+                var MatHangCanUpdate = _dbContext.HangHoas.FirstOrDefault(x => x.MaHangHoa == maHangHoa);
+                MatHangCanUpdate.SoLuongTon += soLuongBan;
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public int LaySoLuongTonCuoiCuaThangTruoc(int maHangHoa, int thang, int nam)
+        {
+            if(thang == 1)
+            {
+                var result = _dbContext.BaoCaoTonKhos.FirstOrDefault(x => x.MaHangHoa == maHangHoa && x.Thang == 12 && x.Nam == (nam - 1));
+                if (result != null)
+                {
+                    return result.SoLuongTonCuoi;
+                }
+                else return 0;
+            }
+            
+            var result1 = _dbContext.BaoCaoTonKhos.FirstOrDefault(x => x.MaHangHoa == maHangHoa && x.Thang == (thang - 1) && x.Nam == nam);
+            if (result1 != null)
+            {
+                return result1.SoLuongTonCuoi;
+            }
+            else return 0;
+        }
+
+        public bool CapNhapHangHoaVaoBaoCaoTonKhiTaoPhieuNhap(int maHangHoa, int soLuongNhap, int thang, int nam)
+        {
+            try
+            {
+                var result = _dbContext.BaoCaoTonKhos.FirstOrDefault(x => x.MaHangHoa == maHangHoa && x.Thang == thang && x.Nam == nam);
+
+                if(result != null)
+                {
+                    result.SoLuongNhap += soLuongNhap;
+                    result.SoLuongTonCuoi = result.SoLuongTonDau + result.SoLuongNhap - result.SoLuongXuat;
+                    _dbContext.SaveChanges();
+                }
+                else
+                {
+                    var hanghoa = _dbContext.HangHoas.FirstOrDefault(x => x.MaHangHoa == maHangHoa);
+                    BaoCaoTonKho baocaotonkho = new BaoCaoTonKho
+                    {
+                        Thang = thang,
+                        Nam = nam,
+                        MaHangHoa = maHangHoa,
+                        SoLuongTonDau = hanghoa.SoLuongTon,
+                        SoLuongNhap = soLuongNhap,
+                        SoLuongXuat = 0,
+                        SoLuongTonCuoi = hanghoa.SoLuongTon + soLuongNhap - 0
+                    };
+
+                    _dbContext.BaoCaoTonKhos.Add(baocaotonkho);
+                    _dbContext.SaveChanges();
+                }
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool CapNhapHangHoaVaoBaoCaoTonKhiHuyPhieuNhap(int maHangHoa, int soLuongNhap, int thang, int nam)
+        {
+            try
+            {
+                var result = _dbContext.BaoCaoTonKhos.FirstOrDefault(x => x.MaHangHoa == maHangHoa && x.Thang == thang && x.Nam == nam);
+
+                if (result != null)
+                {
+                    result.SoLuongNhap -= soLuongNhap;
+                    result.SoLuongTonCuoi = result.SoLuongTonDau + result.SoLuongNhap - result.SoLuongXuat;
+                    _dbContext.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool CapNhapHangHoaVaoBaoCaoTonKhiTaoPhieuBanHang(int maHangHoa, int soLuongXuat, int thang, int nam)
+        {
+            try
+            {
+                var result = _dbContext.BaoCaoTonKhos.FirstOrDefault(x => x.MaHangHoa == maHangHoa && x.Thang == thang && x.Nam == nam);
+
+                if (result != null)
+                {
+                    result.SoLuongXuat += soLuongXuat;
+                    result.SoLuongTonCuoi = result.SoLuongTonDau + result.SoLuongNhap - result.SoLuongXuat;
+                    _dbContext.SaveChanges();
+                }
+                else
+                {
+                    var hanghoa = _dbContext.HangHoas.FirstOrDefault(x => x.MaHangHoa == maHangHoa);
+                    BaoCaoTonKho baocaotonkho = new BaoCaoTonKho
+                    {
+                        Thang = thang,
+                        Nam = nam,
+                        MaHangHoa = maHangHoa,
+                        SoLuongTonDau = hanghoa.SoLuongTon,
+                        SoLuongNhap = 0,
+                        SoLuongXuat = soLuongXuat,
+                        SoLuongTonCuoi = hanghoa.SoLuongTon + 0 - soLuongXuat
+                    };
+
+                    _dbContext.BaoCaoTonKhos.Add(baocaotonkho);
+                    _dbContext.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool CapNhapHangHoaVaoBaoCaoTonKhiHuyPhieuBanHang(int maHangHoa, int soLuongXuat, int thang, int nam)
+        {
+            try
+            {
+                var result = _dbContext.BaoCaoTonKhos.FirstOrDefault(x => x.MaHangHoa == maHangHoa && x.Thang == thang && x.Nam == nam);
+
+                if (result != null)
+                {
+                    result.SoLuongXuat -= soLuongXuat;
+                    result.SoLuongTonCuoi = result.SoLuongTonDau + result.SoLuongNhap - result.SoLuongXuat;
+                    _dbContext.SaveChanges();
+                }
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public IEnumerable<HangHoa> DanhSachHangHoaMoiNhat()
         {
             IQueryable<HangHoa> danhSachHangHoa = _hangHoaRepo.GetAll();
