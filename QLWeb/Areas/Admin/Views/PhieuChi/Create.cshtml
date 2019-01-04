@@ -30,53 +30,66 @@
                         <div class="clearfix"></div
                     </div><!-- /.panel-heading -->
                     <div class="panel-body no-padding">
-                        <div class="form-body">
-                            <div class="form-group">
-                                <label>Số phiếu</label>
-                                <input value="@ViewBag.soPhieuChiTuTang" type="text" id="soPhieuChi" class="form-control rounded" disabled="disabled" />
-                            </div><!-- /.form-group -->
+                        @using (Html.BeginForm("LuuPhieuChi", "PhieuChi", FormMethod.Post, new { id = "basic-validate" }))
+                        {
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label>Số phiếu</label>
+                                    <input value="@ViewBag.soPhieuChiTuTang" type="text" id="soPhieuChi" class="form-control rounded" disabled="disabled" />
+                                </div><!-- /.form-group -->
 
-                            <div class="form-group">
-                                <label>Ngày lập</label>
-                                <input id="ngayChi" value="@DateTime.Now.ToString("dd/MM/yyyy")" disabled="disabled" type="text" class="form-control rounded" />
-                            </div><!-- /.form-group -->
+                                <div class="form-group">
+                                    <label>Ngày lập</label>
+                                    <input id="ngayChi" value="@DateTime.Now.ToString("dd/MM/yyyy")" disabled="disabled" type="text" class="form-control rounded" />
+                                </div><!-- /.form-group -->
 
-                            <div class="form-group">
-                                <label>Nhân viên</label>
-                                <input value="@ViewBag.tenNhanVien" id="tenNhanVien" type="text" class="form-control rounded" disabled="disabled" />
+                                <div class="form-group">
+                                    <label>Nhân viên</label>
+                                    <input value="@ViewBag.tenNhanVien" id="tenNhanVien" type="text" class="form-control rounded" disabled="disabled" />
 
-                            </div>
-                            <div class="form-group">
-                                <label>Số phiếu nhập</label>
-                                <div class="col-sm-12" style="padding:0px;">
-                                    <select id="soPhieuNhap" class="chosen-select">
-                                        <option value=""></option>
-                                        @foreach (var item in ViewBag.danhSachPhieuNhap)
-                                        {
-                                            <option value="@item.Value">@item.Text</option>
-
-                                        }
-                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Số phiếu nhập</label>
+                                    @Html.DropDownList("maphieunhap", new SelectList(ViewBag.danhSachPhieuNhap, "Value", "Text"), new { @id = "maphieunhap", @class = "form-control rounded" })
+                                </div>
+                                <div class="form-group">
+                                    <label>Tổng tiền (VNĐ)</label>
+                                    <input id="tongTien" name="tongTienChi" type="hidden" class="form-control rounded" />
+                                    <input id="tongTien1" name="tongTienChi1" type="text" class="form-control rounded" readonly />
+                                    <span id="productItemError" class="messageError" style="color:red"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Ghi chú</label>
+                                    <textarea id="ghiChu" placeholder="Ghi chú viết tại đây" class="form-control rounded"></textarea>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label>Tổng tiền</label>
-                                <input value="" id="tongTien" type="text" class="form-control rounded" disabled="disabled" />
-
-                            </div>
-                            <div class="form-group">
-                                <label>Ghi chú</label>
-                                <textarea id="ghiChu" placeholder="Ghi chú viết tại đây" class="form-control rounded"></textarea>
-
-                            </div>
-                        </div>
-                    </div>
+                        }
+                        </div>                      
                 </div>
             </div>
         </div>
     </div>
 </section>
 <script src="~/Scripts/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    //Định dạng đơn vị tiền, mỗi 3 số 0 là 1 dấu phẩy
+    function formatNumber(num) {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+    }
+
+    $(function () {
+        $('#maphieunhap').change(function () {
+            //Gọi phương thức lấy tổng tiền từ mã phiếu chi
+            $.getJSON('/PhieuChi/LayTongTienPhieuNhap', { id: $('#maphieunhap').val() }, function (data) {
+                $.each(data, function (i, row) {
+                    $('#tongTien').val(row.TongTien)
+                    $('#tongTien1').val(formatNumber(row.TongTien))
+                });
+            });
+
+        });
+    });</script>
 
 <script>
 
@@ -126,7 +139,6 @@
 
         popupWin.document.write('</table>')
 
-
         popupWin.document.write('<p style="text-align:center">')
         popupWin.document.write('Nhân viên kế toán')
         popupWin.document.write('<br>')
@@ -134,64 +146,20 @@
         popupWin.document.write('</p>')
         popupWin.document.write('</html>');
         popupWin.document.close();
-    }
-    $(document).ready(function () {
-        $('#soPhieuNhap').on("change", function () {
-            $.getJSON('/NhapKho/LoadThongTinPhieuNhap',
-                { id: $('#soPhieuNhap').val() },
-                function (data) {
-                    if (data != null) {
-                        $.each(data, function (index, row) {
-                            $("#tongTien").val(row.TongTien);
-                           
-                        });
-                    }
-                });
-        });
+}     
+</script>
 
-
-        //Lưu phiếu chi
-        $('#submit').click(function () {
-            
-                var data = {
-                    SoPhieuChi: $('#soPhieuChi').val().trim(),
-                    NgayChi: $('#ngayChi').val().trim(),
-                    TenNhanVien: $('#tenNhanVien').val().trim(),
-                    MaPhieuNhap: $('#soPhieuNhap').val().trim(),
-                    TongTienChi: $('#tongTien').val().trim(),
-                    GhiChu: $('#ghiChu').val().trim(),
-                }
-
-                $(this).val('Please wait...');
-
-                $.ajax({
-                    url: "/PhieuChi/LuuPhieuChi",
-                    type: "POST",
-                    data: JSON.stringify(data),
-                    dataType: "JSON",
-                    contentType: "application/json",
-                    success: function (d) {
-                        //Kiểm tra nếu thành công thì lưu vô database
-                        if (d.status == true) {
-                            
-                            $('#soPhieuChi').val().trim(),
-                                $('#ngayChi').val().trim(),
-                                $('#tenNhanVien').val().trim(),
-                                $('#soPhieuNhap').val().trim(),
-                                $('#tongTien').val().trim(),
-                                $('#ghiChu').val().trim(),
-                            window.location.href = '/Admin/PhieuChi/';
-                        }
-                        else {
-                            SetAlert("Something wrong! Please try again", "error");
-                        }
-                        $('#submit').val('Lưu Phiếu Chi');
-                    },
-                    error: function () {
-                        alert('Error. Please try again.');
-                        $('#submit').val('Lưu Phiếu Chi');
-                    }
-                });
-        });
-    })
+<script>
+    $('#submit').click(function () {
+        if ($('#tongTien1').val() == '') {
+            $('#productItemError').text('Phải chọn phiếu nhập!');
+        }
+        else {
+            $('#productItemError').hide();
+            $('#basic-validate').submit();
+        }
+    });
+    $("#maphieunhap").on('click keyup input propertychange paste change', function () {
+        $('#productItemError').hide();
+    });
 </script>

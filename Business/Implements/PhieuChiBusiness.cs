@@ -250,7 +250,7 @@ namespace Business.Implements
             {
                 SoPhieuChi = O.soPhieuChi,
                 NgayChi = O.ngayChi,
-                MaNhanVien = _nhanVienBus.GetUserIdByUserName(O.tenNhanVien),
+                MaNhanVien = O.maNhanVien,
                 MaPhieuNhap = O.maPhieuNhap,
                 TongTienChi = O.tongTienChi,
                 TrangThai = true,
@@ -285,18 +285,21 @@ namespace Business.Implements
                    where (phieuchi.SoPhieuChi.Equals(soPhieuChi))
                    select new
                    {
-                       SoPhieuChi = phieuchi.SoPhieuChi,
+                       SoPhieuchi = phieuchi.SoPhieuChi,
                        NgayChi = phieuchi.NgayChi,
                        TenNhanVien = nhanvien.TenNhanvien,
+                       TongTienChi = phieuchi.TongTienChi,
+                       GhiChu = phieuchi.GhiChu,
                        TrangThai = phieuchi.TrangThai,
-                       ChuThich = phieuchi.GhiChu,
+                       MaPhieuNhap = phieuchi.MaPhieuNhap,
                    }).AsEnumerable().Select(x => new PhieuChiViewModel()
                    {
-                       soPhieuChi = x.SoPhieuChi,
+                       soPhieuChi = x.SoPhieuchi,
                        ngayChi = x.NgayChi,
                        tenNhanVien = x.TenNhanVien,
-                       trangThai = x.TrangThai,
-                       ghiChu = x.ChuThich,
+                       tongTienChi = x.TongTienChi,
+                       ghiChu = x.GhiChu,
+                       maPhieuNhap = x.MaPhieuNhap,
                    }).ToList();
             return all;
         }

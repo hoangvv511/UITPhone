@@ -34,23 +34,28 @@ namespace QLWeb.Areas.Admin.Controllers
 
             return View();
         }
-        [HttpPost]
-        public async Task<JsonResult> LuuPhieuChi(PhieuChiViewModel phieuChi)
+
+        public ActionResult LayTongTienPhieuNhap(int id)
         {
-            bool status = false;
+            var results = _phieuNhapBus.LayThongTinPhieuNhap(id);
+            return Json(results, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> LuuPhieuChi(PhieuChiViewModel phieuChi)
+        {
             if (ModelState.IsValid)
             {
                 await _phieuChiBus.Create(phieuChi);
-                status = true;
                 SetAlert("Đã Lưu Phiếu Chi Thành Công!!!", "success");
             }
             else
             {
-                status = false;
                 SetAlert("Đã Xảy Ra Lỗi! Bạn Hãy Tạo Lại Phiếu Chi", "error");
             }
-            return new JsonResult { Data = new { status = status } };
+            return RedirectToAction("Index");
         }
+
         public ActionResult Delete(int id)
         {
             return View();
@@ -94,7 +99,6 @@ namespace QLWeb.Areas.Admin.Controllers
 
         public ActionResult ThongTinPhieuChi(int id)
         {
-
             ViewBag.phieuChi = _phieuChiBus.thongTinPhieuChiTheoMa(id).ToList();
             return View();
         }

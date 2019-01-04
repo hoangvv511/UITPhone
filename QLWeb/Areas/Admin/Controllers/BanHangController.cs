@@ -69,9 +69,9 @@ namespace QLWeb.Areas.Admin.Controllers
         }
 
        
-        public ActionResult DanhSachPhieuBanHang(string searchString, string trangthai, string dateFrom, string dateTo, string tenkhachhang, string SDT, int page = 1, int pageSize = 10)
+        public ActionResult DanhSachPhieuBanHang(string searchString, string trangthai, string dateFrom, string dateTo, int page = 1, int pageSize = 10)
         {
-            var res = _phieuBanHangBus.SearchDanhSachPhieuBanHang(searchString, trangthai, Convert.ToDateTime(dateFrom), Convert.ToDateTime(dateTo), HomeController.userName, tenkhachhang, SDT).ToPagedList(page, pageSize);
+            var res = _phieuBanHangBus.SearchDanhSachPhieuBanHang(searchString, trangthai, Convert.ToDateTime(dateFrom), Convert.ToDateTime(dateTo), HomeController.userName).ToPagedList(page, pageSize);
             return View(res);
         }
 
