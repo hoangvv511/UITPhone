@@ -12,7 +12,6 @@
     [Table("ChiTietPhieuBaoHanh")]
     public partial class ChiTietPhieuBaoHanh
     {
-
         [Key]
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]

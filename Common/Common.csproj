@@ -105,10 +105,14 @@
     <Compile Include="ViewModels\LoaiHangHoaViewModel.cs" />
     <Compile Include="ViewModels\NhanVienViewModel.cs" />
     <Compile Include="ViewModels\NhanVien_QuyenViewModel.cs" />
-    <Compile Include="ViewModels\PhieuBanHangViewModel.cs" />
-    <Compile Include="ViewModels\PhieuChiViewModel.cs" />
+
+    <Compile Include="ViewModels\PhieuBaoHanhViewModel.cs" />
     <Compile Include="ViewModels\PhieuNhapViewModel.cs" />
     <Compile Include="ViewModels\PhieuXuatKhoViewModel.cs" />
+
+    <Compile Include="ViewModels\PhieuBanHangViewModel.cs" />
+    <Compile Include="ViewModels\PhieuChiViewModel.cs" />
+
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

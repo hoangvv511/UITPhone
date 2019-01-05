@@ -61,6 +61,9 @@
     <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.WebUtilities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebUtilities.1.0.0-rc1-final\lib\net451\Microsoft.AspNet.WebUtilities.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
@@ -96,9 +99,11 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -209,6 +214,7 @@
     <Compile Include="Areas\Admin\Controllers\BanHangController.cs" />
     <Compile Include="Areas\Admin\Controllers\PhieuChiController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhapKhoController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaoHanhController.cs" />
     <Compile Include="Areas\Admin\Controllers\XuatKhoController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HangHoaController.cs" />
@@ -6933,9 +6939,12 @@
     <Content Include="Areas\Admin\Views\NhanVien\DanhSachNhanVien.cshtml" />
     <Content Include="Areas\Admin\Views\NhanVien\ThongTinNhanVien.cshtml" />
     <Content Include="Areas\Admin\Views\Home\UpdatePassword.cshtml" />
+
+    <Content Include="Scripts\Controller\phieubaohanhScripts.js" />
     <Content Include="Scripts\Controller\phieubanhang.js" />
     <Content Include="Scripts\Controller\phieukiemkhoScripts.js" />
     <Content Include="Scripts\Controller\phieunhapScripts.js" />
+    <Content Include="Scripts\Controller\phieuxuatkhoScripts.js" />
     <Content Include="Scripts\homelayout.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Areas\Admin\Views\LoaiHangHoa\Create.cshtml" />
@@ -7010,6 +7019,13 @@
     <Content Include="Areas\Admin\Views\XuatKho\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\XuatKho\Index.cshtml" />
     <Content Include="Areas\Admin\Views\XuatKho\ThongTinPhieuXuatKho.cshtml" />
+    <Content Include="Areas\Admin\Views\BaoHanh\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\BaoHanh\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BaoHanh\DanhSachPhieuBaoHanh.cshtml" />
+    <Content Include="Areas\Admin\Views\BaoHanh\Confirm.cshtml" />
+    <Content Include="Areas\Admin\Views\BaoHanh\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BaoHanh\ThongTinPhieuBaoHanh.cshtml" />
+    <Content Include="Areas\Admin\Views\BaoHanh\Delete.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -7054,9 +7070,15 @@
     <Folder Include="Areas\Admin\Views\BaoCaoHangHoa\" />
     <Folder Include="Areas\Admin\Views\BaoCaoPhieuChi\" />
     <Folder Include="Areas\Admin\Views\BaoCaoTonKho\" />
+    <Folder Include="Areas\Admin\Views\ChiTietPhieuBanHang\" />
+    <Folder Include="Areas\Admin\Views\DatHang\" />
+    <Folder Include="Areas\Admin\Views\PhieuBaoHanh\" />
     <Folder Include="Areas\Admin\Views\BaoCao\" />
     <Folder Include="Areas\Admin\Views\BaoHanh\" />
     <Folder Include="Areas\Admin\Views\DatHang\" />
+    <Folder Include="Areas\Admin\Views\NhaCungCap\" />
+    <Folder Include="Areas\Admin\Views\NhapKho\" />
+    <Folder Include="Areas\Admin\Views\PhieuChi\" />
     <Folder Include="Content\assets\global\plugins\bower_components\bootstrap-sass\assets\images\" />
     <Folder Include="Content\assets\global\plugins\bower_components\bower\Packager\" />
     <Folder Include="Content\client\skins\default\images\video-page\" />
