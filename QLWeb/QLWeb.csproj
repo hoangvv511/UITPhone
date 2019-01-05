@@ -209,6 +209,7 @@
     <Compile Include="Areas\Admin\Controllers\BanHangController.cs" />
     <Compile Include="Areas\Admin\Controllers\PhieuChiController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhapKhoController.cs" />
+    <Compile Include="Areas\Admin\Controllers\XuatKhoController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HangHoaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -7003,6 +7004,12 @@
     <Content Include="Areas\Admin\Views\NhapKho\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\NhapKho\Index.cshtml" />
     <Content Include="Areas\Admin\Views\NhapKho\ThongTinPhieuNhap.cshtml" />
+    <Content Include="Areas\Admin\Views\XuatKho\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\XuatKho\DanhSachPhieuXuatKho.cshtml" />
+    <Content Include="Areas\Admin\Views\XuatKho\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\XuatKho\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\XuatKho\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\XuatKho\ThongTinPhieuXuatKho.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -7050,7 +7057,6 @@
     <Folder Include="Areas\Admin\Views\BaoCao\" />
     <Folder Include="Areas\Admin\Views\BaoHanh\" />
     <Folder Include="Areas\Admin\Views\DatHang\" />
-    <Folder Include="Areas\Admin\Views\XuatKho\" />
     <Folder Include="Content\assets\global\plugins\bower_components\bootstrap-sass\assets\images\" />
     <Folder Include="Content\assets\global\plugins\bower_components\bower\Packager\" />
     <Folder Include="Content\client\skins\default\images\video-page\" />
