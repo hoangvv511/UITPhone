@@ -189,15 +189,15 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    $('#ngayGiao').on("keyup change", function () {
+    $('#ngayGiao').on("keyup input propertychange paste change", function () {
         CheckNgayGiao();
     });
 
-    $('#tenKhachHang').on("keyup change", function () {
+    $('#tenKhachHang').on("keyup input propertychange paste change", function () {
         CheckTenKhachHang();
     });
 
-    $('#soDienThoai').on("keyup change", function () {
+    $('#soDienThoai').on("keyup input propertychange paste change", function () {
         CheckSoDienThoai();
     });
 });
@@ -228,6 +228,9 @@ function CheckTenKhachHang(error) {
         $(".notifyinputTenKhachHang").addClass("hidden");
         $("#checkTenKhachHang").removeClass("error");
     }
+    $("#tenKhachHang").blur(function () {
+        $("#tenKhachHang").val($("#tenKhachHang").val().trim());
+    });
     return error;
 }
 
@@ -242,5 +245,8 @@ function CheckSoDienThoai(error) {
         $(".notifyinputSoDienThoai").addClass("hidden");
         $("#checkSoDienThoai").removeClass("error");
     }
+    $("#soDienThoai").blur(function () {
+        $("#soDienThoai").val($("#soDienThoai").val().trim());
+    });
     return error;
 }

@@ -203,7 +203,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\BaoCaoController.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\HangHoaController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
@@ -6939,7 +6938,6 @@
     <Content Include="Areas\Admin\Views\NhanVien\DanhSachNhanVien.cshtml" />
     <Content Include="Areas\Admin\Views\NhanVien\ThongTinNhanVien.cshtml" />
     <Content Include="Areas\Admin\Views\Home\UpdatePassword.cshtml" />
-
     <Content Include="Scripts\Controller\phieubaohanhScripts.js" />
     <Content Include="Scripts\Controller\phieubanhang.js" />
     <Content Include="Scripts\Controller\phieukiemkhoScripts.js" />
@@ -7062,6 +7060,9 @@
     <Content Include="Views\Layout\HomeLayout.cshtml" />
     <Content Include="Views\PartitalView\HeaderTopManagerPartial.cshtml" />
     <Content Include="Views\PartitalView\MenuManagerPartial.cshtml" />
+    <Content Include="Views\PhieuDatHang\Index.cshtml" />
+    <Content Include="Views\PhieuDatHang\ThanhToan.cshtml" />
+    <Content Include="Views\PhieuDatHang\ThongBaoThanhCong.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -7070,21 +7071,12 @@
     <Folder Include="Areas\Admin\Views\BaoCaoHangHoa\" />
     <Folder Include="Areas\Admin\Views\BaoCaoPhieuChi\" />
     <Folder Include="Areas\Admin\Views\BaoCaoTonKho\" />
-    <Folder Include="Areas\Admin\Views\ChiTietPhieuBanHang\" />
     <Folder Include="Areas\Admin\Views\DatHang\" />
-    <Folder Include="Areas\Admin\Views\PhieuBaoHanh\" />
-    <Folder Include="Areas\Admin\Views\BaoCao\" />
-    <Folder Include="Areas\Admin\Views\BaoHanh\" />
-    <Folder Include="Areas\Admin\Views\DatHang\" />
-    <Folder Include="Areas\Admin\Views\NhaCungCap\" />
-    <Folder Include="Areas\Admin\Views\NhapKho\" />
-    <Folder Include="Areas\Admin\Views\PhieuChi\" />
     <Folder Include="Content\assets\global\plugins\bower_components\bootstrap-sass\assets\images\" />
     <Folder Include="Content\assets\global\plugins\bower_components\bower\Packager\" />
     <Folder Include="Content\client\skins\default\images\video-page\" />
     <Folder Include="Content\client\vnt_upload\about\thumbs\" />
     <Folder Include="Content\Image\product\" />
-    <Folder Include="Views\PhieuDatHang\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
