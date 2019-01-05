@@ -18,7 +18,24 @@
     </div>
     <div class="body-content animated fadeIn">
         <div class="row">
-            @{Html.RenderAction("ThongTinPhieuChi", "PhieuChi");}
+            <div class="col-md-12">
+                <!-- Start input fields - basic form -->
+                <div class="panel rounded shadow">
+                    <div class="panel-heading">
+                        <div class="pull-left">
+                            <h3 class="panel-title">@ViewBag.Title</h3>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div><!-- /.panel-heading -->
+                    <div class="panel-body no-padding">
+
+                        <div class="form-body">
+                            @{Html.RenderAction("ThongTinPhieuChi", "PhieuChi");}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>

@@ -15,7 +15,6 @@
 
         var errorQuantity = 0;
         errorQuantity = CheckSoLuongNhap(errorQuantity);
-        errorQuantity = CheckGiaNhap(errorQuantity);
         var error = errorQuantity;
 
         //Thêm sản phẩm
@@ -47,22 +46,17 @@
                         TenHangHoa: $("#tenHangHoa").val().trim(),
                         DonViTinh: $('#donViTinh').val().trim(),
                         SoLuong: parseInt($('#soLuongNhap').val().trim()),
-                        GiaNhap: parseInt($('#giaNhap').val().trim()),
-                        ThanhTien: parseInt($('#soLuongNhap').val().trim()) * parseInt($('#giaNhap').val().trim().replace(/,/gi, "")),
-                    });           
-
-                    //var amount = parseInt($('#thanhTien').val());
-                    //var tongtien = parseInt($('#tongTien').val());
-                    //tongtien += amount;
-
-                    //$('#tongTien').val(tongtien.toString());
+                        Gia: parseInt($('#giaBan').val().trim()),
+                        ThanhTien: parseInt($('#soLuongNhap').val().trim()) * parseInt($('#giaBan').val().trim().replace(/,/gi, "")),
+                    });
 
                     //Xóa trắng 
                     $('#maHangHoa').focus().val('');
                     $('#tenHangHoa').val('');
                     $('#donViTinh').val('');
+                    $('#soLuongHienTai').val('');
                     $('#soLuongNhap').val('');
-                    $('#giaNhap').val('');
+                    $('#giaBan').val('');
                     $('#thanhTien').val('');
 
                     //Điền lại vào phiếu
@@ -78,22 +72,17 @@
                     TenHangHoa: $("#tenHangHoa").val().trim(),
                     DonViTinh: $('#donViTinh').val().trim(),
                     SoLuong: parseInt($('#soLuongNhap').val().trim()),
-                    GiaNhap: parseInt($('#giaNhap').val().trim()),
-                    ThanhTien: parseInt($('#soLuongNhap').val().trim()) * parseInt($('#giaNhap').val().trim().replace(/,/gi, "")),
+                    Gia: parseInt($('#giaBan').val().trim()),
+                    ThanhTien: parseInt($('#soLuongNhap').val().trim()) * parseInt($('#giaBan').val().trim().replace(/,/gi, "")),
                 });
-
-                //var amount = parseInt($('#thanhTien').val());
-                //var tongtien = parseInt($('#tongTien').val());
-                //tongtien += amount;
-
-                //$('#tongTien').val(tongtien.toString());
 
                 //Xóa trắng 
                 $('#maHangHoa').focus().val('');
                 $('#tenHangHoa').val('');
                 $('#donViTinh').val('');
+                $('#soLuongHienTai').val('');
                 $('#soLuongNhap').val('');
-                $('#giaNhap').val('');
+                $('#giaBan').val('');
                 $('#thanhTien').val('');
 
                 //Điền lại vào phiếu
@@ -103,24 +92,23 @@
         }
     });
 
-    
     $('#print').click(function () {
         Print();
     });
 
-    //Phương thức in phiếu nhập kho
+    //Phương thức in phiếu xuất kho
     function Print() {
         var toPrint = document.getElementById('Items');
         var $table = $('<table id="productTables" style="border: solid; width:100%; text-align:center"/>');
-        $table.append('<thead><tr><th>Mã Hàng Hóa</th><th>Tên Hàng Hóa</th><th>Đơn Vị Tính</th><th>Số Lượng Nhập</th><th>Giá Nhập</th><th>Thành Tiền</th></tr></thead>');
+        $table.append('<thead><tr><th>Mã Hàng Hóa</th><th>Tên Hàng Hóa</th><th>Đơn Vị Tính</th><th>Số Lượng Xuất</th><th>Giá Bán</th><th>Thành Tiền</th></tr></thead>');
         var $tbody = $('<tbody/>');
         $.each(orderItems, function (i, val) {
             var $row = $('<tr style="border:solid">');
             $row.append($('<td/>').html(val.MaHangHoa));
             $row.append($('<td/>').html(val.TenHangHoa));
             $row.append($('<td/>').html(val.DonViTinh));
-            $row.append($('<td/>').html(val.SoLuongNhap));
-            $row.append($('<td/>').html(val.GiaNhap));
+            $row.append($('<td/>').html(val.SoLuong));
+            $row.append($('<td/>').html(val.Gia));
             $row.append($('<td/>').html(val.ThanhTien));
             $tbody.append($row);
         });
@@ -132,18 +120,18 @@
         popupWin.document.open(); //open new page
         popupWin.document.write('<html><body onload="window.print()">')
 
-        popupWin.document.write('<p style="text-align:center; font-weight: bold; font-size: 30px">Phiếu Nhập Kho</p>')
+        popupWin.document.write('<p style="text-align:center; font-weight: bold; font-size: 30px">Phiếu Xuất Kho</p>')
 
         popupWin.document.write('<table style="border:solid; width:100%"; text-align:center">')
-        popupWin.document.write('Thông tin phiếu nhập kho');
+        popupWin.document.write('Thông tin phiếu xuất kho');
         popupWin.document.write('<tr><td>')
-        popupWin.document.write('Số phiếu nhập kho: ');
-        popupWin.document.write($('#soPhieuNhap').val().trim());
+        popupWin.document.write('Số phiếu xuất kho: ');
+        popupWin.document.write($('#soPhieuXuatKho').val().trim());
         popupWin.document.write('</td>')
 
         popupWin.document.write('<td>')
-        popupWin.document.write('Ngày nhập: ');
-        popupWin.document.write($('#ngayNhap').val().trim());
+        popupWin.document.write('Ngày xuất: ');
+        popupWin.document.write($('#ngayXuat').val().trim());
         popupWin.document.write('</td></tr>')
 
         popupWin.document.write('<tr><td>')
@@ -152,19 +140,13 @@
         popupWin.document.write('</td>')
 
         popupWin.document.write('<td>')
-        popupWin.document.write('Nhà cung cấp: ');
-        var TenNhaCungCap = $('#maNhaCungCap').find("option:selected").text();
-        popupWin.document.write(TenNhaCungCap);
-        popupWin.document.write('</td></tr>')
-
-        popupWin.document.write('<tr><td>')
         popupWin.document.write('Tổng tiền: ');
         popupWin.document.write($('#tongTien').val().trim());
-        popupWin.document.write('</td>')
+        popupWin.document.write('</td></tr>')
 
         popupWin.document.write('<td>')
-        popupWin.document.write('Ghi chú: ');
-        popupWin.document.write($('#ghiChu').val().trim());
+        popupWin.document.write('Lý do xuất: ');
+        popupWin.document.write($('#lyDoXuat').val().trim());
         popupWin.document.write('</td></tr>')
 
         popupWin.document.write('</table>')
@@ -174,7 +156,7 @@
         popupWin.document.write(toPrint.innerHTML);
 
         popupWin.document.write('<p style="text-align:center">')
-        popupWin.document.write('Nhân viên nhập')
+        popupWin.document.write('Nhân viên xuất')
         popupWin.document.write('<br>')
         popupWin.document.write('(Ký tên)')
         popupWin.document.write('</p>')
@@ -194,46 +176,42 @@
         //Nếu có sản phẩm rồi thì tạo object rồi gọi Ajax
         if (isAllValid) {
             var data = {
-                SoPhieuNhap: $('#soPhieuNhap').val().trim(),
-                NgayNhap: $('#ngayNhap').val().trim(),
+                SoPhieuXuatKho: $('#soPhieuXuatKho').val().trim(),
+                NgayXuat: $('#ngayXuat').val().trim(),
                 MaNhanVien: $('#maNhanVien').val().trim(),
-                MaNhaCungCap: $('#maNhaCungCap').val().trim(),
                 TongTien: parseFloat($('#tongTien').val().trim().replace(/,/gi, "")),
-                GhiChu: $('#ghiChu').val().trim(),
-                chiTietPhieuNhap: orderItems
+                LyDoXuat: $('#lyDoXuat').val().trim(),
+                chiTietPhieuXuatKho: orderItems
             }
 
             $(this).val('Please wait...');
 
             $.ajax({
-                url: "/NhapKho/Create",
-                //url: "/NhapKho/Create",
+                url: "/XuatKho/LuuPhieuXuatKho",
                 type: "POST",
                 data: JSON.stringify(data),
                 dataType: "JSON",
                 contentType: "application/json",
                 success: function (d) {
                     //Kiểm tra nếu thành công thì lưu vô database
-                    if (d.status == true) {                        
-                        
+                    if (d.status == true) {
+
                         orderItems = [];
-                        $('#soPhieuNhap').val('');
-                        $('#ngayNhap').val('');
+                        $('#soPhieuXuatKho').val('');
+                        $('#ngayXuat').val('');
                         $('#tenNhanVien').val('');
-                        //$('#maNhaCungCap').val('');
-                        //$('#thanhTien').val('');
-                        $('#ghiChu').val('');
+                        $('#lyDoXuat').val('');
                         $('#orderItems').empty();
-                        window.location.href = '/Admin/NhapKho/';
+                        window.location.href = '/Admin/XuatKho/';
                     }
                     else {
                         SetAlert("Something wrong! Please try again", "error");
                     }
-                    $('#submit').val('Lưu Phiếu Nhập Kho');
+                    $('#submit').val('Lưu Phiếu Xuất Kho');
                 },
                 error: function () {
                     alert('Error. Please try again.');
-                    $('#submit').val('Lưu Phiếu Nhập Kho');
+                    $('#submit').val('Lưu Phiếu Xuất Kho');
                 }
             });
         }
@@ -243,7 +221,7 @@
     function GeneratedItemsTable() {
         if (orderItems.length > 0) {
             var $table = $('<table id="productTable" class="table table-bordered" />');
-            $table.append('<thead><tr><th>Mã Hàng Hóa</th><th>Tên Hàng Hóa</th><th>Đơn Vị Tính</th><th>Số Lượng Nhập</th><th>Giá Nhập</th><th>Thành Tiền</th><th>Hành Động</th></tr></thead>');
+            $table.append('<thead><tr><th>Mã Hàng Hóa</th><th>Tên Hàng Hóa</th><th>Đơn Vị Tính</th><th>Số Lượng Xuất</th><th>Giá Bán</th><th>Thành Tiền</th><th>Hành Động</th></tr></thead>');
             var $tbody = $('<tbody/>');
             $.each(orderItems, function (i, val) {
                 var $row = $('<tr/>');
@@ -251,7 +229,7 @@
                 $row.append($('<td/>').html(val.TenHangHoa));
                 $row.append($('<td/>').html(val.DonViTinh));
                 $row.append($('<td/>').html(val.SoLuong));
-                $row.append($('<td/>').html(formatNumber(val.GiaNhap)));
+                $row.append($('<td/>').html(formatNumber(val.Gia)));
                 $row.append($('<td/>').html(formatNumber(val.ThanhTien)));
                 var $remove = $('<input type="button" value="Xóa" style="padding:1px 20px" class="btn-danger"/>');
                 $remove.click(function (e) {
@@ -264,11 +242,6 @@
                     } else {
                         TinhTongTien();
                     }
-                    //var amount = parseInt(val.ThanhTien);
-                    //var tongtien = parseInt($('#tongTien').val());
-                    //tongtien -= amount;
-
-                    //$('#tongTien').val(tongtien.toString());
 
                     ClearValue();
                     $('#maHangHoa').focus().val('');
@@ -318,13 +291,15 @@ function HideErrorProductName() {
 
 $(document).ready(function () {
     $('#maHangHoa').ready(function () {
-        $.getJSON('/NhapKho/LoadThongTinHangHoa',
+        $.getJSON('/XuatKho/LoadThongTinHangHoa',
             { id: $('#maHangHoa').val() },
             function (data) {
                 if (data != null) {
                     $.each(data, function (index, row) {
                         $("#tenHangHoa").val(row.TenHangHoa);
                         $("#donViTinh").val(row.DonViTinh);
+                        $("#soLuongHienTai").val(row.SoLuongTon);
+                        $("#giaBan").val(row.GiaBan);
                     });
                 }
             });
@@ -333,13 +308,15 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('#maHangHoa').on("change", function () {
-        $.getJSON('/NhapKho/LoadThongTinHangHoa',
+        $.getJSON('/XuatKho/LoadThongTinHangHoa',
             { id: $('#maHangHoa').val() },
             function (data) {
                 if (data != null) {
                     $.each(data, function (index, row) {
                         $("#tenHangHoa").val(row.TenHangHoa);
                         $("#donViTinh").val(row.DonViTinh);
+                        $("#soLuongHienTai").val(row.SoLuongTon);
+                        $("#giaBan").val(row.GiaBan);
                     });
                 }
             });
@@ -353,18 +330,15 @@ function formatNumber(num) {
 
 
 $(document).ready(function () {
-    $("#soLuongNhap").on('keydown input propertychange paste change', function () {
+    $("#checksodienthoai").on('keydown input propertychange paste change', function () {
         CheckSoLuongNhap();
-    });
-    $("#giaNhap").on('keydown input propertychange paste change', function () {
-        CheckGiaNhap();
     });
 });
 
 // Kiểm tra số lượng nhập
 function CheckSoLuongNhap(error) {
     if (!($('#soLuongNhap').val().trim() != '' && !isNaN($('#soLuongNhap').val().trim()))) {
-    //if ($("#soLuongNhap").val() == '') {
+        //if ($("#soLuongNhap").val() == '') {
         $(".messageErrorinputSoLuongNhap").text("Nhập số lượng!");
         $(".notifyinputSoLuongNhap").slideDown(250).removeClass("hidden");
         $("#soLuongNhap").addClass("error");
@@ -385,41 +359,18 @@ $(document).ready(function () {
     $("#soLuongNhap").on("keydown keyup", function () {
         TinhThanhTien();
     });
-
-    $("#giaNhap").on("keydown keyup", function () {
-        TinhThanhTien();
-    });
 });
 
 function TinhThanhTien() {
-    if (document.getElementById('soLuongNhap').value == '' || document.getElementById('giaNhap').value == 0) {
+    if (document.getElementById('soLuongNhap').value == '' || document.getElementById('giaBan').value == 0) {
         document.getElementById('thanhTien').value = 0;
     }
     else {
-        var unitPrice = document.getElementById('giaNhap').value.replace(/,/gi, "");
+        var unitPrice = document.getElementById('giaBan').value.replace(/,/gi, "");
         var quantity = document.getElementById('soLuongNhap').value;
         var result = parseInt(unitPrice) * parseInt(quantity);
         if (!isNaN(result)) {
             document.getElementById('thanhTien').value = formatNumber(result);
         }
     }
-}
-
-// Kiểm tra giá nhập
-function CheckGiaNhap(error) {
-    if (!($('#giaNhap').val().trim() != '' && !isNaN($('#giaNhap').val().trim()))) {
-        //if ($("#soLuongNhap").val() == '') {
-        $(".messageErrorinputGiaNhap").text("Nhập giá nhập!");
-        $(".notifyinputGiaNhap").slideDown(250).removeClass("hidden");
-        $("#giaNhap").addClass("error");
-        error++;
-    }
-    else {
-        $(".notifyinputGiaNhap").addClass("hidden");
-        $("#giaNhap").removeClass("error");
-    }
-    $("#giaNhap").blur(function () {
-        $("#giaNhap").val($("#giaNhap").val().trim());
-    });
-    return error;
 }

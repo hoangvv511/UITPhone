@@ -17,27 +17,26 @@ using PagedList;
 
 namespace QLWeb.Areas.Admin.Controllers
 {
-    public class NhapKhoController : BaseController
+    public class BaoHanhController : BaseController
     {
-        readonly PhieuNhapKhoBusiness _phieuNhapKhoBus = new PhieuNhapKhoBusiness();
+        readonly PhieuBaoHanhBusiness _phieuBaoHanhBus = new PhieuBaoHanhBusiness();
         readonly HangHoaBusiness _hangHoaBus = new HangHoaBusiness();
         readonly NhanVienBusiness _nhanVienBus = new NhanVienBusiness();
-        readonly NhaCungCapBusiness _nhaCungCapBus = new NhaCungCapBusiness();
 
-        // GET: Admin/NhapKho
+        // GET: Admin/PhieuBaoHanh
         public ActionResult Index()
         {
             List<SelectListItem> trangThai = new List<SelectListItem>();
             trangThai.Add(new SelectListItem { Text = "Toàn bộ", Value = null });
-            trangThai.Add(new SelectListItem { Text = "Hoàn thành", Value = "true" });
+            trangThai.Add(new SelectListItem { Text = "Đã tạo", Value = "true" });
             trangThai.Add(new SelectListItem { Text = "Đã hủy", Value = "false" });
             ViewBag.trangthai = trangThai;
             return View();
         }
 
-        public ActionResult DanhSachPhieuNhap(string searchString, string trangThai, string dateFrom, string dateTo, int page = 1, int pageSize = 10)
+        public ActionResult DanhSachPhieuBaoHanh(string searchString, string trangThai, int page = 1, int pageSize = 10)
         {
-            return View(_phieuNhapKhoBus.SearchDanhSachPhieuNhapKho(searchString, trangThai, Convert.ToDateTime(dateFrom), Convert.ToDateTime(dateTo), HomeController.userName).ToPagedList(page, pageSize));
+            return View(_phieuBaoHanhBus.SearchDanhSachPhieuBaoHanh(searchString, trangThai, HomeController.userName).ToPagedList(page, pageSize));
         }
 
         // GET: Admin/Create
@@ -45,8 +44,7 @@ namespace QLWeb.Areas.Admin.Controllers
         {
             ViewBag.maNhanVien = _nhanVienBus.LoadMaNhanVien(HomeController.userName);
             ViewBag.tenNhanVien = _nhanVienBus.LoadTenNhanVien(HomeController.userName);
-            ViewBag.tenNhaCungCap = _nhaCungCapBus.LoadNhaCungCap();
-            ViewBag.soPhieuNhap = _phieuNhapKhoBus.LoadSoPhieuNhap();
+            ViewBag.soPhieuBaoHanh = _phieuBaoHanhBus.LoadSoPhieuBaoHanh();
             ViewBag.danhSachHangHoa = new SelectList(_hangHoaBus.LoadSanhSachHangHoaKho(), "Value", "Text");
             return View();
         }
@@ -58,19 +56,19 @@ namespace QLWeb.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> LuuPhieuNhap(PhieuNhapViewModel phieuNhap)
+        public async Task<JsonResult> LuuPhieuBaoHanh(PhieuBaoHanhViewModel phieuBaoHanh)
         {
             bool status = false;
             if (ModelState.IsValid)
             {
-                await _phieuNhapKhoBus.Create(phieuNhap);
+                await _phieuBaoHanhBus.Create(phieuBaoHanh);
                 status = true;
-                SetAlert("Đã Lưu Phiếu Nhập Kho Thành Công!!!", "success");
+                SetAlert("Đã Lưu Phiếu Bảo Hành Thành Công!!!", "success");
             }
             else
             {
                 status = false;
-                SetAlert("Đã Xảy Ra Lỗi! Bạn Hãy Tạo Lại Phiếu Nhập Kho", "error");
+                SetAlert("Đã Xảy Ra Lỗi! Bạn Hãy Tạo Lại Phiếu Bảo Hành", "error");
             }
             return new JsonResult { Data = new { status = status } };
         }
@@ -86,9 +84,9 @@ namespace QLWeb.Areas.Admin.Controllers
         {
             if (quaylai != null)
                 return RedirectToAction("Index");
-            PhieuNhap huyPhieuNhap = (PhieuNhap)await _phieuNhapKhoBus.Find(id);
+            PhieuBaoHanh huyPhieuBaoHanh = (PhieuBaoHanh)await _phieuBaoHanhBus.Find(id);
 
-            if (huyPhieuNhap == null)
+            if (huyPhieuBaoHanh == null)
             {
                 SetAlert("Đã xảy ra lỗi! Bạn hãy hủy lại", "error");
                 return RedirectToAction("Edit");
@@ -97,8 +95,8 @@ namespace QLWeb.Areas.Admin.Controllers
             {
                 try
                 {
-                    await _phieuNhapKhoBus.HuyPhieuNhap(huyPhieuNhap);
-                    SetAlert("Đã hủy phiếu nhập kho thành công!!!", "success");
+                    await _phieuBaoHanhBus.HuyPhieuBaoHanh(huyPhieuBaoHanh);
+                    SetAlert("Đã hủy phiếu bảo hành thành công!!!", "success");
                 }
                 catch
                 {
@@ -115,16 +113,45 @@ namespace QLWeb.Areas.Admin.Controllers
             return View();
         }
 
-        public ActionResult ThongTinPhieuNhap(int id)
+        // GET: Admin/Confirm
+        public ActionResult Confirm()
         {
-            ViewBag.chiTietPhieuNhap = _phieuNhapKhoBus.thongTinChiTietPhieuNhapTheoMa(id).ToList();
-            ViewBag.phieuNhap = _phieuNhapKhoBus.thongTinPhieuNhapTheoMa(id).ToList();
             return View();
         }
-        public ActionResult LoadThongTinPhieuNhap(int id)
+
+        [HttpPost]
+        public async Task<ActionResult> Confirms(int id, string quaylai)
         {
-            var result = _phieuNhapKhoBus.LayThongTinPhieuNhap(id);
-            return Json(result, JsonRequestBehavior.AllowGet);
+            if (quaylai != null)
+                return RedirectToAction("Index");
+            PhieuBaoHanh xacNhanPhieuBaoHanh = (PhieuBaoHanh)await _phieuBaoHanhBus.Find(id);
+
+            if (xacNhanPhieuBaoHanh == null)
+            {
+                SetAlert("Đã xảy ra lỗi! Bạn hãy hủy lại", "error");
+                return RedirectToAction("Edit");
+            }
+            else
+            {
+                try
+                {
+                    await _phieuBaoHanhBus.XacNhanPhieuBaoHanh(xacNhanPhieuBaoHanh);
+                    SetAlert("Đã xác nhận phiếu bảo hành thành công!!!", "success");
+                }
+                catch
+                {
+                    SetAlert("Đã xảy ra lỗi! Bạn hãy hủy lại", "error");
+                    return RedirectToAction("Edit");
+                }
+            }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult ThongTinPhieuBaoHanh(int id)
+        {
+            ViewBag.chiTietPhieuBaoHanh = _phieuBaoHanhBus.thongTinChiTietPhieuBaoHanhTheoMa(id).ToList();
+            ViewBag.phieuBaoHanh = _phieuBaoHanhBus.thongTinPhieuBaoHanhTheoMa(id).ToList();
+            return View();
         }
 
     }

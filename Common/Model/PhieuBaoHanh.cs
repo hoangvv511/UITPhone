@@ -9,6 +9,12 @@
     [Table("PhieuBaoHanh")]
     public partial class PhieuBaoHanh
     {
+        public PhieuBaoHanh()
+        {
+            ChiTietPhieuBaoHanh = new HashSet<ChiTietPhieuBaoHanh>();
+        }
+
+        public virtual ICollection<ChiTietPhieuBaoHanh> ChiTietPhieuBaoHanh { get; set; }
         [Key]
         public int SoPhieuBaoHanh { get; set; }
 
