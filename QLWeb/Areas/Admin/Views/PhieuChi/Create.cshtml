@@ -35,18 +35,18 @@
                             <div class="form-body">
                                 <div class="form-group">
                                     <label>Số phiếu</label>
-                                    <input value="@ViewBag.soPhieuChiTuTang" type="text" id="soPhieuChi" class="form-control rounded" disabled="disabled" />
+                                    <input value="@ViewBag.soPhieuChiTuTang" type="text" id="soPhieuChi" class="form-control rounded" readonly="true"/>
                                 </div><!-- /.form-group -->
 
                                 <div class="form-group">
                                     <label>Ngày lập</label>
-                                    <input id="ngayChi" value="@DateTime.Now.ToString("dd/MM/yyyy")" disabled="disabled" type="text" class="form-control rounded" />
+                                    <input type="text" id="ngayChi" name="ngaychi" value="@DateTime.Now.ToString("dd/MM/yyyy")" class="form-control rounded" readonly="true" />
                                 </div><!-- /.form-group -->
 
                                 <div class="form-group">
                                     <label>Nhân viên</label>
-                                    <input value="@ViewBag.tenNhanVien" id="tenNhanVien" type="text" class="form-control rounded" disabled="disabled" />
-
+                                    <input value="@ViewBag.tenNhanVien" name="tenNhanVien" id="tenNhanVien" type="text" class="form-control rounded " readonly="true" />
+                                    <input value="@ViewBag.maNhanVien" name="manhanvien" id="maNhanVien" type="hidden" class="form-control rounded" readonly="true" />
                                 </div>
                                 <div class="form-group">
                                     <label>Số phiếu nhập</label>
