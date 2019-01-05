@@ -175,5 +175,6 @@
         public virtual DbSet<PhieuXuatKho> PhieuXuatKhos { get; set; }
 
         public virtual DbSet<ThamSo> ThamSos { get; set; }
+        
     }
 }

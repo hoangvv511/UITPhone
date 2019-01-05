@@ -54,6 +54,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Functions\GenericReponsitoryFuctions.cs" />
+    <Compile Include="Implements\BaoCaoBanHangReponsitory.cs" />
+    <Compile Include="Implements\BaoCaoDatHangReponsitory.cs" />
+    <Compile Include="Implements\BaoCaoHangHoaReponsitory.cs" />
+    <Compile Include="Implements\BaoCaoPhieuChiReponsitory.cs" />
     <Compile Include="Implements\BaoCaoTonKhoReponsitory.cs" />
     <Compile Include="Implements\ChiTietPhieuBanHangReponsitory.cs" />
     <Compile Include="Implements\ChiTietPhieuBaoHanhReponsitory.cs" />

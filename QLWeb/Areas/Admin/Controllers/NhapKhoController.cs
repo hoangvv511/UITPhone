@@ -23,6 +23,7 @@ namespace QLWeb.Areas.Admin.Controllers
         readonly HangHoaBusiness _hangHoaBus = new HangHoaBusiness();
         readonly NhanVienBusiness _nhanVienBus = new NhanVienBusiness();
         readonly NhaCungCapBusiness _nhaCungCapBus = new NhaCungCapBusiness();
+        readonly BaoCaoTonKhoBusiness _baoCaoTonkho = new BaoCaoTonKhoBusiness();
 
         // GET: Admin/NhapKho
         public ActionResult Index()
@@ -63,7 +64,15 @@ namespace QLWeb.Areas.Admin.Controllers
             bool status = false;
             if (ModelState.IsValid)
             {
-                await _phieuNhapKhoBus.Create(phieuNhap);
+                try
+                {
+                    await _baoCaoTonkho.Create(phieuNhap);
+                    await _phieuNhapKhoBus.Create(phieuNhap);
+                }
+                catch 
+                {
+                    await _phieuNhapKhoBus.Create(phieuNhap);
+                }
                 status = true;
                 SetAlert("Đã Lưu Phiếu Nhập Kho Thành Công!!!", "success");
             }

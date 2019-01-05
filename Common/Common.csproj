@@ -72,10 +72,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Functions\ExportExcel.cs" />
     <Compile Include="Functions\FindController.cs" />
     <Compile Include="Functions\FormatNumber.cs" />
     <Compile Include="Functions\Helper.cs" />
     <Compile Include="Functions\Md5Encode.cs" />
+    <Compile Include="Model\BaoCaoBanHang.cs" />
+    <Compile Include="Model\BaoCaoDatHang.cs" />
+    <Compile Include="Model\BaoCaoHangHoa.cs" />
+    <Compile Include="Model\BaoCaoPhieuChi.cs" />
     <Compile Include="Model\BaoCaoTonKho.cs" />
     <Compile Include="Model\ChiTietPhieuBanHang.cs" />
     <Compile Include="Model\ChiTietPhieuBaoHanh.cs" />
@@ -84,6 +89,7 @@
     <Compile Include="Model\ChiTietPhieuNhap.cs" />
     <Compile Include="Model\ChiTietPhieuXuatKho.cs" />
     <Compile Include="Model\ChucVu.cs" />
+    <Compile Include="Model\FilterBaoCaoTonKhoModel.cs" />
     <Compile Include="Model\HangHoa.cs" />
     <Compile Include="Model\LoaiHangHoa.cs" />
     <Compile Include="Model\NhaCungCap.cs" />
@@ -100,6 +106,11 @@
     <Compile Include="Model\QLWebDBEntities.cs" />
     <Compile Include="Model\ThamSo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BaoCaoBanHangViewModel.cs" />
+    <Compile Include="ViewModels\BaoCaoDatHangViewModel.cs" />
+    <Compile Include="ViewModels\BaoCaoHangHoaViewModel.cs" />
+    <Compile Include="ViewModels\BaoCaoPhieuChiViewModel.cs" />
+    <Compile Include="ViewModels\BaoCaoTonKhoViewModel.cs" />
     <Compile Include="ViewModels\HangHoaViewModel.cs" />
     <Compile Include="ViewModels\KiemKhoViewModel.cs" />
     <Compile Include="ViewModels\LoaiHangHoaViewModel.cs" />

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Common.ViewModels.BaoCaoTonKhoViewModel>
+<br />
+<table class="table table-bordered table-middle table-lilac">
+    <thead>
+        <tr>
+            <th class="text-center">
+                @Html.DisplayName("Mã báo cáo tồn kho")
+            </th>
+            <th class="text-center">
+                @Html.DisplayName("Tên hàng hóa")
+            </th>
+            <th class="text-center">
+                @Html.DisplayName("Số lượng tồn đầu")
+            </th>
+            <th class="text-center">
+                @Html.DisplayName("Số lượng nhập")
+            </th>
+            <th class="text-center">
+                @Html.DisplayName("Số lượng xuất")
+            </th>
+            <th class="text-center">
+                @Html.DisplayName("Số lượng tồn cuối")
+            </th>
+            <th class="text-center">
+                Hành động
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr style="text-align:center" class="border-warning">
+                <td>@item.maBaoCaoTonKho</td>
+                <td>@item.tenHangHoa</td>
+                <td>@item.soLuongTonDau</td>
+                <td>@item.soLuongNhap</td>
+                <td>@item.soLuongXuat</td>
+                <td>@item.soLuongTonCuoi</td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script src="~/Scripts/bootstrap.min.js"></script>
