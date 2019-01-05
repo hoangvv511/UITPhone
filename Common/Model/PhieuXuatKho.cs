@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,6 +8,13 @@ using System.Data.Entity.Spatial;
 [Table("PhieuXuatKho")]
 public partial class PhieuXuatKho
 {
+    public PhieuXuatKho()
+    {
+        ChiTietPhieuXuatKhos = new HashSet<ChiTietPhieuXuatKho>();
+    }
+
+    public virtual ICollection<ChiTietPhieuXuatKho> ChiTietPhieuXuatKhos { get; set; }
+
     [Key]
     public int SoPhieuXuatKho { get; set; }
 
