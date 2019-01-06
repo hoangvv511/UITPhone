@@ -206,7 +206,7 @@
             $(this).val('Please wait...');
 
             $.ajax({
-                url: "/NhapKho/Create",
+                url: "/NhapKho/LuuPhieuNhap",
                 //url: "/NhapKho/Create",
                 type: "POST",
                 data: JSON.stringify(data),

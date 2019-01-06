@@ -9,12 +9,11 @@
     [Table("BaoCaoPhieuChi")]
     public partial class BaoCaoPhieuChi
     {
-        [Key]
-        public int MaBaoCaoPhieuChi { get; set; }
+       
 
         public DateTime NgayChi { get; set; }
-
-        public string GhiChu { get; set; }
+        public int SoPhieuChi { get; set; }
+       
 
         public decimal TongTien { get; set; }
 

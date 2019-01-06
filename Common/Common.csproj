@@ -89,7 +89,6 @@
     <Compile Include="Model\ChiTietPhieuNhap.cs" />
     <Compile Include="Model\ChiTietPhieuXuatKho.cs" />
     <Compile Include="Model\ChucVu.cs" />
-    <Compile Include="Model\FilterBaoCaoTonKhoModel.cs" />
     <Compile Include="Model\HangHoa.cs" />
     <Compile Include="Model\LoaiHangHoa.cs" />
     <Compile Include="Model\NhaCungCap.cs" />
@@ -116,14 +115,11 @@
     <Compile Include="ViewModels\LoaiHangHoaViewModel.cs" />
     <Compile Include="ViewModels\NhanVienViewModel.cs" />
     <Compile Include="ViewModels\NhanVien_QuyenViewModel.cs" />
-
     <Compile Include="ViewModels\PhieuBaoHanhViewModel.cs" />
     <Compile Include="ViewModels\PhieuNhapViewModel.cs" />
     <Compile Include="ViewModels\PhieuXuatKhoViewModel.cs" />
-
     <Compile Include="ViewModels\PhieuBanHangViewModel.cs" />
     <Compile Include="ViewModels\PhieuChiViewModel.cs" />
-
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -8,7 +8,7 @@ namespace Common.ViewModels
 {
     public class BaoCaoHangHoaViewModel
     {
-        
+
         public int maBaoCaoHangHoa { get; set; }
         public string tenHangHoa { get; set; }
         public string modelName { get; set; }
@@ -19,6 +19,6 @@ namespace Common.ViewModels
         public bool trangThai { get; set; }
         public int soLuongTon { get; set; }
         public int maHangHoa { get; set; }
-       
+
     }
 }

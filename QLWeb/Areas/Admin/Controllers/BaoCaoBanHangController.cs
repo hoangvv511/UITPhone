@@ -1,6 +1,10 @@
 ﻿using Business.Implements;
+using Common.ViewModels;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,6 +14,7 @@ namespace QLWeb.Areas.Admin.Controllers
     public class BaoCaoBanHangController : BaseController
     {
         // GET: Admin/BaoCaoBanHang
+        readonly BaoCaoBanHangBusiness _baoCaoBanHangBus = new BaoCaoBanHangBusiness();
         readonly BaoCaoTonKhoBusiness _baoCaoTonKhoBus = new BaoCaoTonKhoBusiness();
         readonly PhieuKiemKhoBusiness _phieuKiemKhoBus = new PhieuKiemKhoBusiness();
         readonly HangHoaBusiness _hangHoaBus = new HangHoaBusiness();
@@ -19,9 +24,7 @@ namespace QLWeb.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.trangthai = new SelectList(new[]{ new { Value = "true", Text = "Hoàn thành" },
-                                                    new { Value = "false", Text = "Đã hủy" }},
-                                               "Value", "Text");
+            
             return View();
         }
 
@@ -50,38 +53,47 @@ namespace QLWeb.Areas.Admin.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
-        //[HttpPost]
-        //public async Task<JsonResult> LuuPhieuKiemKho(KiemKhoViewModel phieuKiemKho)
-        //{
-        //    bool status = false;
-        //    if (ModelState.IsValid)
-        //    {
-        //        await _phieuKiemKhoBus.Create(phieuKiemKho);
-        //        status = true;
-        //        SetAlert("Đã Lưu Phiếu Kiểm Kho Thành Công!!!", "success");
-        //    }
-        //    else
-        //    {
-        //        status = false;
-        //        SetAlert("Đã Xảy Ra Lỗi! Bạn Hãy Tạo Lại Phiếu Kiểm Kho", "error");
-        //    }
-        //    return new JsonResult { Data = new { status = status } };
-        //}
-
-        //public ActionResult DanhSachBaoCaoTonKho(int thang, int nam, int page = 1, int pageSize = 10)
-        //{
-
-        //    return View(_baoCaoTonKhoBus.SearchDanhSachBaoCaoTonKho(thang, nam, HomeController.userName).ToPagedList(page, pageSize));
-
-        //}
-        public ActionResult DanhSachBaoCaoBanHang()
+        public ActionResult DanhSachBaoCaoBanHang(string dateFrom, string dateTo)
         {
-
-            return View();
+            var res = _baoCaoBanHangBus.GetListBaoCao(Convert.ToDateTime(dateFrom), Convert.ToDateTime(dateTo), HomeController.userName);
+            HttpContext.Session["BaoCaoBanHang"] = res;
+            return View(res);
 
         }
 
+        public ActionResult XuatExcel()
+        {
+            var models = (List<BaoCaoBanHangViewModel>)HttpContext.Session["BaoCaoBanHang"];
+            if (models == null) return View("Index");
+            using (ExcelPackage pck = new ExcelPackage(new FileInfo(Server.MapPath("~/Templates/BaoCaoBanHang.xlsx"))))
+            {
+                var ws = pck.Workbook.Worksheets[1];
 
+                for (var i = 0; i < models.Count; i++)
+                {
+                   
+                    ws.Cells["A" + (i + 2)].Value = models[i].ngayBan;
+                    ws.Cells["A" + (i + 2)].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    ws.Cells["A" + (i + 2)].Style.Border.BorderAround(ExcelBorderStyle.Thin, System.Drawing.Color.Black);
+
+                    ws.Cells["B" + (i + 2)].Value = models[i].soDonHang;
+                    ws.Cells["B" + (i + 2)].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    ws.Cells["B" + (i + 2)].Style.Border.BorderAround(ExcelBorderStyle.Thin, System.Drawing.Color.Black);
+
+                    ws.Cells["C" + (i + 2)].Value = models[i].tongTien;
+                    ws.Cells["C" + (i + 2)].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    ws.Cells["C" + (i + 2)].Style.Border.BorderAround(ExcelBorderStyle.Thin, System.Drawing.Color.Black);
+
+                }
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                Response.AppendHeader("content-disposition",
+                                   $"attachment;  filename=BaoCaoBanHang_{DateTime.Now}.xlsx");
+                System.Web.HttpContext.Current.ApplicationInstance.CompleteRequest();
+                var ms = new MemoryStream(pck.GetAsByteArray());
+                HttpContext.Session["FileBaoCaoBanHang"] = ms;
+                return File(ms, Response.ContentType);
+            }
+        }
         public ActionResult Delete(int id)
         {
             return View();
@@ -92,33 +104,7 @@ namespace QLWeb.Areas.Admin.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public async Task<ActionResult> Deletes(int id, string quaylai)
-        //{
-        //    if (quaylai == null)
-        //        return RedirectToAction("Index");
-        //    PhieuKiemKho huyPhieuKiemKho = (PhieuKiemKho)await _phieuKiemKhoBus.Find(id);
-
-        //    if (huyPhieuKiemKho == null)
-        //    {
-        //        SetAlert("Đã xảy ra lỗi! Bạn hãy hủy lại", "error");
-        //        return RedirectToAction("Edit");
-        //    }
-        //    else
-        //    {
-        //        try
-        //        {
-        //            await _phieuKiemKhoBus.HuyPhieuKiemKho(huyPhieuKiemKho);
-        //            SetAlert("Đã hủy phiếu kiểm kho thành công!!!", "success");
-        //        }
-        //        catch
-        //        {
-        //            SetAlert("Đã xảy ra lỗi! Bạn hãy hủy lại", "error");
-        //            return RedirectToAction("Edit");
-        //        }
-        //    }
-        //    return RedirectToAction("Index");
-        //}
+      
 
         public ActionResult ThongTinPhieuKiemKho(int id)
         {

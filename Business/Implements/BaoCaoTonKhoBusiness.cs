@@ -13,30 +13,17 @@ namespace Business.Implements
     {
         QLWebDBEntities dbContext;
         private readonly BaoCaoTonKhoReponsitory _baoCaoTonKhoRepo;
-        private readonly PhieuKiemKhoReponsitory _phieuKiemKhoRepo;
-        private readonly PhieuXuatKhoReponsitory _phieuXuatKhoRepo;
-        private readonly ChiTietPhieuXuatKhoReponsitory _chiTietPhieuXuatKho;
-        private readonly ChiTietPhieuKiemKhoReponsitory _chiTietPhieuKiemKhoRepo;
-        private readonly NhanVienReponsitory _nhanVienRepo;
-        private readonly HangHoaReponsitory _hangHoaRepo;
-        private readonly PhieuNhapReponsitory _phieuNhapRepo;
-        private readonly PhieuBanHangReponsitory _phieuBanHangRepo;
+         private readonly HangHoaReponsitory _hangHoaRepo;
         private readonly NhanVienBusiness _nhanVienBus;
-        private readonly ChiTietPhieuNhapReponsitory _chitietPhieuNhapRepo;
-        private readonly ChiTietPhieuBanHangReponsitory _chitietPhieuBanHangRepo;
+
+
 
         public BaoCaoTonKhoBusiness()
         {
             dbContext = new QLWebDBEntities();
-            _phieuKiemKhoRepo = new PhieuKiemKhoReponsitory(dbContext);
-            _nhanVienRepo = new NhanVienReponsitory(dbContext);
+        
             _hangHoaRepo = new HangHoaReponsitory(dbContext);
-            _chiTietPhieuKiemKhoRepo = new ChiTietPhieuKiemKhoReponsitory(dbContext);
-            _nhanVienBus = new NhanVienBusiness();
-            _phieuNhapRepo = new PhieuNhapReponsitory(dbContext);
-            _phieuBanHangRepo = new PhieuBanHangReponsitory(dbContext);
-            _chitietPhieuNhapRepo = new ChiTietPhieuNhapReponsitory(dbContext);
-            _chitietPhieuBanHangRepo = new ChiTietPhieuBanHangReponsitory(dbContext);
+       _baoCaoTonKhoRepo = new BaoCaoTonKhoReponsitory(dbContext);
         }
 
         public IList<BaoCaoTonKhoViewModel> GetListBaoCao(int thang, int nam)
@@ -61,7 +48,9 @@ namespace Business.Implements
                                      SoLuongTonDau=baocaotonkho.SoLuongTonDau,
                                      SoLuongNhap=baocaotonkho.SoLuongNhap,
                                      SoLuongXuat=baocaotonkho.SoLuongXuat,
-                                     SoLuongTonCuoi=baocaotonkho.SoLuongTonCuoi
+                                     SoLuongTonCuoi=baocaotonkho.SoLuongTonCuoi,
+                                     TenHangHoa=hanghoa.TenHangHoa,
+                                     DonViTinh=hanghoa.DonViTinh
 
 
 
@@ -74,7 +63,9 @@ namespace Business.Implements
                                          soLuongTonDau = x.SoLuongTonDau,
                                          soLuongNhap=x.SoLuongNhap,
                                          soLuongXuat=x.SoLuongXuat,
-                                         soLuongTonCuoi=x.SoLuongTonCuoi
+                                         soLuongTonCuoi=x.SoLuongTonCuoi,
+                                         tenHangHoa=x.TenHangHoa,
+                                         donViTinh=x.DonViTinh
                                      }).OrderByDescending(x => x.maBaoCaoTonKho).ToList();
                     return allForManager;
                 }
@@ -91,8 +82,9 @@ namespace Business.Implements
                                  SoLuongTonDau = baocaotonkho.SoLuongTonDau,
                                  SoLuongNhap = baocaotonkho.SoLuongNhap,
                                  SoLuongXuat = baocaotonkho.SoLuongXuat,
-                                 SoLuongTonCuoi = baocaotonkho.SoLuongTonCuoi
-
+                                 SoLuongTonCuoi = baocaotonkho.SoLuongTonCuoi,
+                                 TenHangHoa=hanghoa.TenHangHoa,
+                                 DonViTinh=hanghoa.DonViTinh
 
 
                              }).AsEnumerable().Select(x => new BaoCaoTonKhoViewModel()
@@ -104,7 +96,10 @@ namespace Business.Implements
                                  soLuongTonDau = x.SoLuongTonDau,
                                  soLuongNhap = x.SoLuongNhap,
                                  soLuongXuat = x.SoLuongXuat,
-                                 soLuongTonCuoi = x.SoLuongTonCuoi
+                                 soLuongTonCuoi = x.SoLuongTonCuoi,
+                                 tenHangHoa=x.TenHangHoa,
+                                 donViTinh=x.DonViTinh
+                                 
                              }).OrderByDescending(x => x.maBaoCaoTonKho).ToList();
             return allForManager;
 

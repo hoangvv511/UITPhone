@@ -161,6 +161,7 @@ namespace Business.Implements
                        }).OrderByDescending(x => x.soPhieuBanHang).ToList();
                 return all;
             }
+            ////////////////
             else
             {
                 if ((!(tungay == default(DateTime))) && (!(denngay == default(DateTime))))

@@ -5,6 +5,9 @@ using Common.ViewModels;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using PagedList;
+using Spire.Pdf;
+using Spire.Xls;
+using Spire.Xls.Converter;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -52,9 +55,9 @@ namespace QLWeb.Areas.Admin.Controllers
         }
         public ActionResult DanhSachBaoCaoTonKho(string thang , string nam)
         {
-
-            
-            return View(_baoCaoTonKhoBus.GetListBaoCao(Convert.ToInt32(thang), Convert.ToInt32(nam)));
+            var res = _baoCaoTonKhoBus.GetListBaoCao(Convert.ToInt32(thang), Convert.ToInt32(nam));
+            HttpContext.Session["BaoCaoTonKho"] = res;
+            return View(res);
         }
         public ActionResult Delete(int id)
         {
@@ -65,9 +68,10 @@ namespace QLWeb.Areas.Admin.Controllers
         {
             return View();
         }
-        public ExportExcel XuatExcel()
+        public ActionResult XuatExcel()
         {
             var models = (List<BaoCaoTonKhoViewModel>)HttpContext.Session["BaoCaoTonKho"];
+            if (models == null) return View("Index");
             using (ExcelPackage pck = new ExcelPackage(new FileInfo(Server.MapPath("~/Templates/BaoCaoTonKho.xlsx"))))
             {
                 var ws = pck.Workbook.Worksheets[1];
@@ -106,7 +110,7 @@ namespace QLWeb.Areas.Admin.Controllers
                     ws.Cells["H" + (i + 2)].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                     ws.Cells["H" + (i + 2)].Style.Border.BorderAround(ExcelBorderStyle.Thin, System.Drawing.Color.Black);
 
-                    ws.Cells["I" + (i + 2)].Value = models[i].soLuongXuat;
+                    ws.Cells["I" + (i + 2)].Value = models[i].soLuongTonCuoi;
                     ws.Cells["I" + (i + 2)].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                     ws.Cells["I" + (i + 2)].Style.Border.BorderAround(ExcelBorderStyle.Thin, System.Drawing.Color.Black);
 
@@ -118,10 +122,24 @@ namespace QLWeb.Areas.Admin.Controllers
                 Response.AppendHeader("content-disposition",
                                    $"attachment;  filename=BaoCaoTonKho_{DateTime.Now}.xlsx");
                 System.Web.HttpContext.Current.ApplicationInstance.CompleteRequest();
-                return new ExportExcel(pck.GetAsByteArray(), Response.ContentType);
-                //return File(pck.GetAsByteArray(), System.Net.Mime.MediaTypeNames.Application.Octet, "BaoCaoTonKho.xlsx");
-                //return File(pck.GetAsByteArray(), "application/vnd.ms-excel", "BaoCaoTonKho");
+                var ms = new MemoryStream(pck.GetAsByteArray());
+                HttpContext.Session["FileBaoCaoTonKho"] = ms;
+                return File(ms, Response.ContentType);
             }
+        }
+        public MemoryStream XuatPdf()
+        {
+            var stream = (MemoryStream)HttpContext.Session["FileBaoCaoTonKho"];
+            MemoryStream pdfMemoryStream = new MemoryStream();
+            
+            Workbook workbook = new Workbook();
+            workbook.LoadFromStream(stream, ExcelVersion.Version2013);
+            PdfConverter pdfConverter = new PdfConverter(workbook);
+            PdfConverterSettings settings = new PdfConverterSettings();
+            PdfDocument pdfDocument = pdfConverter.Convert(settings);
+            pdfDocument.SaveToStream(pdfMemoryStream);
+
+            return pdfMemoryStream;
         }
         public ActionResult ThongTinPhieuKiemKho(int id)
         {

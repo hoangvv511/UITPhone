@@ -13,24 +13,49 @@ namespace Business.Implements
     {
         QLWebDBEntities dbContext;
         private readonly PhieuChiReponsitory _PhieuChiRepo;
+        private readonly BaoCaoPhieuChiReponsitory _baoCaoPhieuChiRepo;
 
         public BaoCaoPhieuChiBusiness()
         {
+            dbContext = new QLWebDBEntities();
             _PhieuChiRepo = new PhieuChiReponsitory(dbContext);
+            _baoCaoPhieuChiRepo = new BaoCaoPhieuChiReponsitory(dbContext);
+        }
+        public IList<BaoCaoPhieuChiViewModel> GetListBaoCao(DateTime dateFrom, DateTime dateTo)
+        {
+            
+            IQueryable<BaoCaoPhieuChi> danhSachBaoCaoPhieuChi = _baoCaoPhieuChiRepo.GetAll();
+            IQueryable<PhieuChi> danhSachPhieuChi = _PhieuChiRepo.GetAll();
+
+            List<BaoCaoPhieuChiViewModel> allForManager = new List<BaoCaoPhieuChiViewModel>();
+
+            if ((!(dateFrom == default(DateTime))) && (!(dateTo == default(DateTime))))
+            {
+
+                allForManager = (from phieuchi in danhSachPhieuChi                        
+                                 where (phieuchi.NgayChi >= dateFrom.Date && phieuchi.NgayChi <= dateTo.Date)
+                                 group phieuchi by phieuchi.NgayChi into pgroup
+                                 select new
+                                 {
+                                        NgayChi = pgroup.Key,
+                                     SoPhieuChi = pgroup.Count(),
+                                     TongTien = pgroup.Sum(phieuchi => phieuchi.TongTienChi)
+
+                                 }).AsEnumerable().Select(x => new BaoCaoPhieuChiViewModel()
+                                 {
+                                     ngayChi = x.NgayChi,
+                                     soPhieuChi=x.SoPhieuChi,
+                                     tongTien = x.TongTien
+
+                                 }).OrderByDescending(x => x.tongTien).ToList();
+
+            }
+
+            return allForManager;
+
+
+
         }
 
-        public List<BaoCaoPhieuChiViewModel> GetList(DateTime? date)
-        {
-            var phieuchi = _PhieuChiRepo.GetAll();
-            if (date.HasValue) phieuchi = phieuchi.Where(t => t.NgayChi == date);
-            var models = phieuchi.AsEnumerable().Select(x => new BaoCaoPhieuChiViewModel()
-            {
-                maBaoCaoPhieuChi = x.SoPhieuChi,
-                ngayChi = x.NgayChi,
-                tongTien = x.TongTienChi,
-                ghiChu = x.GhiChu,
-            }).OrderByDescending(x => x.maBaoCaoPhieuChi).ToList();
-            return models;
-        }
     }
 }
