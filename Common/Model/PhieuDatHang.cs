@@ -10,7 +10,7 @@
     public partial class PhieuDatHang
     {
 
-        public virtual ICollection<ChiTietPhieuDatHang> ChiTietPhieuDatHangs { get; set; }
+       
         [Key]
         public int SoPhieuDatHang { get; set; }
 
@@ -53,5 +53,7 @@
         public string Value { get; set; }
 
         public int Value1 { get; set; }
+
+        public virtual ICollection<ChiTietPhieuDatHang> ChiTietPhieuDatHangs { get; set; }
     }
 }

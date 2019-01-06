@@ -2,7 +2,7 @@
 @model PagedList.IPagedList<Common.ViewModels.LoaiHangHoaViewModel>
 
 <div class="table-responsive">
-    <table class="table table-bordered table-middle table-lilac">
+    <table class="table table-bordered table-middle table-primary">
         <thead>
             <tr>
                 <th class="text-center" style="width: 20%;">Mã loại hàng hóa</th>
@@ -20,7 +20,7 @@
                     <td>@item.phanTramLoiNhuan</td>
                     <td>
                         <a href="@Url.Action("Detail", new { id = item.maLoaiHangHoa })" class="btn btn-sm btn-success btn-xs btn-push"><i class="fa fa-eye"></i> Xem</a>
-                        <a href="@Url.Action("Edit", new { id = item.maLoaiHangHoa })" class="btn btn-sm btn-primary btn-xs btn-push"><i class="fa fa-pencil"></i> Sửa</a>
+                        <a href="@Url.Action("Edit", new { id = item.maLoaiHangHoa })" class="btn btn-sm btn-warning btn-xs btn-push"><i class="fa fa-pencil"></i> Sửa</a>
                     </td>
                 </tr>
             }

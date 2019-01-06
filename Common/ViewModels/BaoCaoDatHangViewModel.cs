@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Common.ViewModels
 {
-    class BaoCaoDatHangViewModel
+    public class BaoCaoDatHangViewModel
     {
+        public DateTime ngayDat { get; set; }
+        public int soDonHang { get; set; }
+        public decimal tongTien { get; set; }
     }
 }
