@@ -656,5 +656,10 @@ namespace Business.Implements
                    }).ToList();
             return all;
         }
+
+        public HangHoa ViewDetail(int id)
+        {
+            return _dbContext.HangHoas.Find(id);
+        }
     }
 }
