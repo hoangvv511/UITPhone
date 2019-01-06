@@ -2,7 +2,7 @@
 @model PagedList.IPagedList<Common.ViewModels.HangHoaViewModel>
 
 <div class="table-responsive">
-    <table class="table table-bordered table-middle table-lilac">
+    <table class="table table-bordered table-middle table-primary">
         <thead>
             <tr>
                 <th class="text-center" style="width: 5%;">Mã hàng hóa</th>
@@ -24,7 +24,7 @@
                 <tr class="border-warning">
                     <td>@item.maHangHoa</td>
                     <td>
-                        <img src="~/Content/client/product/@item.hinhAnh" width="50" height="50" class="img-circle img-bordered-theme">
+                        <img src="~/Content/client/product/@item.hinhAnh" width="50" height="50">
                         <span>@item.tenHangHoa</span>
                     </td>
                     <td>@item.giaBan</td>
@@ -44,7 +44,7 @@
                     }
                     <td>
                         <a href="@Url.Action("Detail", new { id = item.maHangHoa })" class="btn btn-sm btn-success btn-xs btn-push"><i class="fa fa-eye"></i> Xem</a>
-                        <a href="@Url.Action("Edit", new { id = item.maHangHoa })" class="btn btn-sm btn-primary btn-xs btn-push"><i class="fa fa-pencil"></i> Sửa</a>
+                        <a href="@Url.Action("Edit", new { id = item.maHangHoa })" class="btn btn-sm btn-warning btn-xs btn-push"><i class="fa fa-pencil"></i> Sửa</a>
                     </td>
                 </tr>
             }
