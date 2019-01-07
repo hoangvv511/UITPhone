@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Common.ViewModels.BaoCaoTonKhoViewModel>
+@using Common.ViewModels
+@{
+    ViewBag.Title = "Danh sách phiếu kiểm kho";
+    Layout = "~/Areas/Admin/Views/Layout/HomeLayout.cshtml";
+}
+<section id="page-content">
+    <div class="header-content">
+        <div class="breadcrumb-wrapper hidden-xs">
+            <button class="btn btn-lg btn-success btn-xs btn-push" id="submit"><i class="glyphicon glyphicon-save"></i>@Html.ActionLink("Xuất EXCEL","XuatExcel","BaoCaoTonKho")</button>
+            <button class="btn btn-lg btn-success btn-xs btn-push" id="print"><i class="glyphicon glyphicon-print"></i>@Html.ActionLink("Xuất PDF", "XuatPdf", "BaoCaoTonKho")</button>
+        </div>
+    </div>
+    <div class="body-content animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel rounded shadow">
+                    <div class="panel-heading">
+                        <div class="pull-left">
+                            <h3 class="panel-title">Danh sách báo cáo tồn kho</h3>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div><!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="form-body">
+                            @using (Ajax.BeginForm("DanhSachBaoCaoTonKho", "BaoCaoTonKho", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "list", HttpMethod = "Get" }, new { id = "filter_div" }))
+                            {
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label>Mã hàng hóa</label>
+                                        <div class="input-group">
+                                            @Html.TextBox("thang", null, new { @class = "form-control rounded", @placeholder = "Tìm kiếm theo tháng" })
+                                        </div>
+                                        <div class="input-group">
+                                            @Html.TextBox("nam", null, new { @class = "form-control rounded", @placeholder = "Tìm kiếm theo năm" })
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+  
+                            }
+                          
+                            <div id="list">
+                                @{Html.RenderAction("DanhSachBaoCaoTonKho", "BaoCaoTonKho");}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

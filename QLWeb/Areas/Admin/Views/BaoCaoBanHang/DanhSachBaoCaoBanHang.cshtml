@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Common.ViewModels.BaoCaoBanHangViewModel>
+<br />
+<table class="table table-bordered table-middle table-lilac">
+    <thead>
+        <tr>
+            
+            <th class="text-center">
+                @Html.DisplayName("Ngày bán")
+            </th>
+
+            <th class="text-center">
+                @Html.DisplayName("Số đơn hàng")
+            </th>
+            <th class="text-center">
+                @Html.DisplayName("Tổng tiền")
+            </th>                            
+        </tr>   
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+            {
+        <tr style="text-align:center" class="border-warning">
+            <td>@item.ngayBan</td>
+            <td>@item.soDonHang</td>
+            <td>@item.tongTien</td>           
+               
+        </tr>
+        }
+    </tbody>
+</table>
+<script src="~/Scripts/bootstrap.min.js"></script>
