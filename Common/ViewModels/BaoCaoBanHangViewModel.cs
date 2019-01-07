@@ -8,7 +8,6 @@ namespace Common.ViewModels
 {
     public class BaoCaoBanHangViewModel
     {
-        public int maBaoCaoBanHang { get; set; }
         public DateTime ngayBan { get; set; }
         public int soDonHang { get; set; }
         public decimal tongTien { get; set; }

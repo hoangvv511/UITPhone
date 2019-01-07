@@ -85,7 +85,7 @@
         }
     });
 
-    
+
     $('#print').click(function () {
         Print();
     });
@@ -181,8 +181,8 @@
                 contentType: "application/json",
                 success: function (d) {
                     //Kiểm tra nếu thành công thì lưu vô database
-                    if (d.status == true) {                        
-                        
+                    if (d.status == true) {
+
                         orderItems = [];
                         $('#soPhieuKiemKho').val('');
                         $('#ngayKiemKho').val('');
@@ -252,20 +252,36 @@ function HideErrorProductName() {
 }
 
 $(document).ready(function () {
+    $('#maHangHoa').ready(function () {
+        $.getJSON('/KiemKho/LoadThongTinHangHoa',
+            { id: $('#maHangHoa').val() },
+            function (data) {
+                if (data != null) {
+                    $.each(data, function (index, row) {
+                        $("#tenHangHoa").val(row.TenHangHoa);
+                        $("#soLuongHienTai").val(row.SoLuongTon);
+                        $("#donViTinh").val(row.DonViTinh);
+                    });
+                }
+            });
+    });
+});
+
+$(document).ready(function () {
     $('#maHangHoa').on("change", function () {
         $.getJSON('/KiemKho/LoadThongTinHangHoa',
-                    { id: $('#maHangHoa').val() },
-                    function (data) {
-                        if (data != null) {
-                            $.each(data, function (index, row) {
-                                $("#tenHangHoa").val(row.TenHangHoa);
-                                $("#soLuongHienTai").val(row.SoLuongTon);
-                                $("#donViTinh").val(row.DonViTinh);
-                            });
-                        }
+            { id: $('#maHangHoa').val() },
+            function (data) {
+                if (data != null) {
+                    $.each(data, function (index, row) {
+                        $("#tenHangHoa").val(row.TenHangHoa);
+                        $("#soLuongHienTai").val(row.SoLuongTon);
+                        $("#donViTinh").val(row.DonViTinh);
                     });
+                }
+            });
     });
-})
+});
 
 $(document).ready(function () {
     $("#soLuongKiemTra").on('keyup input propertychange paste change', function () {
@@ -275,19 +291,25 @@ $(document).ready(function () {
 
 // Kiểm tra số lượng
 function CheckQuantity(error) {
-    if (!($('#soLuongKiemTra').val().trim() != '' && !isNaN($('#soLuongKiemTra').val().trim()))) {
-    //if ($("#soLuongKiemTra").val() == '') {
+    var soLuongKiemTra = $('#soLuongKiemTra').val();
+    var soLuongHienTai = $('#soLuongHienTai').val();
+    if ($('#soLuongKiemTra').val() == 0 || (!($('#soLuongKiemTra').val().trim() != '' && !isNaN($('#soLuongKiemTra').val().trim())))) {
         $(".messageErrorinputQuantity").text("Nhập số lượng!");
         $(".notifyinputQuantity").slideDown(250).removeClass("hidden");
         $("#soLuongKiemTra").addClass("error");
         error++;
     }
     else {
-        $(".notifyinputQuantity").addClass("hidden");
-        $("#soLuongKiemTra").removeClass("error");
+        if (soLuongKiemTra > soLuongHienTai) {
+            $(".messageErrorinputQuantity").text("Số lượng không hợp lệ!");
+            $(".notifyinputQuantity").slideDown(250).removeClass("hidden");
+            $("#soLuongKiemTra").addClass("error");
+            error++;
+        }
+        else {
+            $(".notifyinputQuantity").addClass("hidden");
+            $("#soLuongKiemTra").removeClass("error");
+        }
     }
-    $("#soLuongKiemTra").blur(function () {
-        $("#soLuongKiemTra").val($("#soLuongKiemTra").val().trim());
-    });
     return error;
 }

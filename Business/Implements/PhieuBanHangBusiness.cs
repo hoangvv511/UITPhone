@@ -334,40 +334,35 @@ namespace Business.Implements
             }
         }
 
-        public IEnumerable<ChiTietPhieuBanHang> thongTinChiTietPhieuBanHangTheoMa(int soPhieuBanHang)
+        public IList<ChiTietPhieuBanHangViewModel> danhSachPhieuBanHangTheoMa(int soPhieuBanHang)
         {
             IQueryable<ChiTietPhieuBanHang> dsChiTietPhieuBanHang = _chiTietPhieuBanHangRepo.GetAll();
+            List<ChiTietPhieuBanHangViewModel> all = new List<ChiTietPhieuBanHangViewModel>();
 
-            var all = (from chitietphieubanhang in dsChiTietPhieuBanHang
-                       join hanghoa in _hangHoaRepo.GetAll()
-                       on chitietphieubanhang.MaHangHoa equals hanghoa.MaHangHoa
-                       select new
-                       {
-                           SoPhieuBanHang = chitietphieubanhang.SoPhieuBanHang,
-                           MaHangHoa = hanghoa.MaHangHoa,
-                           SoLuong = chitietphieubanhang.SoLuong,
-                           TenHangHoa = hanghoa.TenHangHoa,
-                           DonViTinh = hanghoa.DonViTinh,
-                           Gia = chitietphieubanhang.Gia,
-                           ThanhTien=chitietphieubanhang.ThanhTien
+            all = (from chitietphieubanhang in dsChiTietPhieuBanHang
+                   join hanghoa in _hangHoaRepo.GetAll()
+                   on chitietphieubanhang.MaHangHoa equals hanghoa.MaHangHoa
+                   select new
+                   {
+                       SoPhieuBanHang = chitietphieubanhang.SoPhieuBanHang,
+                       MaHangHoa = chitietphieubanhang.MaHangHoa,
+                       SoLuong = chitietphieubanhang.SoLuong,
+                       Gia = chitietphieubanhang.Gia,
+                       ThanhTien = chitietphieubanhang.ThanhTien,
+                       tenHangHoa = hanghoa.TenHangHoa,
+                   }).AsEnumerable().Select(x => new ChiTietPhieuBanHangViewModel()
+                   {
+                       soPhieuBanHang = x.SoPhieuBanHang,
+                       maHangHoa = x.MaHangHoa,
+                       soLuong = x.SoLuong,
+                       gia = x.Gia,
+                       thanhTien = x.ThanhTien,
+                       tenHangHoa = x.tenHangHoa,
+                   }).ToList();
 
-                       }).AsEnumerable().Select(x => new ChiTietPhieuBanHang()
-                       {
-                           SoPhieuBanHang = x.SoPhieuBanHang,
-                           MaHangHoa = x.MaHangHoa,
-                           SoLuong = x.SoLuong,
-                           Gia = x.Gia,
-                           ThanhTien = x.ThanhTien
-
-                       }).ToList();
-
-            //Lấy thông tin chi tiết phiếu từ số phiếu kiểm kho
             var information = (from i in all
-                               where (i.SoPhieuBanHang == soPhieuBanHang)
+                               where (i.soPhieuBanHang == soPhieuBanHang)
                                select i).ToList();
-            //PhieuBanHangViewModel model = new PhieuBanHangViewModel();
-            //model.chiTietPhieuBanHang = information;
-            //Select * from all where soPhieuBanHang == soPhieuBanHang
             return information.ToList();
         }
 
@@ -385,15 +380,21 @@ namespace Business.Implements
                        SoPhieuBanHang = phieubanhang.SoPhieuBanHang,
                        NgayBan = phieubanhang.NgayBan,
                        TenNhanVien = nhanvien.TenNhanvien,
+                       TenKhachHang = phieubanhang.TenKhachHang,
+                       SoDienThoai = phieubanhang.SoDienThoai,
+                       TongTien = phieubanhang.TongTien,
+                       GhiChu = phieubanhang.Ghichu,
                        TrangThai = phieubanhang.TrangThai,
-                       ChuThich = phieubanhang.Ghichu,
                    }).AsEnumerable().Select(x => new PhieuBanHangViewModel()
                    {
                        soPhieuBanHang = x.SoPhieuBanHang,
                        ngayBan = x.NgayBan,
                        tenNhanVien = x.TenNhanVien,
-                       trangThai = x.TrangThai,
-                       ghiChu = x.ChuThich,
+                       tenKhachHang = x.TenKhachHang,
+                       soDienThoai = x.SoDienThoai,
+                       tongTien = x.TongTien,
+                       ghiChu = x.GhiChu,
+                       trangThai = x.TrangThai
                    }).ToList();
             return all;
         }

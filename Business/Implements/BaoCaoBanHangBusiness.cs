@@ -27,108 +27,71 @@ namespace Business.Implements
             _phieuBanHangRepo = new PhieuBanHangReponsitory(dbContext);
         }
 
-        public IList<BaoCaoBanHangViewModel> GetListBaoCao(DateTime dateFrom, DateTime dateTo, string userName)
+        public IList<BaoCaoBanHangViewModel> ListView(string userName, DateTime dateFrom, DateTime dateTo)
         {
-            IQueryable<BaoCaoBanHang> danhSachBaoCaoBanHang = _baoCaoBanHangRepo.GetAll();
             IQueryable<PhieuBanHang> danhSachPhieuBanHang = _phieuBanHangRepo.GetAll();
-            IQueryable<NhanVien> danhSachNhanVien = _nhanVienRepo.GetAll();
             List<BaoCaoBanHangViewModel> all = new List<BaoCaoBanHangViewModel>();
             List<BaoCaoBanHangViewModel> allForManager = new List<BaoCaoBanHangViewModel>();
+
             if (_nhanVienBus.layMaChucVu(userName) == 4)
             {
-
-                if ((!(dateFrom == default(DateTime))) && (!(dateTo == default(DateTime))))
-                {
-
-                    all = (from phieubanhang in danhSachPhieuBanHang
-                           join nhanvien in danhSachNhanVien
-                           on phieubanhang.MaNhanVien equals nhanvien.MaNhanVien
-                           where (nhanvien.MaNhanVien.Equals(userName) && phieubanhang.NgayBan >= dateFrom.Date && phieubanhang.NgayBan <= dateTo.Date)
-                           group phieubanhang by phieubanhang.NgayBan into pgroup
-                           select new
-                           {
-                               NgayBan = pgroup.Key,
-                               SoDonHang = pgroup.Count(),
-                               TongTien = pgroup.Sum(phieubanhang => phieubanhang.TongTien)
-
-                           }).AsEnumerable().Select(x => new BaoCaoBanHangViewModel()
-                           {
-                               ngayBan = x.NgayBan,
-                               soDonHang = x.SoDonHang,
-                               tongTien = x.TongTien,
-
-                           }).OrderByDescending(x => x.soDonHang).ToList();
-                    return all;
-                }
-
-                all = (from phieubanhang in danhSachPhieuBanHang
-                       join nhanvien in danhSachNhanVien
-                       on phieubanhang.MaNhanVien equals nhanvien.MaNhanVien
-                       where (nhanvien.MaNhanVien.Equals(userName))
-                       group phieubanhang by phieubanhang.NgayBan into pgroup
+                all = (from phieuBanHang in danhSachPhieuBanHang
+                       join nhanvien in _nhanVienRepo.GetAll()
+                       on phieuBanHang.MaNhanVien equals nhanvien.MaNhanVien
+                       where (nhanvien.UserName.Equals(userName))
                        select new
                        {
-                           NgayBan = pgroup.Key,
-                           SoDonHang = pgroup.Count(),
-                           TongTien = pgroup.Sum(phieubanhang => phieubanhang.TongTien)
-
+                           NgayBan = phieuBanHang.NgayBan,
+                           SoDonHang = 0,
+                           TongTien = phieuBanHang.TongTien
                        }).AsEnumerable().Select(x => new BaoCaoBanHangViewModel()
                        {
                            ngayBan = x.NgayBan,
                            soDonHang = x.SoDonHang,
-                           tongTien = x.TongTien,
-
-                       }).OrderByDescending(x => x.soDonHang).ToList();
+                           tongTien = x.TongTien
+                       }).OrderBy(x => x.ngayBan).ToList();
                 return all;
-
             }
             else
             {
                 if ((!(dateFrom == default(DateTime))) && (!(dateTo == default(DateTime))))
                 {
-
-                    allForManager = (from phieubanhang in danhSachPhieuBanHang
-
-                                     where (phieubanhang.NgayBan >= dateFrom.Date && phieubanhang.NgayBan <= dateTo.Date)
-                                     group phieubanhang by phieubanhang.NgayBan into pgroup
+                    allForManager = (from phieuBanHang in danhSachPhieuBanHang
+                                     join nhanVien in _nhanVienRepo.GetAll()
+                                     on phieuBanHang.MaNhanVien equals nhanVien.MaNhanVien
+                                     where phieuBanHang.NgayBan >= dateFrom.Date && phieuBanHang.NgayBan <= dateTo.Date
+                                     group phieuBanHang by phieuBanHang.NgayBan into pgroup
                                      select new
                                      {
                                          NgayBan = pgroup.Key,
                                          SoDonHang = pgroup.Count(),
-                                         TongTien = pgroup.Sum(phieubanhang => phieubanhang.TongTien)
-
+                                         TongTien = pgroup.Sum(phieuBanHang => phieuBanHang.TongTien)
                                      }).AsEnumerable().Select(x => new BaoCaoBanHangViewModel()
                                      {
                                          ngayBan = x.NgayBan,
                                          soDonHang = x.SoDonHang,
-                                         tongTien = x.TongTien,
-
-                                     }).OrderByDescending(x => x.soDonHang).ToList();
-
+                                         tongTien = x.TongTien
+                                     }).OrderBy(x => x.ngayBan).ToList();
                     return allForManager;
                 }
-
-                allForManager = (from phieubanhang in danhSachPhieuBanHang
-
-                                 where (phieubanhang.NgayBan >= dateFrom.Date && phieubanhang.NgayBan <= dateTo.Date)
-                                 group phieubanhang by phieubanhang.NgayBan into pgroup
-                                 select new
-                                 {
-                                     NgayBan = pgroup.Key,
-                                     SoDonHang = pgroup.Count(),
-                                     TongTien = pgroup.Sum(phieubanhang => phieubanhang.TongTien)
-
-                                 }).AsEnumerable().Select(x => new BaoCaoBanHangViewModel()
-                                 {
-                                     ngayBan = x.NgayBan,
-                                     soDonHang = x.SoDonHang,
-                                     tongTien = x.TongTien,
-
-                                 }).OrderByDescending(x => x.soDonHang).ToList();
-
-                return allForManager;
-
-            } 
+            }
+            allForManager = (from phieuBanHang in danhSachPhieuBanHang
+                             join nhanVien in _nhanVienRepo.GetAll()
+                             on phieuBanHang.MaNhanVien equals nhanVien.MaNhanVien
+                             where phieuBanHang.NgayBan.Month == DateTime.Now.Month && phieuBanHang.NgayBan.Year == DateTime.Now.Year
+                             group phieuBanHang by phieuBanHang.NgayBan into pgroup
+                             select new
+                             {
+                                 NgayBan = pgroup.Key,
+                                 SoDonHang = pgroup.Count(),
+                                 TongTien = pgroup.Sum(phieuBanHang => phieuBanHang.TongTien)
+                             }).AsEnumerable().Select(x => new BaoCaoBanHangViewModel()
+                             {
+                                 ngayBan = x.NgayBan,
+                                 soDonHang = x.SoDonHang,
+                                 tongTien = x.TongTien
+                             }).OrderBy(x => x.ngayBan).ToList();
+            return allForManager;
         }
     }
 }

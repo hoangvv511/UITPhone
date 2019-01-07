@@ -1,5 +1,6 @@
 ﻿using Business.Implements;
 using Common.ViewModels;
+using CrystalDecisions.CrystalReports.Engine;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System;
@@ -13,104 +14,77 @@ namespace QLWeb.Areas.Admin.Controllers
 {
     public class BaoCaoBanHangController : BaseController
     {
-        // GET: Admin/BaoCaoBanHang
-        readonly BaoCaoBanHangBusiness _baoCaoBanHangBus = new BaoCaoBanHangBusiness();
-        readonly BaoCaoTonKhoBusiness _baoCaoTonKhoBus = new BaoCaoTonKhoBusiness();
-        readonly PhieuKiemKhoBusiness _phieuKiemKhoBus = new PhieuKiemKhoBusiness();
-        readonly HangHoaBusiness _hangHoaBus = new HangHoaBusiness();
-        readonly NhanVienBusiness _nhanVienBus = new NhanVienBusiness();
         //
-        // GET: /Admin/KiemKho/
+        // GET: /Admin/BaoCaoBanHang/
 
+        static DateTime _dateFrom;
+        static DateTime _dateTo;
+
+        readonly BaoCaoBanHangBusiness _baoCaoBanHangBUS = new BaoCaoBanHangBusiness();
         public ActionResult Index()
         {
-            
             return View();
         }
-
-        public ActionResult Create()
-        {
-            ViewBag.maNhanVien = _nhanVienBus.LoadMaNhanVien(HomeController.userName);
-            ViewBag.tenNhanVien = _nhanVienBus.LoadTenNhanVien(HomeController.userName);
-            ViewBag.soPhieuKiemKhoTuTang = _phieuKiemKhoBus.LoadSoPhieuKiemKho();
-            ViewBag.danhSachHangHoa = new SelectList(_hangHoaBus.LoadSanhSachHangHoaKho(), "Value", "Text");
-            return View();
-        }
-
-        public ActionResult LoadThongTinHangHoa(int id)
-        {
-            var result = _hangHoaBus.LayThongTinHangHoa(id);
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult ListName(string q)
-        {
-            var data = _hangHoaBus.ListName(q);
-            return Json(new
-            {
-                data = data,
-                status = true
-            }, JsonRequestBehavior.AllowGet);
-        }
-
         public ActionResult DanhSachBaoCaoBanHang(string dateFrom, string dateTo)
         {
-            var res = _baoCaoBanHangBus.GetListBaoCao(Convert.ToDateTime(dateFrom), Convert.ToDateTime(dateTo), HomeController.userName);
-            HttpContext.Session["BaoCaoBanHang"] = res;
-            return View(res);
-
-        }
-
-        public ActionResult XuatExcel()
-        {
-            var models = (List<BaoCaoBanHangViewModel>)HttpContext.Session["BaoCaoBanHang"];
-            if (models == null) return View("Index");
-            using (ExcelPackage pck = new ExcelPackage(new FileInfo(Server.MapPath("~/Templates/BaoCaoBanHang.xlsx"))))
+            _dateFrom = Convert.ToDateTime(dateFrom);
+            if (_dateFrom == default(DateTime))
             {
-                var ws = pck.Workbook.Worksheets[1];
-
-                for (var i = 0; i < models.Count; i++)
-                {
-                   
-                    ws.Cells["A" + (i + 2)].Value = models[i].ngayBan;
-                    ws.Cells["A" + (i + 2)].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                    ws.Cells["A" + (i + 2)].Style.Border.BorderAround(ExcelBorderStyle.Thin, System.Drawing.Color.Black);
-
-                    ws.Cells["B" + (i + 2)].Value = models[i].soDonHang;
-                    ws.Cells["B" + (i + 2)].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                    ws.Cells["B" + (i + 2)].Style.Border.BorderAround(ExcelBorderStyle.Thin, System.Drawing.Color.Black);
-
-                    ws.Cells["C" + (i + 2)].Value = models[i].tongTien;
-                    ws.Cells["C" + (i + 2)].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                    ws.Cells["C" + (i + 2)].Style.Border.BorderAround(ExcelBorderStyle.Thin, System.Drawing.Color.Black);
-
-                }
-                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                Response.AppendHeader("content-disposition",
-                                   $"attachment;  filename=BaoCaoBanHang_{DateTime.Now}.xlsx");
-                System.Web.HttpContext.Current.ApplicationInstance.CompleteRequest();
-                var ms = new MemoryStream(pck.GetAsByteArray());
-                HttpContext.Session["FileBaoCaoBanHang"] = ms;
-                return File(ms, Response.ContentType);
+                _dateFrom = Convert.ToDateTime("1/" + DateTime.Now.Month + "/" + DateTime.Now.Year);
             }
-        }
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        public ActionResult Detail()
-        {
-            return View();
+            _dateTo = Convert.ToDateTime(dateTo);
+            if (_dateTo == default(DateTime))
+            {
+                _dateTo = DateTime.Now;
+            }
+            return View(_baoCaoBanHangBUS.ListView(HomeController.userName, _dateFrom, _dateTo).ToList());
         }
 
-      
-
-        public ActionResult ThongTinPhieuKiemKho(int id)
+        public ActionResult XuatFilePDF()
         {
-            ViewBag.chiTietPhieuKiemKho = _phieuKiemKhoBus.thongTinChiTietPhieuKiemKhoTheoMa(id).ToList();
-            ViewBag.phieuKiemKho = _phieuKiemKhoBus.thongTinPhieuKiemKhoTheoMa(id).ToList();
-            return View();
+            try
+            {
+                ReportDocument rd = new ReportDocument();
+                rd.Load(Path.Combine(Server.MapPath("~/Report/BaoCaoBanHangRP.rpt")));
+                rd.SetDataSource(_baoCaoBanHangBUS.ListView(HomeController.userName, _dateFrom, _dateTo).ToList());
+                Response.Buffer = false;
+                Response.ClearContent();
+                Response.ClearHeaders();
+                rd.SetParameterValue("txtDateFrom", _dateFrom.ToString("dd/MM/yyyy"));
+                rd.SetParameterValue("txtDateTo", _dateTo.ToString("dd/MM/yyyy"));
+                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+                return File(stream, "application/pdf", "BaoCaoBanHangRP.pdf");
+            }
+            catch
+            {
+                SetAlert("Dữ liệu không có! Bạn hãy lọc lại dữ liệu", "error");
+                return RedirectToAction("Index");
+            }
+
+        }
+
+        public ActionResult XuatFileEXE()
+        {
+            try
+            {
+                ReportDocument rd = new ReportDocument();
+                rd.Load(Path.Combine(Server.MapPath("~/Report/BaoCaoBanHangRP.rpt")));
+                rd.SetDataSource(_baoCaoBanHangBUS.ListView(HomeController.userName, _dateFrom, _dateTo).ToList());
+                Response.Buffer = false;
+                Response.ClearContent();
+                Response.ClearHeaders();
+                rd.SetParameterValue("txtDateFrom", _dateFrom.ToString("dd/MM/yyyy"));
+                rd.SetParameterValue("txtDateTo", _dateTo.ToString("dd/MM/yyyy"));
+                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.ExcelWorkbook);
+                stream.Seek(0, SeekOrigin.Begin);
+                return File(stream, "application/xls", "BaoCaoBanHangRP.xls");
+            }
+            catch
+            {
+                SetAlert("Dữ liệu không có! Bạn hãy lọc lại dữ liệu", "error");
+                return RedirectToAction("Index");
+            }
         }
     }
 }

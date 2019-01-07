@@ -1,31 +1,30 @@
-﻿@model IEnumerable<Common.ViewModels.BaoCaoBanHangViewModel>
+﻿@using PagedList.Mvc
+@model List<Common.ViewModels.BaoCaoBanHangViewModel>
+@using Common.Functions
 <br />
-<table class="table table-bordered table-middle table-lilac">
+<table class="table table-bordered table-middle table-primary">
     <thead>
         <tr>
-            
-            <th class="text-center">
+            <th>
                 @Html.DisplayName("Ngày bán")
             </th>
-
-            <th class="text-center">
-                @Html.DisplayName("Số đơn hàng")
+            <th>
+                @Html.DisplayName("Số hoá đơn")
             </th>
-            <th class="text-center">
-                @Html.DisplayName("Tổng tiền")
-            </th>                            
-        </tr>   
+            <th>
+                @Html.DisplayName("Tổng tiền (VNĐ)")
+            </th>
+        </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
-            {
-        <tr style="text-align:center" class="border-warning">
-            <td>@item.ngayBan</td>
-            <td>@item.soDonHang</td>
-            <td>@item.tongTien</td>           
-               
-        </tr>
+        {
+            FormatNumber number = new FormatNumber();
+            <tr class="border-warning">
+                <td>@item.ngayBan.ToString("dd/MM/yyyy")</td>
+                <td>@item.soDonHang</td>
+                <td>@number.FormatNumbers(@item.tongTien.ToString())</td>
+            </tr>
         }
     </tbody>
 </table>
-<script src="~/Scripts/bootstrap.min.js"></script>

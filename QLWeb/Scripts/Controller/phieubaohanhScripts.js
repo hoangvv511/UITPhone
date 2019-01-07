@@ -84,12 +84,12 @@
 
     //Save button click function
     $('#submit').click(function () {
-        var error = 0;
-        CheckNgayGiao(error);
-        CheckTenKhachHang(error);
-        CheckSoDienThoai(error);
-        if (error == 0)
-        {
+        var errorQuantity = 0;
+        errorQuantity = CheckNgayGiao(errorQuantity);
+        errorQuantity = CheckTenKhachHang(errorQuantity);
+        errorQuantity = CheckSoDienThoai(errorQuantity);
+        var error = errorQuantity;
+        if (error == 0) {
             orderItems.push({
                 MaHangHoa: $('#maHangHoa').val().trim(),
             });
@@ -204,6 +204,10 @@ $(document).ready(function () {
 
 // Kiểm tra ràng buôc
 function CheckNgayGiao(error) {
+    var ngayGiao = $('#ngayGiao').val();
+    var ngayLap = $('#ngayLap').val();
+    var d1 = Date.parse(ngayGiao);
+    var d2 = Date.parse(ngayLap);
     if (!($('#ngayGiao').val().trim() != '')) {
         $(".messageErrorinputNgayGiao").text("Nhập ngày giao!");
         $(".notifyinputNgayGiao").slideDown(250).removeClass("hidden");
@@ -211,8 +215,16 @@ function CheckNgayGiao(error) {
         error++;
     }
     else {
-        $(".notifyinputNgayGiao").addClass("hidden");
-        $("#checkNgayGiao").removeClass("error");
+        if (d1 < d2) {
+            $(".messageErrorinputNgayGiao").text("Ngày giao không hợp lệ!");
+            $(".notifyinputNgayGiao").slideDown(250).removeClass("hidden");
+            $("#checkNgayGiao").addClass("error");
+            error++;
+        }
+        else {
+            $(".notifyinputNgayGiao").addClass("hidden");
+            $("#checkNgayGiao").removeClass("error");
+        }
     }
     return error;
 }

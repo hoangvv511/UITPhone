@@ -114,7 +114,7 @@ namespace QLWeb.Areas.Admin.Controllers
 
         public ActionResult ThongTinPhieuBanHang(int id)
         {
-            ViewBag.chiTietPhieuBanHang = _phieuBanHangBus.thongTinChiTietPhieuBanHangTheoMa(id).ToList();
+            ViewBag.chiTietPhieuBanHang = _phieuBanHangBus.danhSachPhieuBanHangTheoMa(id).ToList();
             ViewBag.phieuBanHang = _phieuBanHangBus.thongTinPhieuBanHangTheoMa(id).ToList();
             return View();
         }

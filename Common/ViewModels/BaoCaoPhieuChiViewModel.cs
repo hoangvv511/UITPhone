@@ -8,10 +8,8 @@ namespace Common.ViewModels
 {
     public class BaoCaoPhieuChiViewModel
     {
-        
         public DateTime ngayChi { get; set; }
-        public int soPhieuChi { get; set; }
-
-        public decimal tongTien { get; set; }
+        public string ghiChu { get; set; }
+        public decimal tongTienChi { get; set; }
     }
 }

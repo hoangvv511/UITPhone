@@ -8,17 +8,13 @@ namespace Common.ViewModels
 {
     public class BaoCaoHangHoaViewModel
     {
-
-        public int maBaoCaoHangHoa { get; set; }
+        public int maHangHoa { get; set; }
         public string tenHangHoa { get; set; }
-        public string modelName { get; set; }
-
         public string tenLoaiHangHoa { get; set; }
         public decimal giaBan { get; set; }
         public decimal giamGia { get; set; }
         public bool trangThai { get; set; }
         public int soLuongTon { get; set; }
-        public int maHangHoa { get; set; }
-
+        public string modelName { get; set; }
     }
 }

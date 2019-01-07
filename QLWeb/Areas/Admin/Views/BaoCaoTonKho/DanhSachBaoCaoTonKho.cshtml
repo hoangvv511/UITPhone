@@ -1,42 +1,40 @@
-﻿@model IEnumerable<Common.ViewModels.BaoCaoTonKhoViewModel>
+﻿@using PagedList.Mvc
+@model List<Common.ViewModels.BaoCaoTonKhoViewModel>
 <br />
-<table class="table table-bordered table-middle table-lilac">
+<table class="table table-bordered table-middle table-primary">
     <thead>
         <tr>
-            <th class="text-center">
-                @Html.DisplayName("Mã báo cáo tồn kho")
+            <th>
+                @Html.DisplayName("Mã hàng hoá")
             </th>
-            <th class="text-center">
-                @Html.DisplayName("Tên hàng hóa")
+            <th>
+                @Html.DisplayName("Tên hàng hoá")
             </th>
-            <th class="text-center">
+            <th>
                 @Html.DisplayName("Số lượng tồn đầu")
             </th>
-            <th class="text-center">
+            <th>
                 @Html.DisplayName("Số lượng nhập")
             </th>
-            <th class="text-center">
+            <th>
                 @Html.DisplayName("Số lượng xuất")
             </th>
-            <th class="text-center">
+            <th>
                 @Html.DisplayName("Số lượng tồn cuối")
             </th>
-           
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr style="text-align:center" class="border-warning">
-                <td>@item.maBaoCaoTonKho</td>
+            <tr class="border-warning">
+                <td>@item.maHangHoa</td>
                 <td>@item.tenHangHoa</td>
                 <td>@item.soLuongTonDau</td>
                 <td>@item.soLuongNhap</td>
                 <td>@item.soLuongXuat</td>
                 <td>@item.soLuongTonCuoi</td>
-                
             </tr>
         }
     </tbody>
 </table>
-<script src="~/Scripts/bootstrap.min.js"></script>

@@ -1,4 +1,6 @@
 ﻿@model Common.ViewModels.PhieuBanHangViewModel
+@using Common.Functions
+
 @{
     ViewBag.Title = "Lập phiếu bán hàng";
     Layout = "~/Areas/Admin/Views/Layout/HomeLayout.cshtml";
@@ -49,7 +51,7 @@
                                     <td>Đơn vị tính</td>
                                     <td>Số lượng tồn</td>
                                     <td>Số lượng</td>
-                                    <td>Giá</td>
+                                    <td>Đơn giá</td>
                                     <td>Thành tiền</td>
                                     
                                 </tr>
@@ -128,19 +130,30 @@
                                         <input id="soDienThoai" type="text" class="form-control rounded" />
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="firstname-1" class="col-sm-4 control-label">Tổng tiền</label>
-                                    <div class="col-sm-8">
-                                        <input id="tongTien" type="text" class="form-control rounded" disabled="disabled" />
-                                    </div>
-                                </div>
+
                                 <div class="form-group">
                                     <label for="firstname-1" class="col-sm-4 control-label">Ghi chú</label>
                                     <div class="col-sm-8">
                                         <textarea id="ghiChu" placeholder="Ghi chú viết tại đây" class="form-control rounded"></textarea>
                                     </div>
                                 </div>
-                               
+
+                                <div class="form-group form-group-divider">
+                                    <div class="form-inner">
+                                        <h4 class="no-margin">Thông tin thanh toán</h4>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="firstname-1" class="col-sm-4 control-label">Tổng tiền</label>
+                                    <div class="col-sm-8">
+                                        <input id="tongTien" type="text" class="form-control rounded" disabled="disabled" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="firstname-1" class="col-sm-11 control-label" style="color:red; font-weight: bold;">(*) Lưu ý tiền được tính theo VNĐ</label>
+                                </div>
                             </div>
                         </form>
                     </div>

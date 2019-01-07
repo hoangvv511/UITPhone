@@ -1,8 +1,10 @@
 ﻿@model List<Common.ViewModels.BaoCaoDatHangViewModel>
 @using Common.ViewModels
 @{
-    ViewBag.Title = "Báo cáo đặt hàng";
-    Layout = "~/Areas/Admin/Views/Layout/HomeLayout.cshtml";
+                /**/
+
+                ViewBag.Title = "Báo cáo đặt hàng";
+                Layout = "~/Areas/Admin/Views/Layout/HomeLayout.cshtml";
 }
 
 <section id="page-content">
@@ -43,7 +45,6 @@
                                     </div>
                                 </div>
                                 <div class="clearfix"></div>
-
                             }
                             <div id="list">
                                 @{Html.RenderAction("DanhSachBaoCaoDatHang", "BaoCaoDatHang");}
