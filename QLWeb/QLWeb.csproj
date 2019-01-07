@@ -67,9 +67,6 @@
     <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNet.WebUtilities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebUtilities.1.0.0-rc1-final\lib\net451\Microsoft.AspNet.WebUtilities.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
@@ -7135,13 +7132,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\BaoCaoBanHang\" />
-    <Folder Include="Areas\Admin\Views\BaoCaoHangHoa\" />
-    <Folder Include="Areas\Admin\Views\BaoCaoPhieuChi\" />
-    <Folder Include="Areas\Admin\Views\BaoCaoTonKho\" />
-    <Folder Include="Areas\Admin\Views\BaoCaoDatHang\" />
     <Folder Include="Areas\Admin\Views\BaoCao\" />
-    <Folder Include="Areas\Admin\Views\DatHang\" />
     <Folder Include="Content\assets\global\plugins\bower_components\bootstrap-sass\assets\images\" />
     <Folder Include="Content\assets\global\plugins\bower_components\bower\Packager\" />
     <Folder Include="Content\client\skins\default\images\video-page\" />

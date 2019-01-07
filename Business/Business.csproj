@@ -110,17 +110,18 @@
     <Compile Include="Interfaces\IHangHoaBusiness.cs" />
     <Compile Include="Interfaces\ILoaiHangHoaBusiness.cs" />
     <Compile Include="Interfaces\INhanVienBusiness.cs" />
-
     <Compile Include="Interfaces\INhapKhoBusiness.cs" />
     <Compile Include="Interfaces\IPhieuBaoHanhBusiness.cs" />
     <Compile Include="Interfaces\IXuatKhoBusiness.cs" />
-
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\PagedList.css" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
@@ -131,9 +132,6 @@
       <Project>{226775be-b912-4d23-85bf-1096604d7f22}</Project>
       <Name>Data</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\PagedList.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
