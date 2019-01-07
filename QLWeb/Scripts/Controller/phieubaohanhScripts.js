@@ -228,9 +228,6 @@ function CheckTenKhachHang(error) {
         $(".notifyinputTenKhachHang").addClass("hidden");
         $("#checkTenKhachHang").removeClass("error");
     }
-    $("#tenKhachHang").blur(function () {
-        $("#tenKhachHang").val($("#tenKhachHang").val().trim());
-    });
     return error;
 }
 
@@ -245,8 +242,5 @@ function CheckSoDienThoai(error) {
         $(".notifyinputSoDienThoai").addClass("hidden");
         $("#checkSoDienThoai").removeClass("error");
     }
-    $("#soDienThoai").blur(function () {
-        $("#soDienThoai").val($("#soDienThoai").val().trim());
-    });
     return error;
 }
