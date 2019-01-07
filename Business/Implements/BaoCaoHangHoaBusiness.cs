@@ -13,37 +13,17 @@ namespace Business.Implements
     {
 
         QLWebDBEntities dbContext;
-        private readonly BaoCaoTonKhoReponsitory _baoCaoTonKhoRepo;
-        private readonly PhieuKiemKhoReponsitory _phieuKiemKhoRepo;
-        private readonly PhieuXuatKhoReponsitory _phieuXuatKhoRepo;
-        private readonly ChiTietPhieuXuatKhoReponsitory _chiTietPhieuXuatKho;
-        private readonly ChiTietPhieuKiemKhoReponsitory _chiTietPhieuKiemKhoRepo;
-        private readonly NhanVienReponsitory _nhanVienRepo;
         private readonly HangHoaReponsitory _hangHoaRepo;
-        private readonly PhieuNhapReponsitory _phieuNhapRepo;
-        private readonly PhieuBanHangReponsitory _phieuBanHangRepo;
-        private readonly NhanVienBusiness _nhanVienBus;
-        private readonly ChiTietPhieuNhapReponsitory _chitietPhieuNhapRepo;
-        private readonly ChiTietPhieuBanHangReponsitory _chitietPhieuBanHangRepo;
         private readonly LoaiHangHoaReponsitory _loaiHangHoaRepo;
 
         public BaoCaoHangHoaBusiness()
         {
             dbContext = new QLWebDBEntities();
-            _phieuKiemKhoRepo = new PhieuKiemKhoReponsitory(dbContext);
-            _nhanVienRepo = new NhanVienReponsitory(dbContext);
             _hangHoaRepo = new HangHoaReponsitory(dbContext);
-            _chiTietPhieuKiemKhoRepo = new ChiTietPhieuKiemKhoReponsitory(dbContext);
-            _nhanVienBus = new NhanVienBusiness();
-            _phieuNhapRepo = new PhieuNhapReponsitory(dbContext);
-            _phieuBanHangRepo = new PhieuBanHangReponsitory(dbContext);
-            _chitietPhieuNhapRepo = new ChiTietPhieuNhapReponsitory(dbContext);
-            _chitietPhieuBanHangRepo = new ChiTietPhieuBanHangReponsitory(dbContext);
-            _baoCaoTonKhoRepo = new BaoCaoTonKhoReponsitory(dbContext);
             _loaiHangHoaRepo = new LoaiHangHoaReponsitory(dbContext);
         }
 
-        public IList<BaoCaoHangHoaViewModel> GetListBaoCao(int? maHangHoa)
+        public IList<BaoCaoHangHoaViewModel> GetListBaoCao(int maHangHoa)
         {
             IQueryable<HangHoa> danhSachHangHoa = _hangHoaRepo.GetAll();
             IQueryable<LoaiHangHoa> danhSachLoaiHangHoa = _loaiHangHoaRepo.GetAll();
@@ -65,8 +45,6 @@ namespace Business.Implements
                                  TrangThai = hanghoa.TrangThai,
                                  SoLuongTon = hanghoa.SoLuongTon,
                                  MaHangHoa = hanghoa.MaHangHoa
-
-
 
                              }).AsEnumerable().Select(x => new BaoCaoHangHoaViewModel()
                              {

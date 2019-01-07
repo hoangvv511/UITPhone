@@ -7157,7 +7157,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\BaoCao\" />
     <Folder Include="Content\assets\global\plugins\bower_components\bootstrap-sass\assets\images\" />
     <Folder Include="Content\assets\global\plugins\bower_components\bower\Packager\" />
     <Folder Include="Content\client\skins\default\images\video-page\" />

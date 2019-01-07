@@ -122,8 +122,6 @@
     <Compile Include="ViewModels\PhieuDatHangViewModel.cs" />
     <Compile Include="ViewModels\PhieuNhapViewModel.cs" />
     <Compile Include="ViewModels\PhieuXuatKhoViewModel.cs" />
-    <Compile Include="ViewModels\PhieuBanHangViewModel.cs" />
-    <Compile Include="ViewModels\PhieuChiViewModel.cs" />
     <Compile Include="ViewModels\SanPhamBanChayOnlineViewModel.cs" />
     <Compile Include="ViewModels\SanPhamBanChayTaiCuaHangViewModel.cs" />
     <Compile Include="ViewModels\ThongTinHoatDongViewModel.cs" />

@@ -13,17 +13,13 @@ namespace Business.Implements
     {
         QLWebDBEntities dbContext;
         private readonly BaoCaoTonKhoReponsitory _baoCaoTonKhoRepo;
-         private readonly HangHoaReponsitory _hangHoaRepo;
-        private readonly NhanVienBusiness _nhanVienBus;
-
-
+        private readonly HangHoaReponsitory _hangHoaRepo;
 
         public BaoCaoTonKhoBusiness()
         {
             dbContext = new QLWebDBEntities();
-        
             _hangHoaRepo = new HangHoaReponsitory(dbContext);
-       _baoCaoTonKhoRepo = new BaoCaoTonKhoReponsitory(dbContext);
+            _baoCaoTonKhoRepo = new BaoCaoTonKhoReponsitory(dbContext);
         }
 
         public IList<BaoCaoTonKhoViewModel> GetListBaoCao(int thang, int nam)
@@ -33,42 +29,39 @@ namespace Business.Implements
 
             List<BaoCaoTonKhoViewModel> allForManager = new List<BaoCaoTonKhoViewModel>();
 
-               
-                if (DateTime.Now.Month == thang && DateTime.Now.Year == nam)
-                {
+            if (DateTime.Now.Month == thang && DateTime.Now.Year == nam)
+            {
                 allForManager = (from hanghoa in danhSachHangHoa
                                  join baocaotonkho in danhSachBaoCaoTon on hanghoa.MaHangHoa equals baocaotonkho.MaHangHoa
                                  where (baocaotonkho.Thang == DateTime.Now.Month && baocaotonkho.Nam == DateTime.Now.Year)
                                  select new
                                  {
                                      MaBaoCaoTonKho = baocaotonkho.MaBaoCaoTonKho,
-                                     Thang =baocaotonkho.Thang,
-                                     Nam=baocaotonkho.Nam,
-                                     MaHangHoa=baocaotonkho.MaHangHoa,
-                                     SoLuongTonDau=baocaotonkho.SoLuongTonDau,
-                                     SoLuongNhap=baocaotonkho.SoLuongNhap,
-                                     SoLuongXuat=baocaotonkho.SoLuongXuat,
-                                     SoLuongTonCuoi=baocaotonkho.SoLuongTonCuoi,
-                                     TenHangHoa=hanghoa.TenHangHoa,
-                                     DonViTinh=hanghoa.DonViTinh
+                                     Thang = baocaotonkho.Thang,
+                                     Nam = baocaotonkho.Nam,
+                                     MaHangHoa = baocaotonkho.MaHangHoa,
+                                     SoLuongTonDau = baocaotonkho.SoLuongTonDau,
+                                     SoLuongNhap = baocaotonkho.SoLuongNhap,
+                                     SoLuongXuat = baocaotonkho.SoLuongXuat,
+                                     SoLuongTonCuoi = baocaotonkho.SoLuongTonCuoi,
+                                     TenHangHoa = hanghoa.TenHangHoa,
+                                     DonViTinh = hanghoa.DonViTinh
 
-
-
-                                     }).AsEnumerable().Select(x => new BaoCaoTonKhoViewModel()
-                                     {
-                                         maBaoCaoTonKho = x.MaBaoCaoTonKho,
-                                         thang = x.Thang,
-                                         nam = x.Nam,
-                                         maHangHoa = x.MaHangHoa,
-                                         soLuongTonDau = x.SoLuongTonDau,
-                                         soLuongNhap=x.SoLuongNhap,
-                                         soLuongXuat=x.SoLuongXuat,
-                                         soLuongTonCuoi=x.SoLuongTonCuoi,
-                                         tenHangHoa=x.TenHangHoa,
-                                         donViTinh=x.DonViTinh
-                                     }).OrderByDescending(x => x.maBaoCaoTonKho).ToList();
-                    return allForManager;
-                }
+                                 }).AsEnumerable().Select(x => new BaoCaoTonKhoViewModel()
+                                 {
+                                     maBaoCaoTonKho = x.MaBaoCaoTonKho,
+                                     thang = x.Thang,
+                                     nam = x.Nam,
+                                     maHangHoa = x.MaHangHoa,
+                                     soLuongTonDau = x.SoLuongTonDau,
+                                     soLuongNhap = x.SoLuongNhap,
+                                     soLuongXuat = x.SoLuongXuat,
+                                     soLuongTonCuoi = x.SoLuongTonCuoi,
+                                     tenHangHoa = x.TenHangHoa,
+                                     donViTinh = x.DonViTinh
+                                 }).OrderByDescending(x => x.maBaoCaoTonKho).ToList();
+                return allForManager;
+            }
 
             allForManager = (from hanghoa in danhSachHangHoa
                              join baocaotonkho in danhSachBaoCaoTon on hanghoa.MaHangHoa equals baocaotonkho.MaHangHoa
@@ -83,8 +76,8 @@ namespace Business.Implements
                                  SoLuongNhap = baocaotonkho.SoLuongNhap,
                                  SoLuongXuat = baocaotonkho.SoLuongXuat,
                                  SoLuongTonCuoi = baocaotonkho.SoLuongTonCuoi,
-                                 TenHangHoa=hanghoa.TenHangHoa,
-                                 DonViTinh=hanghoa.DonViTinh
+                                 TenHangHoa = hanghoa.TenHangHoa,
+                                 DonViTinh = hanghoa.DonViTinh
 
 
                              }).AsEnumerable().Select(x => new BaoCaoTonKhoViewModel()
@@ -97,29 +90,11 @@ namespace Business.Implements
                                  soLuongNhap = x.SoLuongNhap,
                                  soLuongXuat = x.SoLuongXuat,
                                  soLuongTonCuoi = x.SoLuongTonCuoi,
-                                 tenHangHoa=x.TenHangHoa,
-                                 donViTinh=x.DonViTinh
-                                 
+                                 tenHangHoa = x.TenHangHoa,
+                                 donViTinh = x.DonViTinh
+
                              }).OrderByDescending(x => x.maBaoCaoTonKho).ToList();
             return allForManager;
-
-        }
-        
-        public async Task Create(PhieuNhapViewModel O)
-        {
-            var hangHoa = _hangHoaRepo.GetById(O.soPhieuNhap);
-            //var chitietPhieuXuatKho = _chiTietPhieuXuatKho.Fetch(t => t.MaHangHoa == O.maHangHoa);
-            BaoCaoTonKho report = new BaoCaoTonKho
-            {
-                Thang = O.ngayNhap.Month,
-                Nam = O.ngayNhap.Year,
-                MaHangHoa = O.maHangHoa,
-                SoLuongTonDau = hangHoa.SoLuongTon,
-                SoLuongNhap = O.soLuongNhap,
-                SoLuongTonCuoi = hangHoa.SoLuongTon - O.soLuongNhap
-            };
-
-            await _baoCaoTonKhoRepo.InsertAsync(report);
         }
 
     }
