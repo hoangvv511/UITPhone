@@ -37,6 +37,31 @@ namespace Business.Implements
             _hangHoaBus = new HangHoaBusiness();
         }
 
+        public IEnumerable<ThongTinHoatDongViewModel> ThongTinHoatDong()
+        {
+            IQueryable<PhieuXuatKho> danhSachPhieuKiemKho = _phieuXuatKhoRepo.GetAll();
+            List<ThongTinHoatDongViewModel> all = new List<ThongTinHoatDongViewModel>();
+
+            all = (from phieuxuatkho in danhSachPhieuKiemKho
+                   join nhanvien in _nhanVienRepo.GetAll()
+                   on phieuxuatkho.MaNhanVien equals nhanvien.MaNhanVien
+                   orderby phieuxuatkho.NgayChinhSua descending
+                   select new
+                   {
+                       SoPhieuXuatKho = phieuxuatkho.SoPhieuXuatKho,
+                       NgayChinhSua = phieuxuatkho.NgayChinhSua,
+                       TenNhanVien = nhanvien.TenNhanvien,
+                       TrangThai = phieuxuatkho.TrangThai,
+                   }).AsEnumerable().Select(x => new ThongTinHoatDongViewModel()
+                   {
+                       soPhieuXuatKho = x.SoPhieuXuatKho,
+                       ngayChinhSuaXuatKho = x.NgayChinhSua,
+                       tenNhanVienXuatKho = x.TenNhanVien,
+                       trangThaiXuatKho = x.TrangThai,
+                   }).Take(2).ToList();
+            return all;
+        }
+
         public IList<PhieuXuatKhoViewModel> SearchDanhSachPhieuXuatKho(string key, string trangThai, DateTime tungay, DateTime denngay, string userName)
         {
             IQueryable<PhieuXuatKho> danhSachPhieuXuatKho = _phieuXuatKhoRepo.GetAll();

@@ -1,5 +1,7 @@
 ﻿@using PagedList.Mvc
 @model PagedList.IPagedList<Common.ViewModels.PhieuNhapViewModel>
+@using Common.Functions
+
 <br />
 <table class="table table-bordered table-middle table-primary">
     <thead>
@@ -17,7 +19,7 @@
                 @Html.DisplayName("Nhà cung cấp")
             </th>
             <th class="text-center">
-                @Html.DisplayName("Tổng tiền")
+                @Html.DisplayName("Tổng tiền (VNĐ)")
             </th>
             <th class="text-center">
                 @Html.DisplayName("Ghi chú")
@@ -33,12 +35,13 @@
     <tbody>
         @foreach (var item in Model)
         {
+            FormatNumber number = new FormatNumber();
         <tr style="text-align:center" class="border-warning">
             <td>@item.soPhieuNhap</td>
             <td>@item.ngayNhap.ToString("dd/MM/yyyy")</td>
             <td>@item.tenNhanVien</td>
             <td>@item.tenNhaCungCap</td>
-            <td>@item.tongTien</td>
+            <td>@number.FormatNumbers(@item.tongTien.ToString())</td>
             <td>@item.ghiChu</td>
             @if (@item.trangThai == true)
             {

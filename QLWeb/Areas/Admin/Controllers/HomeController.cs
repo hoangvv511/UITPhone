@@ -23,6 +23,14 @@ namespace QLWeb.Areas.Admin.Controllers
         public static string userName = string.Empty;
         NhanVienBusiness _nhanVienBus = new NhanVienBusiness();
         ChucVuBusiness _chucVuBus = new ChucVuBusiness();
+        PhieuDatHangBusiness _phieuDatHangBus = new PhieuDatHangBusiness();
+        PhieuKiemKhoBusiness _phieuKiemKhoBus = new PhieuKiemKhoBusiness();
+        PhieuXuatKhoBusiness _phieuXuatKhoBus = new PhieuXuatKhoBusiness();
+        PhieuNhapKhoBusiness _phieuNhapKhoBus = new PhieuNhapKhoBusiness();
+        PhieuBanHangBusiness _phieuBanHangBus = new PhieuBanHangBusiness();
+        PhieuChiBusiness _phieuChiBus = new PhieuChiBusiness();
+        HangHoaBusiness _hangHoaBus = new HangHoaBusiness();
+        LoaiHangHoaBusiness _loaiHangHoaBus = new LoaiHangHoaBusiness();
 
         public ActionResult Index()
         {
@@ -31,6 +39,33 @@ namespace QLWeb.Areas.Admin.Controllers
             {
                 TempData["notify"] = "Username hoặc Password không đúng!!!";
             }
+
+            ViewBag.soPhieuDatHang = _phieuDatHangBus.LaySoDonDatHang();
+            ViewBag.tongTienBanHang = _phieuBanHangBus.TongTienBanHang();
+            ViewBag.tongTienDatHang = _phieuDatHangBus.TongTienDatHang();
+
+            ViewBag.soDonDatHang = _phieuDatHangBus.SoDonDatHang();
+            ViewBag.soDonDatHangHuy = _phieuDatHangBus.SoDonDatHangHuy();
+
+            ViewBag.soDonBanHang = _phieuBanHangBus.SoDonBanHang();
+            ViewBag.soDonBanHangHuy = _phieuBanHangBus.SoDonBanHangHuy();
+
+            ViewBag.soDonDatDaXacNhan = _phieuDatHangBus.DonHangDaXacNhan();
+            ViewBag.soDonDatDaThanhToan = _phieuDatHangBus.DonHangDaThanhToan();
+
+            ViewBag.soPhieuChi = _phieuChiBus.SoPhieuChi();
+            ViewBag.tongTienChi = _phieuChiBus.TongTienChi();
+
+            ViewBag.sanPhamHetHang = _hangHoaBus.SanPhamHetHang();
+            ViewBag.sanPhamSapHetHang = _hangHoaBus.SanPhamSapHetHang();
+
+            ViewBag.tongSanPham = _hangHoaBus.TongSanPham();
+            ViewBag.tongLoaiSanPham = _loaiHangHoaBus.TongLoaiSanPham();
+            ViewBag.sanPhamDangKinhDoanh = _hangHoaBus.SanPhamDangKinhDoanh();
+            ViewBag.sanPhamNgungKinhDoanh = _hangHoaBus.SanPhamNgungKinhDoanh();
+
+            ViewBag.sanPhamBanChayNhatTaiCuaHang = _hangHoaBus.SanPhamBanChayNhatTaiCuaHang();
+            ViewBag.sanPhamBanChayNhatOnline = _hangHoaBus.DanhSachSanPhamBanChayNhatOnline();
             return View();
         }
 
@@ -61,6 +96,17 @@ namespace QLWeb.Areas.Admin.Controllers
                 TempData["notify"] = "Username hoặc Password không đúng!!!";
             }
             return RedirectToAction("Index");
+        }
+
+        public PartialViewResult ThongTinHoatDong()
+        {
+            ViewBag.thongTinHoatDongKiemKho = _phieuKiemKhoBus.ThongTinHoatDong();
+            ViewBag.thongTinHoatDongXuatKho = _phieuXuatKhoBus.ThongTinHoatDong();
+            ViewBag.thongTinHoatDongNhapKho = _phieuNhapKhoBus.ThongTinHoatDong();
+            ViewBag.thongTinHoatDongBanHang = _phieuBanHangBus.ThongTinHoatDong();
+            ViewBag.thongTinHoatDongChi = _phieuChiBus.ThongTinHoatDong();
+
+            return PartialView();
         }
 
         //Tạo cookie khóa tài khoản nếu active = False

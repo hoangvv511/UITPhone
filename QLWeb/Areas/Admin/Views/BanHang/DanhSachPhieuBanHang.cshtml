@@ -1,5 +1,7 @@
 ﻿@using PagedList.Mvc
 @model PagedList.IPagedList<Common.ViewModels.PhieuBanHangViewModel>
+@using Common.Functions
+
 <br />
 <table class="table table-bordered table-middle table-primary">
     <thead>
@@ -30,36 +32,37 @@
             </th>
         </tr>
     </thead>
-    <tbody>
+    <tbody>      
         @foreach (var item in Model)
         {
-        <tr style="text-align:center" class="border-warning">
-            <td>@item.soPhieuBanHang</td>
-            <td>@item.ngayBan.ToString("dd/MM/yyyy")</td>
-            <td>@item.tenNhanVien</td>
-            <td>@item.tenKhachHang</td>
-            <td>@item.soDienThoai</td>
-            @if (@item.trangThai == true)
-            {
-                <td>Hoàn thành</td>
-                <td>@item.tongTien</td>
-                <td>
-                    <a href="@Url.Action("Detail", new { id = item.soPhieuBanHang })" class="btn btn-sm btn-success btn-xs btn-push"><i class="fa fa-eye"></i> Xem</a>
-                    @if (@item.ngayBan.ToString("dd/MM/yyyy") == @DateTime.Now.ToString("dd/MM/yyyy"))
-                    {
-                        <a href="@Url.Action("Delete", new { id = item.soPhieuBanHang })" class="btn btn-sm btn-danger btn-xs btn-push"><i class="fa fa-trash"></i> Hủy</a>
-                    }
-                </td>
-            }
-            else
-            {
-                <td>Đã hủy</td>
-                <td>@item.tongTien</td>
-                <td>
-                    <a href="@Url.Action("Detail", new { id = item.soPhieuBanHang })" class="btn btn-sm btn-success btn-xs btn-push"><i class="fa fa-eye"></i> Xem</a>
-                </td>
-            }
-        </tr>
+            FormatNumber number = new FormatNumber();
+            <tr style="text-align:center" class="border-warning">
+                <td>@item.soPhieuBanHang</td>
+                <td>@item.ngayBan.ToString("dd/MM/yyyy")</td>
+                <td>@item.tenNhanVien</td>
+                <td>@item.tenKhachHang</td>
+                <td>@item.soDienThoai</td>
+                @if (@item.trangThai == true)
+                {
+                    <td>Hoàn thành</td>
+                    <td>@number.FormatNumbers(@item.tongTien.ToString())</td>
+                    <td>
+                        <a href="@Url.Action("Detail", new { id = item.soPhieuBanHang })" class="btn btn-sm btn-success btn-xs btn-push"><i class="fa fa-eye"></i> Xem</a>
+                        @if (@item.ngayBan.ToString("dd/MM/yyyy") == @DateTime.Now.ToString("dd/MM/yyyy"))
+                        {
+                            <a href="@Url.Action("Delete", new { id = item.soPhieuBanHang })" class="btn btn-sm btn-danger btn-xs btn-push"><i class="fa fa-trash"></i> Hủy</a>
+                        }
+                    </td>
+                }
+                else
+                {
+                    <td>Đã hủy</td>
+                    <td>@item.tongTien</td>
+                    <td>
+                        <a href="@Url.Action("Detail", new { id = item.soPhieuBanHang })" class="btn btn-sm btn-success btn-xs btn-push"><i class="fa fa-eye"></i> Xem</a>
+                    </td>
+                }
+            </tr>
         }
     </tbody>
 </table>

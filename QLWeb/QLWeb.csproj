@@ -7053,6 +7053,7 @@
     </Content>
     <Content Include="Areas\Admin\Views\BaoCaoDatHang\DanhSachBaoCaoDatHang.cshtml" />
     <Content Include="Areas\Admin\Views\BaoCaoDatHang\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\ThongTinHoatDong.cshtml" />
     <None Include="Report\DataSetBaoCao.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>

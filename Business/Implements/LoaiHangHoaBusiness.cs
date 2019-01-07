@@ -56,6 +56,11 @@ namespace Business.Implements
 
         }
 
+        public object TongLoaiSanPham()
+        {
+            return _loaiHangHoaRepo.GetAll().Count();
+        }
+
         public List<Object> LoadLoaiHangHoa()
         {
             IQueryable<LoaiHangHoa> dsLoaiHangHoa = _loaiHangHoaRepo.GetAll();

@@ -567,8 +567,8 @@ namespace Business.Implements
 
             IQueryable<PhieuDatHang> danhSachPhieuDatHang = _phieuDatHangRepo.GetAll();
             var all = (from phieudathang in danhSachPhieuDatHang
-                       where phieudathang.NgayDat.Day.Equals(ngay)
-                             && phieudathang.NgayDat.Month.Equals(thang)
+                       where 
+                              phieudathang.NgayDat.Month.Equals(thang)
                              && phieudathang.NgayDat.Year.Equals(nam)
                              && phieudathang.TrangThai.Equals(true)
                        select new
@@ -591,8 +591,8 @@ namespace Business.Implements
 
             IQueryable<PhieuDatHang> danhSachPhieuDatHang = _phieuDatHangRepo.GetAll();
             var all = (from phieudathang in danhSachPhieuDatHang
-                       where phieudathang.NgayDat.Day.Equals(ngay)
-                             && phieudathang.NgayDat.Month.Equals(thang)
+                       where 
+                              phieudathang.NgayDat.Month.Equals(thang)
                              && phieudathang.NgayDat.Year.Equals(nam)
                        select new
                        {
@@ -612,8 +612,8 @@ namespace Business.Implements
 
             IQueryable<PhieuDatHang> danhSachPhieuDatHang = _phieuDatHangRepo.GetAll();
             var all = (from phieudathang in danhSachPhieuDatHang
-                       where phieudathang.NgayDat.Day.Equals(ngay)
-                             && phieudathang.NgayDat.Month.Equals(thang)
+                       where 
+                              phieudathang.NgayDat.Month.Equals(thang)
                              && phieudathang.NgayDat.Year.Equals(nam)
                              && phieudathang.TrangThai.Equals(false)
                        select new
@@ -635,8 +635,8 @@ namespace Business.Implements
 
             IQueryable<PhieuDatHang> danhSachPhieuDatHang = _phieuDatHangRepo.GetAll();
             var all = (from phieudathang in danhSachPhieuDatHang
-                       where phieudathang.NgayDat.Day.Equals(ngay)
-                             && phieudathang.NgayDat.Month.Equals(thang)
+                       where 
+                              phieudathang.NgayDat.Month.Equals(thang)
                              && phieudathang.NgayDat.Year.Equals(nam) && phieudathang.DaXacNhan.Equals(true)
                        select new
                        {
@@ -657,8 +657,8 @@ namespace Business.Implements
 
             IQueryable<PhieuDatHang> danhSachPhieuDatHang = _phieuDatHangRepo.GetAll();
             var all = (from phieudathang in danhSachPhieuDatHang
-                       where phieudathang.NgayDat.Day.Equals(ngay)
-                             && phieudathang.NgayDat.Month.Equals(thang)
+                       where 
+                              phieudathang.NgayDat.Month.Equals(thang)
                              && phieudathang.NgayDat.Year.Equals(nam) && phieudathang.DaThanhToan.Equals(true)
                        select new
                        {

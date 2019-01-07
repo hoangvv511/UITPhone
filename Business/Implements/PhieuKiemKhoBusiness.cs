@@ -315,7 +315,31 @@ namespace Business.Implements
             await _phieuKiemKhoRepo.EditAsync(editPhieuKiemKho);
         }
 
-     
+        public IEnumerable<ThongTinHoatDongViewModel> ThongTinHoatDong()
+        {
+            IQueryable<PhieuKiemKho> danhSachPhieuKiemKho = _phieuKiemKhoRepo.GetAll();
+            List<ThongTinHoatDongViewModel> all = new List<ThongTinHoatDongViewModel>();
+
+            all = (from phieukiemkho in danhSachPhieuKiemKho
+                   join nhanvien in _nhanVienRepo.GetAll()
+                   on phieukiemkho.MaNhanVien equals nhanvien.MaNhanVien
+                   orderby phieukiemkho.NgayChinhSua descending
+                   select new
+                   {
+                       SoPhieuKiemKho = phieukiemkho.SoPhieuKiemKho,
+                       NgayChinhSua = phieukiemkho.NgayChinhSua,
+                       TenNhanVien = nhanvien.TenNhanvien,
+                       TrangThai = phieukiemkho.TrangThai,
+
+                   }).AsEnumerable().Select(x => new ThongTinHoatDongViewModel()
+                   {
+                       soPhieuKiemKho = x.SoPhieuKiemKho,
+                       ngayChinhSuaKiemKho = x.NgayChinhSua,
+                       tenNhanVienKiemKho = x.TenNhanVien,
+                       trangThaiKiemKho = x.TrangThai,
+                   }).Take(2).ToList();
+            return all;
+        }
     }
 
 }

@@ -113,6 +113,9 @@
     <Compile Include="ViewModels\PhieuXuatKhoViewModel.cs" />
     <Compile Include="ViewModels\PhieuBanHangViewModel.cs" />
     <Compile Include="ViewModels\PhieuChiViewModel.cs" />
+    <Compile Include="ViewModels\SanPhamBanChayOnlineViewModel.cs" />
+    <Compile Include="ViewModels\SanPhamBanChayTaiCuaHangViewModel.cs" />
+    <Compile Include="ViewModels\ThongTinHoatDongViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

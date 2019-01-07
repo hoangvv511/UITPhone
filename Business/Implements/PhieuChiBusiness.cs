@@ -327,6 +327,79 @@ namespace Business.Implements
             return new List<Object>(list);
         }
 
+
+        public object TongTienChi()
+        {
+            DateTime a = DateTime.Now;
+            int ngay = a.Day;
+            int thang = a.Month;
+            int nam = a.Year;
+
+            IQueryable<PhieuChi> danhSachPhieuChi = _phieuChiRepo.GetAll();
+            var all = (from phieuchi in danhSachPhieuChi
+                       where 
+                              phieuchi.NgayChi.Month.Equals(thang)
+                             && phieuchi.NgayChi.Year.Equals(nam)
+                       select new
+                       {
+                           TongTien = phieuchi.TongTienChi,
+                       }).AsEnumerable().Select(x => new PhieuChi()
+                       {
+                           TongTienChi = x.TongTien,
+                       }).Sum(x => x.TongTienChi);
+            return all;
+        }
+
+        public object SoPhieuChi()
+        {
+            DateTime a = DateTime.Now;
+            int ngay = a.Day;
+            int thang = a.Month;
+            int nam = a.Year;
+
+            IQueryable<PhieuChi> danhSachPhieuChi = _phieuChiRepo.GetAll();
+            var all = (from phieuchi in danhSachPhieuChi
+                       where 
+                              phieuchi.NgayChi.Month.Equals(thang)
+                             && phieuchi.NgayChi.Year.Equals(nam)
+                       select new
+                       {
+                           SoPhieuChi = phieuchi.SoPhieuChi,
+                       }).AsEnumerable().Select(x => new PhieuChi()
+                       {
+                           SoPhieuChi = x.SoPhieuChi,
+                       }).Count();
+            return all;
+        }
+
+        public IEnumerable<ThongTinHoatDongViewModel> ThongTinHoatDong()
+        {
+            IQueryable<PhieuChi> danhSachPhieuChi = _phieuChiRepo.GetAll();
+            List<ThongTinHoatDongViewModel> all = new List<ThongTinHoatDongViewModel>();
+
+            all = (from phieuchi in danhSachPhieuChi
+                   join nhanvien in _nhanVienRepo.GetAll()
+                   on phieuchi.MaNhanVien equals nhanvien.MaNhanVien
+                   orderby phieuchi.NgayChinhSua descending
+                   select new
+                   {
+                       SoPhieuChi = phieuchi.SoPhieuChi,
+                       NgayChinhSua = phieuchi.NgayChinhSua,
+                       TenNhanVien = nhanvien.TenNhanvien,
+                       TrangThai = phieuchi.TrangThai,
+                       TongTienChi = phieuchi.TongTienChi,
+                       MaPhieuNhap = phieuchi.MaPhieuNhap,
+                   }).AsEnumerable().Select(x => new ThongTinHoatDongViewModel()
+                   {
+                       soPhieuChi = x.SoPhieuChi,
+                       ngayChinhSuaChi = x.NgayChinhSua,
+                       tenNhanVienChi = x.TenNhanVien,
+                       trangThaiChi = x.TrangThai,
+                       tongTienChi = x.TongTienChi,
+                       maPhieuNhap = x.MaPhieuNhap,
+                   }).Take(2).ToList();
+            return all;
+        }
     }
 
 

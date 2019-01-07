@@ -423,7 +423,101 @@ namespace Business.Implements
             }
 
         }
-        
+
+        public object TongTienBanHang()
+        {
+            DateTime a = DateTime.Now;
+            int ngay = a.Day;
+            int thang = a.Month;
+            int nam = a.Year;
+
+            IQueryable<PhieuBanHang> danhSachPhieuBanHang = _phieuBanHangRepo.GetAll();
+            var all = (from phieubanhang in danhSachPhieuBanHang
+                       orderby phieubanhang.NgayChinhSua descending
+                       where 
+                              phieubanhang.NgayBan.Month.Equals(thang)
+                             && phieubanhang.NgayBan.Year.Equals(nam)
+                             && phieubanhang.TrangThai.Equals(true)
+                       select new
+                       {
+                           TongTien = phieubanhang.TongTien,
+                       }).AsEnumerable().Select(x => new PhieuBanHangViewModel()
+                       {
+                           tongTien = x.TongTien,
+                       }).Sum(x => x.tongTien);
+            return all;
+        }
+
+        public object SoDonBanHang()
+        {
+            DateTime a = DateTime.Now;
+            int ngay = a.Day;
+            int thang = a.Month;
+            int nam = a.Year;
+
+            IQueryable<PhieuBanHang> danhSachPhieuBanHang = _phieuBanHangRepo.GetAll();
+            var all = (from phieubanhang in danhSachPhieuBanHang
+                       where 
+                              phieubanhang.NgayBan.Month.Equals(thang)
+                             && phieubanhang.NgayBan.Year.Equals(nam)
+                       select new
+                       {
+                           SoPhieuBanHang = phieubanhang.SoPhieuBanHang,
+                       }).AsEnumerable().Select(x => new PhieuBanHangViewModel()
+                       {
+                           soPhieuBanHang = x.SoPhieuBanHang,
+                       }).Count();
+            return all;
+        }
+
+        public object SoDonBanHangHuy()
+        {
+            DateTime a = DateTime.Now;
+            int ngay = a.Day;
+            int thang = a.Month;
+            int nam = a.Year;
+
+            IQueryable<PhieuBanHang> danhSachPhieuBanHang = _phieuBanHangRepo.GetAll();
+            var all = (from phieubanhang in danhSachPhieuBanHang
+                       where 
+                              phieubanhang.NgayBan.Month.Equals(thang)
+                             && phieubanhang.NgayBan.Year.Equals(nam)
+                             && phieubanhang.TrangThai.Equals(false)
+                       select new
+                       {
+                           SoPhieuBanHang = phieubanhang.SoPhieuBanHang,
+                       }).AsEnumerable().Select(x => new PhieuBanHangViewModel()
+                       {
+                           soPhieuBanHang = x.SoPhieuBanHang,
+                       }).Count();
+            return all;
+        }
+
+        public IEnumerable<ThongTinHoatDongViewModel> ThongTinHoatDong()
+        {
+            IQueryable<PhieuBanHang> danhSachPhieuBanHang = _phieuBanHangRepo.GetAll();
+            List<ThongTinHoatDongViewModel> all = new List<ThongTinHoatDongViewModel>();
+
+            all = (from phieubanhang in danhSachPhieuBanHang
+                   join nhanvien in _nhanVienRepo.GetAll()
+                   on phieubanhang.MaNhanVien equals nhanvien.MaNhanVien
+                   orderby phieubanhang.NgayChinhSua descending
+                   select new
+                   {
+                       SoPhieuBanHang = phieubanhang.SoPhieuBanHang,
+                       NgayChinhSua = phieubanhang.NgayChinhSua,
+                       TenNhanVien = nhanvien.TenNhanvien,
+                       TrangThai = phieubanhang.TrangThai,
+                   }).AsEnumerable().Select(x => new ThongTinHoatDongViewModel()
+                   {
+                       soPhieuBanHang = x.SoPhieuBanHang,
+                       ngayChinhSuaBanHang = x.NgayChinhSua,
+                       tenNhanVienBanHang = x.TenNhanVien,
+                       trangThaiBanHang = x.TrangThai,
+                   }).Take(2).ToList();
+            return all;
+        }
+
     }
 
 }

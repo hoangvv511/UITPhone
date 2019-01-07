@@ -21,13 +21,15 @@ namespace Business.Implements
         private QLWebDBEntities _dbContext;
         private readonly HangHoaReponsitory _hangHoaRepo;
         private readonly LoaiHangHoaReponsitory _loaiHangHoaRepo;
-
-
+        private readonly ChiTietPhieuBanHangReponsitory _chiTietPhieuBanHangRepo;
+        private readonly ChiTietPhieuDatHangReponsitory _chiTietPhieuDatHangRepo;
         public HangHoaBusiness()
         {
             _dbContext = new QLWebDBEntities();
             _hangHoaRepo = new HangHoaReponsitory(_dbContext);
             _loaiHangHoaRepo = new LoaiHangHoaReponsitory(_dbContext);
+            _chiTietPhieuBanHangRepo = new ChiTietPhieuBanHangReponsitory(_dbContext);
+            _chiTietPhieuDatHangRepo = new ChiTietPhieuDatHangReponsitory(_dbContext); 
         }
 
         public IEnumerable<HangHoa> GetAllHangHoa()
@@ -660,6 +662,131 @@ namespace Business.Implements
         public HangHoa ViewDetail(int id)
         {
             return _dbContext.HangHoas.Find(id);
+        }
+
+        public object SanPhamHetHang()
+        {
+            IQueryable<HangHoa> danhSachHangHoa = _hangHoaRepo.GetAll();
+            var all = (from hanghoa in danhSachHangHoa
+                       where hanghoa.SoLuongTon.Equals(0) && hanghoa.TrangThai.Equals(true)
+                       select new
+                       {
+                           MaHangHoa = hanghoa.MaHangHoa,
+                       }).AsEnumerable().Select(x => new HangHoa()
+                       {
+                           MaHangHoa = x.MaHangHoa,
+                       }).Count();
+            return all;
+        }
+
+        public object SanPhamSapHetHang()
+        {
+            IQueryable<HangHoa> danhSachHangHoa = _hangHoaRepo.GetAll();
+            var all = (from hanghoa in danhSachHangHoa
+                       where hanghoa.SoLuongTon < 5 && hanghoa.TrangThai.Equals(true)
+                       select new
+                       {
+                           MaHangHoa = hanghoa.MaHangHoa,
+                       }).AsEnumerable().Select(x => new HangHoa()
+                       {
+                           MaHangHoa = x.MaHangHoa,
+                       }).Count();
+            return all;
+        }
+
+        public object SanPhamDangKinhDoanh()
+        {
+            IQueryable<HangHoa> danhSachHangHoa = _hangHoaRepo.GetAll();
+            var all = (from hanghoa in danhSachHangHoa
+                       where hanghoa.TrangThai.Equals(true)
+                       select new
+                       {
+                           MaHangHoa = hanghoa.MaHangHoa,
+                       }).AsEnumerable().Select(x => new HangHoa()
+                       {
+                           MaHangHoa = x.MaHangHoa,
+                       }).Count();
+            return all;
+        }
+
+        public object SanPhamNgungKinhDoanh()
+        {
+            IQueryable<HangHoa> danhSachHangHoa = _hangHoaRepo.GetAll();
+            var all = (from hanghoa in danhSachHangHoa
+                       where hanghoa.TrangThai.Equals(false)
+                       select new
+                       {
+                           MaHangHoa = hanghoa.MaHangHoa,
+                       }).AsEnumerable().Select(x => new HangHoa()
+                       {
+                           MaHangHoa = x.MaHangHoa,
+                       }).Count();
+            return all;
+        }
+
+        public object TongSanPham()
+        {
+            return _hangHoaRepo.GetAll().Count();
+        }
+
+        public IList<SanPhamBanChayTaiCuaHangViewModel> SanPhamBanChayNhatTaiCuaHang()
+        {
+            IQueryable<HangHoa> danhSachHangHoa = _hangHoaRepo.GetAll();
+            IQueryable<ChiTietPhieuBanHang> danhSachchiTietPhieuBanHang = _chiTietPhieuBanHangRepo.GetAll();
+            List<SanPhamBanChayTaiCuaHangViewModel> all = new List<SanPhamBanChayTaiCuaHangViewModel>();
+
+            var phieubanhangs = (from phieubanhang in danhSachchiTietPhieuBanHang
+                                 group phieubanhang by phieubanhang.MaHangHoa into phieubanhangGroup
+                                 orderby phieubanhangGroup.Sum(i => i.SoLuong) descending
+                                 select new
+                                 {
+                                     MaHangHoa = phieubanhangGroup.Key,
+                                     TongSoLuongBan = phieubanhangGroup.Sum(i => i.SoLuong),
+                                     TongTien = phieubanhangGroup.Sum(i => i.ThanhTien)
+                                 }).Take(15).ToList();
+
+            all = (from phieubanhang in phieubanhangs
+                   join hanghoa in danhSachHangHoa
+                  on phieubanhang.MaHangHoa equals hanghoa.MaHangHoa
+                   select new SanPhamBanChayTaiCuaHangViewModel
+                   {
+                       maHangHoa = phieubanhang.MaHangHoa,
+                       tongSoLuongBan = phieubanhang.TongSoLuongBan,
+                       tongTienBan = phieubanhang.TongTien,
+                       tenHangHoa = hanghoa.TenHangHoa,
+                       hinhAnh = hanghoa.HinhAnh
+                   }).ToList();
+            return all;
+        }
+
+        public IList<SanPhamBanChayOnlineViewModel> DanhSachSanPhamBanChayNhatOnline()
+        {
+            IQueryable<HangHoa> danhSachHangHoa = _hangHoaRepo.GetAll();
+            IQueryable<ChiTietPhieuDatHang> danhSachchiTietPhieuDatHang = _chiTietPhieuDatHangRepo.GetAll();
+            List<SanPhamBanChayOnlineViewModel> all = new List<SanPhamBanChayOnlineViewModel>();
+
+            var phieudathangs = (from phieudathang in danhSachchiTietPhieuDatHang
+                                 group phieudathang by phieudathang.MaHangHoa into phieudathangGroup
+                                 orderby phieudathangGroup.Sum(i => i.SoLuong) descending
+                                 select new
+                                 {
+                                     MaHangHoa = phieudathangGroup.Key,
+                                     TongSoLuongBan = phieudathangGroup.Sum(i => i.SoLuong),
+                                     TongTien = phieudathangGroup.Sum(i => i.ThanhTien)
+                                 }).Take(15).ToList();
+
+            all = (from phieudathang in phieudathangs
+                   join hanghoa in danhSachHangHoa
+                  on phieudathang.MaHangHoa equals hanghoa.MaHangHoa
+                   select new SanPhamBanChayOnlineViewModel
+                   {
+                       maHangHoa = phieudathang.MaHangHoa,
+                       tongSoLuongBan = phieudathang.TongSoLuongBan,
+                       tongTienBan = phieudathang.TongTien,
+                       tenHangHoa = hanghoa.TenHangHoa,
+                       hinhAnh = hanghoa.HinhAnh
+                   }).ToList();
+            return all;
         }
     }
 }
