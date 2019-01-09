@@ -89,5 +89,19 @@ namespace Business.Implements
 
             await _nhaCungCapRepo.EditAsync(editNhaCungCap);
         }
+
+        public IEnumerable<NhaCungCap> GetAllNhaCungCap()
+        {
+            IQueryable<NhaCungCap> danhSachNhaCungCap = _nhaCungCapRepo.GetAll();
+            var all = (from nhacungcap in danhSachNhaCungCap
+                       select new
+                       {
+                           Email = nhacungcap.Email,
+                       }).AsEnumerable().Select(x => new NhaCungCap()
+                       {
+                           Email = x.Email,
+                       }).ToList();
+            return all;
+        }
     }
 }

@@ -81,5 +81,21 @@ namespace QLWeb.Areas.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public JsonResult CheckEmail(string email)
+        {
+            var isDuplicate = false;
+
+            foreach (var user in _nhaCungCapBus.GetAllNhaCungCap())
+            {
+                if (user.Email == email)
+                    isDuplicate = true;
+            }
+
+            var jsonData = new { isDuplicate };
+
+            return Json(jsonData, JsonRequestBehavior.AllowGet);
+        }
     }
 }

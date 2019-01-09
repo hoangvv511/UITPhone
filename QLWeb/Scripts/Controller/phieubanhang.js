@@ -179,13 +179,17 @@
     $('#submit').click(function () {
         //Kiểm tra xem có sản phẩm nào được thêm chưa
         var isAllValid = true;
+        var errorQuantity = 0;
+        errorQuantity = CheckTenKhachHang(errorQuantity);
+        errorQuantity = CheckSoDienThoai(errorQuantity);
+        error = errorQuantity;
         if (orderItems.length == 0) {
             $('#orderItems').html('<span class="messageError" style="color:red;">Phải có ít nhất 1 hàng hóa</span>');
             isAllValid = false;
         }
 
         //Nếu có sản phẩm rồi thì tạo object rồi gọi Ajax
-        if (isAllValid) {
+        if (isAllValid && error == 0) {
             var data = {
                 soPhieuBanHang: $('#soPhieuBanHang').val().trim(),
                 ngayBan: $('#ngayBanHang').val().trim(),
@@ -356,6 +360,50 @@ function CheckQuantity(error) {
             $(".notifyinputQuantity").addClass("hidden");
             $("#soLuong").removeClass("error");
         }
+    }
+
+    return error;
+}
+
+$(document).ready(function () {
+    $("#tenKhachHang").on('keyup keydown', function () {
+        CheckTenKhachHang();
+    });
+});
+
+// Kiểm tra tên khách hàng
+function CheckTenKhachHang(error) {
+    if ($('#tenKhachHang').val() == '' ) {
+        $(".messageErrorinputTenKhachHang").text("Vui lòng nhập tên khách hàng!");
+        $(".notifyinputTenKhachHang").slideDown(250).removeClass("hidden");
+        $("#checkTenKhachHang").addClass("error");
+        error++;
+    }
+    else {
+        $(".notifyinputTenKhachHang").addClass("hidden");
+        $("#checkTenKhachHang").removeClass("error");
+    }
+    
+    return error;
+}
+
+$(document).ready(function () {
+    $("#soDienThoai").on('keyup keydown', function () {
+        CheckSoDienThoai();
+    });
+});
+
+// Kiểm tra số điện thoại
+function CheckSoDienThoai(error) {
+    if ($('#soDienThoai').val() == '') {
+        $(".messageErrorinputSoDienThoai").text("Vui lòng nhập số điện thoại!");
+        $(".notifyinputSoDienThoai").slideDown(250).removeClass("hidden");
+        $("#checkSoDienThoai").addClass("error");
+        error++;
+    }
+    else {
+        $(".notifyinputSoDienThoai").addClass("hidden");
+        $("#checkSoDienThoai").removeClass("error");
     }
 
     return error;
