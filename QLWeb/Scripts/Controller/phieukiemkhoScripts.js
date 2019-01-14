@@ -291,8 +291,8 @@ $(document).ready(function () {
 
 // Kiểm tra số lượng
 function CheckQuantity(error) {
-    var soLuongKiemTra = $('#soLuongKiemTra').val();
-    var soLuongHienTai = $('#soLuongHienTai').val();
+    var soLuongKiemTra = parseInt($('#soLuongKiemTra').val());
+    var soLuongHienTai = parseInt($('#soLuongHienTai').val());
     if ($('#soLuongKiemTra').val() == 0 || (!($('#soLuongKiemTra').val().trim() != '' && !isNaN($('#soLuongKiemTra').val().trim())))) {
         $(".messageErrorinputQuantity").text("Nhập số lượng!");
         $(".notifyinputQuantity").slideDown(250).removeClass("hidden");
