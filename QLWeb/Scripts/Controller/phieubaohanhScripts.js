@@ -85,7 +85,7 @@
     //Save button click function
     $('#submit').click(function () {
         var errorQuantity = 0;
-        //errorQuantity = CheckNgayGiao(errorQuantity);
+        errorQuantity = CheckNgayGiao(errorQuantity);
         errorQuantity = CheckTenKhachHang(errorQuantity);
         errorQuantity = CheckSoDienThoai(errorQuantity);
         var error = errorQuantity;
@@ -189,9 +189,9 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    //$('#ngayGiao').on("keyup input propertychange paste change", function () {
-    //    CheckNgayGiao();
-    //});
+    $('#ngayGiao').on("keyup input propertychange paste change", function () {
+        CheckNgayGiao();
+    });
 
     $('#tenKhachHang').on("keyup input propertychange paste change", function () {
         CheckTenKhachHang();
@@ -202,32 +202,21 @@ $(document).ready(function () {
     });
 });
 
-// Kiểm tra ràng buôc
-//function CheckNgayGiao(error) {
-//    var ngayGiao = $('#ngayGiao').val();
-//    var ngayLap = $('#ngayLap').val();
-//    var d1 = Date.parse(ngayGiao);
-//    var d2 = Date.parse(ngayLap);
-//    if (!($('#ngayGiao').val().trim() != '')) {
-//        $(".messageErrorinputNgayGiao").text("Nhập ngày giao!");
-//        $(".notifyinputNgayGiao").slideDown(250).removeClass("hidden");
-//        $("#checkNgayGiao").addClass("error");
-//        error++;
-//    }
-//    else {
-//        if (d1 < d2) {
-//            $(".messageErrorinputNgayGiao").text("Ngày giao không hợp lệ!");
-//            $(".notifyinputNgayGiao").slideDown(250).removeClass("hidden");
-//            $("#checkNgayGiao").addClass("error");
-//            error++;
-//        }
-//        else {
-//            $(".notifyinputNgayGiao").addClass("hidden");
-//            $("#checkNgayGiao").removeClass("error");
-//        }
-//    }
-//    return error;
-//}
+ //Kiểm tra ràng buôc
+function CheckNgayGiao(error) {
+
+    if (!($('#ngayGiao').val().trim() != '')) {
+        $(".messageErrorinputNgayGiao").text("Nhập ngày giao!");
+        $(".notifyinputNgayGiao").slideDown(250).removeClass("hidden");
+        $("#checkNgayGiao").addClass("error");
+        error++;
+    }
+    else {
+        $(".notifyinputNgayGiao").addClass("hidden");
+        $("#checkNgayGiao").removeClass("error");
+    }
+    return error;
+}
 
 function CheckTenKhachHang(error) {
     if (!($('#tenKhachHang').val().trim() != '')) {
