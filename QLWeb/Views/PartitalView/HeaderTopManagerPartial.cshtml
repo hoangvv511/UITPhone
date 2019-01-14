@@ -27,13 +27,13 @@
             </div>
             <div class="headert_search col-md-3 col-sm-3 col-xs-12">
                 <div class="box_search">
-                    @*@using (Ajax.BeginForm("TimKiemSanPham", "Home", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "list", HttpMethod = "Get" }))
-                    {*@
+                    @using (Ajax.BeginForm("TimKiemSanPham", "Home", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "list", HttpMethod = "Get" }))
+                    {
                         <input name="searchString" id="search-keyword" type="text" class="text_search" placeholder="Bạn muốn tìm gì ?" value="" autocomplete="off" onkeydown="CheckTimer()" onkeyup="SuggestSearch(event);" />
                         <span class="input-group-btn">
                             <button id="do_submit" name="do_submit" type="submit" class="btn_search" value="Tìm kiếm"></button>
                         </span>
-                    @*  *@}
+                    }
 
                     <div id="SuggestSearch"></div>
                     <div class="clear"></div>
