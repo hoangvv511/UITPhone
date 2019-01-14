@@ -1,4 +1,5 @@
 ﻿using Business.Implements;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,9 @@ namespace QLWeb.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            ViewBag.hangHoaMoiNhat = _hangHoaBus.DanhSachHangHoaMoiNhat();
+            ViewBag.hangHoaBanChayNhat = _hangHoaBus.DanhSachHangHoaBanChayNhat();
+            ViewBag.hangHoaGiamGia = _hangHoaBus.DanhSachHangHoaGiamGia();
             return View();
         }
 
@@ -25,7 +29,9 @@ namespace QLWeb.Controllers
 
         public ActionResult TimKiemSanPham(string searchString, int page = 1, int pageSize = 8)
         {
-            return View();
+            ViewBag.TimKiemSanPham = _hangHoaBus.TimKiemHangHoa(searchString);
+            ViewBag.SearchString = searchString;
+            return View(_hangHoaBus.TimKiemHangHoa(searchString).ToPagedList(page, pageSize));
         }
 
         public JsonResult ListTenHangHoa(string q)

@@ -62,6 +62,7 @@
 
                     //Điền lại vào phiếu
                     GeneratedItemsTable();
+                    TinhTongTien();
                 }
             }
 
@@ -89,6 +90,7 @@
 
                 //Điền lại vào phiếu
                 GeneratedItemsTable();
+                TinhTongTien();
             }
         }
     });
@@ -179,13 +181,17 @@
     $('#submit').click(function () {
         //Kiểm tra xem có sản phẩm nào được thêm chưa
         var isAllValid = true;
+        var errorQuantity = 0;
+        errorQuantity = CheckTenKhachHang(errorQuantity);
+        errorQuantity = CheckSoDienThoai(errorQuantity);
+        error = errorQuantity;
         if (orderItems.length == 0) {
             $('#orderItems').html('<span class="messageError" style="color:red;">Phải có ít nhất 1 hàng hóa</span>');
             isAllValid = false;
         }
 
         //Nếu có sản phẩm rồi thì tạo object rồi gọi Ajax
-        if (isAllValid) {
+        if (isAllValid && error == 0) {
             var data = {
                 soPhieuBanHang: $('#soPhieuBanHang').val().trim(),
                 ngayBan: $('#ngayBanHang').val().trim(),
@@ -236,26 +242,32 @@
     function GeneratedItemsTable() {
         if (orderItems.length > 0) {
             var $table = $('<table id="productTable" class="table table-bordered" />');
-            $table.append('<thead><tr><th>Mã Hàng Hóa</th><th>Tên Hàng Hóa</th><th>Giá</th><th>Thành tiền</th><th>Số Lượng</th><th>Hành Động</th></tr></thead>');
+            $table.append('<thead><tr><th>Mã Hàng Hóa</th><th>Tên Hàng Hóa</th><th>Số Lượng</th><th>Giá</th><th>Thành tiền</th><th>Hành Động</th></tr></thead>');
             var $tbody = $('<tbody/>');
             $.each(orderItems, function (i, val) {
                 var $row = $('<tr/>');
                 $row.append($('<td/>').html(val.MaHangHoa));
                 $row.append($('<td/>').html(val.TenHangHoa));
-
+                $row.append($('<td/>').html(val.soLuong));
                 $row.append($('<td/>').html(formatNumber(val.Gia)));
                 $row.append($('<td/>').html(formatNumber(val.ThanhTien)));
-
-                $row.append($('<td/>').html(val.soLuong));
                 var $remove = $('<input type="button" value="Xóa" style="padding:1px 20px" class="btn-danger"/>');
                 $remove.click(function (e) {
                     e.preventDefault();
                     orderItems.splice(i, 1);
                     GeneratedItemsTable();
+
+                    if (orderItems.length == 0) {
+                        $('#tongTien').val(0);
+                    } else {
+                        TinhTongTien();
+                    }
+
+                    ClearValue();
+                    $('#maHangHoa').focus().val('');
                 });
                 $row.append($('<td/>').html($remove));
                 $tbody.append($row);
-
 
             });
             console.log("current", orderItems);
@@ -265,6 +277,19 @@
         else {
             $('#orderItems').html('');
         }
+    }
+
+    function TinhTongTien() {
+        var amount;
+
+        var total = 0.0;
+        var row = document.getElementById('productTable').rows.length;
+        for (var i = 1; i < row; i++) {
+            amount = document.getElementById("productTable").rows[i].cells[4].innerHTML.replace(/,/gi, "");
+
+            total += parseFloat(amount);
+        }
+        $('#tongTien').val(formatNumber(parseFloat(total)));
     }
 });
 
@@ -361,10 +386,46 @@ function CheckQuantity(error) {
     return error;
 }
 
-//Tính thành tiền
 $(document).ready(function () {
-    $("#soLuong").change(function () {
-        //Tong tien
-        $("#tongTien").val(formatNumber(Number($("#tongTien").val().replace(/,/gi, "")) + Number($("#thanhTien").val().replace(/,/gi, ""))));
+    $("#tenKhachHang").on('keyup keydown', function () {
+        CheckTenKhachHang();
     });
 });
+
+// Kiểm tra tên khách hàng
+function CheckTenKhachHang(error) {
+    if ($('#tenKhachHang').val() == '') {
+        $(".messageErrorinputTenKhachHang").text("Vui lòng nhập tên khách hàng!");
+        $(".notifyinputTenKhachHang").slideDown(250).removeClass("hidden");
+        $("#checkTenKhachHang").addClass("error");
+        error++;
+    }
+    else {
+        $(".notifyinputTenKhachHang").addClass("hidden");
+        $("#checkTenKhachHang").removeClass("error");
+    }
+
+    return error;
+}
+
+$(document).ready(function () {
+    $("#soDienThoai").on('keyup keydown', function () {
+        CheckSoDienThoai();
+    });
+});
+
+// Kiểm tra số điện thoại
+function CheckSoDienThoai(error) {
+    if ($('#soDienThoai').val() == '') {
+        $(".messageErrorinputSoDienThoai").text("Vui lòng nhập số điện thoại!");
+        $(".notifyinputSoDienThoai").slideDown(250).removeClass("hidden");
+        $("#checkSoDienThoai").addClass("error");
+        error++;
+    }
+    else {
+        $(".notifyinputSoDienThoai").addClass("hidden");
+        $("#checkSoDienThoai").removeClass("error");
+    }
+
+    return error;
+}

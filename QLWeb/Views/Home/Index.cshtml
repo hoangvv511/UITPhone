@@ -36,28 +36,28 @@
                             <img src="~/Content/client/vnt_upload/news/12_2016/10/thumbs/500_dslssldffs.jpg" alt='Tin mừng dành cho người dùng Galaxy S7 và S7 Edge, đến cuối cùng Samsung đã thỏa mãn sự mong đợi' title='Tin mừng dành cho người dùng Galaxy S7 và S7 Edge, đến cuối cùng Samsung đã thỏa mãn sự mong đợi' />
                         </a>
                         <a href='#'> Tin mừng dành cho người dùng Galaxy S7 và S7 Edge, ...</a>
-                        <p class='note'>3674 lượt xem | 10/12/2016</p>
+                        <p class='note'>3674 lượt xem | 1/1/2019</p>
                     </li>
                     <li>
                         <a href='#l'>
                             <img src="~/Content/client/vnt_upload/news/12_2016/10/thumbs/500_dslssldffs.jpg" alt='Tin mừng dành cho người dùng Galaxy S7 và S7 Edge, đến cuối cùng Samsung đã thỏa mãn sự mong đợi' title='Tin mừng dành cho người dùng Galaxy S7 và S7 Edge, đến cuối cùng Samsung đã thỏa mãn sự mong đợi' />
                         </a>
                         <a href='#'> Tin mừng dành cho người dùng Galaxy S7 và S7 Edge, ...</a>
-                        <p class='note'>3674 lượt xem | 10/12/2016</p>
+                        <p class='note'>3674 lượt xem | 1/1/2019</p>
                     </li>
                     <li>
                         <a href='#'>
                             <img src="~/Content/client/vnt_upload/news/12_2016/10/thumbs/500_0000000001.jpg" alt='Đến tận bây giờ Apple vẫn chưa quyết định thời điểm lên kệ của Airpods' title='Đến tận bây giờ Apple vẫn chưa quyết định thời điểm lên kệ của Airpods' />
                         </a>
                         <a href='#'> Đến tận bây giờ Apple vẫn chưa quyết định ...</a>
-                        <p class='note'>592 lượt xem | 10/12/2016</p>
+                        <p class='note'>592 lượt xem | 1/1/2019</p>
                     </li>
                     <li class='last'>
                         <a href='#'>
                             <img src="~/Content/client/vnt_upload/news/12_2016/09/thumbs/500_pts_1.jpg" alt='Bước đột phá này sẽ giúp smartphone của bạn chạy được nhiều hệ điều hành' title='Bước đột phá này sẽ giúp smartphone của bạn chạy được nhiều hệ điều hành' />
                         </a>
                         <a href='#'> Bước đột phá này sẽ giúp smartphone của bạn ...</a>
-                        <p class='note'>780 lượt xem | 09/12/2016</p>
+                        <p class='note'>780 lượt xem | 1/1/2019</p>
                     </li>
                 </ul>
             </div>
@@ -100,6 +100,33 @@
                 </div>
                 <div class="box-content">
                     <div id="List_Product" class="List_Product grid-bound grid-bound-km">
+                        @foreach (var item in ViewBag.hangHoaMoiNhat)
+                        {
+                            FormatNumber number = new FormatNumber();
+                            var url = "HangHoa/ChiTietSanPham/" + item.MaHangHoa;
+
+                            <div class='item1 nopadding product-grid'>
+                                <div class='boxItem'>
+                                    <span class="icon-product" style="background: #c20202; border: 1px solid #ffffff; color:#ffffff;">NEW</span>
+                                    <a href="@url" title='@item.TenHangHoa'>
+                                        <img src="~/Content/client/product/@item.HinhAnh" alt='@item.TenHangHoa' title='@item.TenHangHoa' />
+                                    </a>
+                                    <h3>
+                                        <a href="@url" title='@item.TenHangHoa'>@item.TenHangHoa</a>
+                                    </h3>
+                                    <h3 title="@item.TenHangHoa">Xuất Xứ: @item.XuatXu</h3>
+                                    <p class="price">
+                                        <span class="price-promotion">@number.FormatNumbers(@item.GiaBan.ToString()) đ &nbsp;</span>
+                                    </p>
+                                    <div class="promotion-km">
+                                    </div>
+                                    <div class="btn-km-bound">
+                                        <div class="btn-order-bound"><a class="btn-order-link" href="/PhieuDatHang/DatHang?maHangHoa=@item.MaHangHoa&soLuong=1">Đặt ngay</a></div>
+                                        <div class="btn-view-bound"><a class="btn-view-link" href="@url">Xem ngay</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -110,6 +137,29 @@
                 </div>
                 <div class="box-content">
                     <div id="List_Product" class="List_Product grid-bound grid-bound-km">
+                        @foreach (var item in ViewBag.hangHoaGiamGia)
+                        {
+                            FormatNumber number = new FormatNumber();
+                            var url = "HangHoa/ChiTietSanPham/" + item.MaHangHoa;
+                            <div class='item1 nopadding product-grid'>
+                                <div class='boxItem'>
+                                    <span class="icon-product" style="background: #c20202; border: 1px solid #ffffff; color:#ffffff;">Giảm Giá</span>
+                                    <a href="@url" title='@item.TenHangHoa'>
+                                        <img src="~/Content/client/product/@item.HinhAnh" alt='@item.TenHangHoa' title='@item.TenHangHoa' />
+                                    </a>
+                                    <h3><a href="@url" title='@item.TenHangHoa'>@item.TenHangHoa</a> </h3>
+                                    <h3 title="@item.TenHangHoa">Xuất Xứ: @item.XuatXu</h3>
+                                    <p class="price">
+                                        <span class="price-promotion">@number.FormatNumbers(@item.GiamGia.ToString()) đ &nbsp;</span>
+                                        <span class="price-primary price-old">@number.FormatNumbers(@item.GiaBan.ToString()) đ</span>
+                                    </p>
+                                    <div class="btn-km-bound">
+                                        <div class="btn-order-bound"><a class="btn-order-link" href="/PhieuDatHang/DatHang?maHangHoa=@item.MaHangHoa&soLuong=1">Đặt ngay</a></div>
+                                        <div class="btn-view-bound"><a class="btn-view-link" href="@url">Xem ngay</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -119,6 +169,32 @@
                 </div>
                 <div class="box-content">
                     <div id="List_Product" class="List_Product grid-bound grid-bound-km">
+                        @foreach (var item in ViewBag.HangHoaBanChayNhat)
+                        {
+                            FormatNumber number = new FormatNumber();
+                            var url = "HangHoa/ChiTietSanPham/" + item.MaHangHoa;
+                            <div class='item1 nopadding product-grid'>
+                                <div class='boxItem'>
+                                    <span class="icon-product" style="background: #c20202; border: 1px solid #ffffff; color:#ffffff;">HOT</span>
+                                    <a href="@url" title='@item.TenHangHoa'>
+                                        <img src="~/Content/client/product/@item.HinhAnh" alt='@item.TenHangHoa' title='@item.TenHangHoa' />
+                                    </a>
+                                    <h3>
+                                        <a href="@url" title='@item.TenHangHoa'>@item.TenHangHoa</a>
+                                    </h3>
+                                    <h3 title="@item.TenHangHoa">Xuất Xứ: @item.XuatXu</h3>
+                                    <p class="price">
+                                        <span class="price-promotion">@number.FormatNumbers(@item.GiaBan.ToString()) đ &nbsp;</span>
+                                    </p>
+                                    <div class="promotion-km">
+                                    </div>
+                                    <div class="btn-km-bound">
+                                        <div class="btn-order-bound"><a class="btn-order-link" href="/PhieuDatHang/DatHang?maHangHoa=@item.MaHangHoa&soLuong=1">Đặt ngay</a></div>
+                                        <div class="btn-view-bound"><a class="btn-view-link" href="@url">Xem ngay</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

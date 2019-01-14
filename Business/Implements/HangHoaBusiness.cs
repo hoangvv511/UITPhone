@@ -788,5 +788,88 @@ namespace Business.Implements
                    }).ToList();
             return all;
         }
+
+        public IEnumerable<HangHoa> DanhSachHangHoaBanChayNhat()
+        {
+            var orders = (from od in _chiTietPhieuBanHangRepo.GetAll().GroupBy(m => m.MaHangHoa)
+                          join hanghoa in _hangHoaRepo.GetAll()
+                          on od.Key equals hanghoa.MaHangHoa
+                          where (hanghoa.TrangThai == true)
+                          select new
+                          {
+                              MaHangHoa = od.Key,
+                              SoLuong = od.Sum(m => m.SoLuong),
+                              HinhAnh = hanghoa.HinhAnh,
+                              TenHangHoa = hanghoa.TenHangHoa,
+                              GiaBan = hanghoa.GiaBan,
+                              GiamGia = hanghoa.GiamGia,
+                              XuatXu = hanghoa.XuatXu,
+                          }).AsEnumerable().Select(x => new HangHoa()
+                          {
+                              MaHangHoa = x.MaHangHoa,
+                              SoLuongTon = x.SoLuong,
+                              TenHangHoa = x.TenHangHoa,
+                              HinhAnh = x.HinhAnh,
+                              GiamGia = x.GiamGia,
+                              GiaBan = x.GiaBan,
+                              XuatXu = x.XuatXu,
+                          }).Distinct().Take(8).ToList();
+            return orders;
+        }
+
+        public IEnumerable<HangHoa> DanhSachHangHoaGiamGia()
+        {
+            IQueryable<HangHoa> danhSachHangHoa = _hangHoaRepo.GetAll();
+            List<HangHoa> all = new List<HangHoa>();
+
+            all = (from hanghoa in danhSachHangHoa
+                   where (hanghoa.TrangThai == true && hanghoa.GiamGia > 0)
+                   orderby hanghoa.MaHangHoa descending
+                   select new
+                   {
+                       MaHangHoa = hanghoa.MaHangHoa,
+                       TenHangHoa = hanghoa.TenHangHoa,
+                       HinhAnh = hanghoa.HinhAnh,
+                       GiaBan = hanghoa.GiaBan,
+                       GiamGia = hanghoa.GiamGia,
+                       XuatXu = hanghoa.XuatXu,
+                   }).AsEnumerable().Select(x => new HangHoa()
+                   {
+                       MaHangHoa = x.MaHangHoa,
+                       TenHangHoa = x.TenHangHoa,
+                       HinhAnh = x.HinhAnh,
+                       GiaBan = x.GiaBan,
+                       GiamGia = x.GiamGia,
+                       XuatXu = x.XuatXu,
+                   }).Take(8).ToList();
+            return all;
+        }
+
+        public IList<HangHoa> TimKiemHangHoa(string key)
+        {
+            IQueryable<HangHoa> danhSachHangHoa = _hangHoaRepo.GetAll();
+            List<HangHoa> all = new List<HangHoa>();
+
+            all = (from hanghoa in danhSachHangHoa
+                   where hanghoa.TenHangHoa.ToLower().Contains(key)
+                   select new
+                   {
+                       MaHangHoa = hanghoa.MaHangHoa,
+                       TenHangHoa = hanghoa.TenHangHoa,
+                       HinhAnh = hanghoa.HinhAnh,
+                       GiaBan = hanghoa.GiaBan,
+                       GiamGia = hanghoa.GiamGia,
+                       XuatXu = hanghoa.XuatXu,
+                   }).AsEnumerable().Select(x => new HangHoa()
+                   {
+                       MaHangHoa = x.MaHangHoa,
+                       TenHangHoa = x.TenHangHoa,
+                       HinhAnh = x.HinhAnh,
+                       GiaBan = x.GiaBan,
+                       GiamGia = x.GiamGia,
+                       XuatXu = x.XuatXu,
+                   }).ToList();
+            return all;
+        }
     }
 }
